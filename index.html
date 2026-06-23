@@ -921,7 +921,7 @@
 </div><!-- /content -->
 
 <script>
-const HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8';
+const HASH = 'a9c9439afa998a113825574961992e72f635d97b6ee2b72bf54e5701222d3bb3';
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
