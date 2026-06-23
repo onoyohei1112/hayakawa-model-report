@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早川モデル フェーズ別行動整理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --surface: #F8FAFC;
+    --surface-alt: #F1F5F9;
+    --border: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --text-inverse: #FFFFFF;
+    --brand-primary: #1E40AF;
+    --brand-dark: #1E3A8A;
+    --brand-light: #DBEAFE;
+    --brand-pale: #EFF6FF;
+    --brand-accent: #3B82F6;
+    --highlight-yellow: #FBBF24;
+    --highlight-bg: #FEF3C7;
+    --success: #16A34A;
+    --info: #0EA5E9;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+    color: var(--text-primary);
+    background: var(--surface);
+    line-height: 1.7;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== PASSWORD GATE ===== */
+  #gate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%);
+  }
+  .gate-box {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .gate-box h1 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .gate-box p { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; }
+  .gate-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .gate-input:focus { border-color: var(--brand-accent); }
+  .gate-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--brand-primary);
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gate-btn:hover { background: var(--brand-dark); }
+  .gate-error { color: #DC2626; font-size: 13px; margin-top: 8px; display: none; }
+
+  /* ===== MAIN CONTENT (hidden until auth) ===== */
+  #content { display: none; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%);
+    color: var(--text-inverse);
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -20%;
+    width: 600px; height: 600px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .hero-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 36px; font-weight: 700; line-height: 1.3; margin-bottom: 16px; letter-spacing: 0.04em; }
+  .hero p { font-size: 16px; opacity: 0.85; max-width: 640px; margin: 0 auto; line-height: 1.8; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== KEY MESSAGE ===== */
+  .key-message {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: -32px auto 48px;
+    max-width: 960px;
+    position: relative; z-index: 1;
+    box-shadow: var(--shadow-md);
+  }
+  .key-message h2 { font-size: 18px; font-weight: 700; color: var(--brand-primary); margin-bottom: 16px; }
+  .key-message p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+  .highlight { font-weight: 600; color: var(--brand-primary); }
+
+  /* ===== PHASE NAV ===== */
+  .phase-nav {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 48px; padding: 0 24px;
+  }
+  .phase-nav a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .phase-nav a:hover { border-color: var(--brand-accent); color: var(--brand-primary); background: var(--brand-pale); }
+  .phase-nav .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--brand-primary); color: var(--text-inverse);
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ===== OVERVIEW TABLE ===== */
+  .overview-section { margin-bottom: 56px; }
+  .overview-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 24px; text-align: center; }
+  .overview-table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    background: var(--bg); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); font-size: 14px;
+  }
+  .overview-table thead th {
+    background: var(--brand-dark); color: var(--text-inverse);
+    padding: 14px 16px; font-weight: 600; text-align: center; white-space: nowrap;
+  }
+  .overview-table thead th:first-child { text-align: left; }
+  .overview-table tbody td {
+    padding: 14px 16px; border-bottom: 1px solid var(--border);
+    text-align: center; vertical-align: middle;
+  }
+  .overview-table tbody td:first-child { text-align: left; font-weight: 500; }
+  .overview-table tbody tr:last-child td { border-bottom: none; }
+  .overview-table tbody tr:hover { background: var(--brand-pale); }
+  .mark-high { color: var(--brand-primary); font-weight: 700; font-size: 18px; }
+  .mark-mid { color: var(--brand-accent); font-weight: 600; font-size: 16px; }
+  .mark-none { color: var(--text-muted); }
+
+  /* ===== PHASE SECTION ===== */
+  .phase-section { margin-bottom: 64px; scroll-margin-top: 24px; }
+  .phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .phase-number {
+    display: flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--brand-primary); color: var(--text-inverse);
+    font-size: 20px; font-weight: 700; flex-shrink: 0;
+  }
+  .phase-header h2 { font-size: 24px; font-weight: 700; line-height: 1.3; }
+  .phase-subtitle {
+    font-size: 16px; color: var(--text-secondary);
+    margin-bottom: 28px; padding-left: 64px; line-height: 1.8;
+  }
+
+  /* ===== QUOTE BOX (interview) ===== */
+  .quote-box {
+    background: var(--brand-pale);
+    border: 1px solid var(--brand-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .quote-box-label {
+    font-size: 12px; font-weight: 700; color: var(--brand-primary);
+    letter-spacing: 0.04em; margin-bottom: 10px;
+  }
+  .quote-box blockquote {
+    font-size: 15px; color: var(--text-primary); line-height: 1.8;
+    font-style: normal;
+    border-left: 3px solid var(--brand-primary);
+    padding-left: 16px;
+    margin-bottom: 8px;
+  }
+  .quote-box blockquote:last-child { margin-bottom: 0; }
+  .quote-source { font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 8px; }
+
+  /* ===== BEHAVIOR CARD ===== */
+  .behavior-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+  .behavior-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); transition: border-color 0.2s;
+  }
+  .behavior-card:hover { border-color: var(--brand-accent); }
+  .behavior-card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+  .behavior-id {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 44px; height: 28px; border-radius: 4px;
+    background: var(--brand-dark); color: var(--text-inverse);
+    font-size: 12px; font-weight: 700; padding: 0 10px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .behavior-title { font-size: 17px; font-weight: 600; line-height: 1.5; }
+  .behavior-cases { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; padding-left: 56px; }
+  .case-tag {
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+    font-size: 12px; font-weight: 500;
+    background: var(--brand-light); color: var(--brand-primary);
+  }
+  .case-tag.all { background: var(--brand-primary); color: var(--text-inverse); }
+  .behavior-detail {
+    padding-left: 56px; color: var(--text-secondary);
+    font-size: 15px; line-height: 1.8;
+  }
+  .behavior-detail .example {
+    display: block; margin-top: 8px; padding: 12px 16px;
+    background: var(--surface);
+    border-left: 3px solid var(--brand-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 14px; color: var(--text-primary); line-height: 1.7;
+  }
+
+  /* ===== INSIGHT BOX ===== */
+  .insight-box {
+    background: var(--highlight-bg); border: 1px solid var(--highlight-yellow);
+    border-radius: var(--radius); padding: 20px 24px;
+  }
+  .insight-box-title { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+  .insight-box ul { list-style: none; padding: 0; }
+  .insight-box li {
+    position: relative; padding-left: 20px;
+    font-size: 14px; color: var(--text-secondary);
+    line-height: 1.8; margin-bottom: 4px;
+  }
+  .insight-box li::before {
+    content: ''; position: absolute; left: 0; top: 10px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--highlight-yellow);
+  }
+
+  /* ===== CONNECTIONS ===== */
+  .connections {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow); margin-bottom: 64px;
+  }
+  .connections h2 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+  .connection-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+  }
+  .connection-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .connection-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: var(--brand-pale);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .connection-icon svg { width: 20px; height: 20px; stroke: var(--brand-primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .connection-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .connection-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+  .footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 13px; color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 56px 20px 44px; }
+    .hero h1 { font-size: 26px; }
+    .key-message { margin: -24px 16px 36px; padding: 24px; }
+    .phase-nav a { font-size: 13px; padding: 8px 14px; }
+    .phase-header h2 { font-size: 20px; }
+    .phase-subtitle, .behavior-cases, .behavior-detail { padding-left: 0; }
+    .behavior-card { padding: 20px; }
+    .overview-table { font-size: 12px; }
+    .overview-table thead th, .overview-table tbody td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PASSWORD GATE ===== -->
+<div id="gate">
+  <div class="gate-box">
+    <h1>早川モデル フェーズ別行動整理</h1>
+    <p>閲覧にはパスワードが必要です</p>
+    <input type="password" id="pw" class="gate-input" placeholder="パスワードを入力" autofocus>
+    <button class="gate-btn" onclick="unlock()">開く</button>
+    <div class="gate-error" id="err">パスワードが違います</div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div id="content">
+
+<header class="hero">
+  <div class="hero-label">PRINCIPLE INC. / HAYAKAWA MODEL</div>
+  <h1>早川モデル<br>フェーズ別行動整理</h1>
+  <p>早川さんが提案準備から商談、既存顧客の深耕まで、実際にどのような行動をとっているかを6つのフェーズに整理しました。4つのクライアント案件の分析と、ご本人へのインタビュー内容に基づいています。</p>
+</header>
+
+<div class="container">
+  <div class="key-message">
+    <h2>この資料のポイント</h2>
+    <p>早川さんの提案準備の最大の特徴は、<span class="highlight">「施策」や「サービスメニュー」からではなく、顧客の事業構造から入る</span>ことです。IR資料を読み、市場を理解し、事業のKGIから逆算して「何を提案すべきか」の仮説を組み立てる。この「上から下へ一気通貫で下ろす」プロセスが、提案の説得力と受注率に繋がっています。</p>
+    <p style="margin-top: 12px;">本資料では、この一連の行動を<span class="highlight">6つのフェーズ</span>に分解し、各フェーズで早川さんが実際に何をしているか、そしてご本人がどう考えているかを具体例とともにまとめています。</p>
+  </div>
+</div>
+
+<nav class="phase-nav">
+  <a href="#phase1"><span class="num">1</span>事業・顧客理解</a>
+  <a href="#phase2"><span class="num">2</span>仮説構築</a>
+  <a href="#phase3"><span class="num">3</span>提案体制づくり</a>
+  <a href="#phase4"><span class="num">4</span>提案資料づくり</a>
+  <a href="#phase5"><span class="num">5</span>商談</a>
+  <a href="#phase6"><span class="num">6</span>既存顧客の深耕</a>
+</nav>
+
+<div class="container">
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="overview-section">
+    <h2>全体像: 各フェーズの確認状況</h2>
+    <table class="overview-table">
+      <thead><tr><th>フェーズ</th><th>サンリオ</th><th>パナソニック</th><th>東芝</th><th>ビーウィズ</th></tr></thead>
+      <tbody>
+        <tr><td>1. 事業・顧客理解</td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-mid">&#9675;</span></td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-mid">&#9675;</span></td></tr>
+        <tr><td>2. 仮説構築</td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-mid">&#9675;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-high">&#9679;</span></td></tr>
+        <tr><td>3. 提案体制づくり</td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-mid">&#9675;</span></td></tr>
+        <tr><td>4. 提案資料づくり</td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-high">&#9679;</span></td></tr>
+        <tr><td>5. 商談</td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-none">&mdash;</span></td></tr>
+        <tr><td>6. 既存顧客の深耕</td><td><span class="mark-none">&mdash;</span></td><td><span class="mark-high">&#9679;</span></td><td><span class="mark-mid">&#9675;</span></td><td><span class="mark-mid">&#9675;</span></td></tr>
+      </tbody>
+    </table>
+    <p style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:12px;">
+      <span class="mark-high">&#9679;</span> 詳細に確認 &nbsp;&nbsp; <span class="mark-mid">&#9675;</span> 一部確認 &nbsp;&nbsp; <span class="mark-none">&mdash;</span> 未確認
+    </p>
+  </section>
+
+  <!-- ========== PHASE 1 ========== -->
+  <section class="phase-section" id="phase1">
+    <div class="phase-header">
+      <div class="phase-number">1</div>
+      <h2>事業・顧客理解</h2>
+    </div>
+    <p class="phase-subtitle">
+      顧客の事業構造を経営レベルで把握し、顧客の顧客・競合環境・自社の立ち位置を構造的に理解する。<br>
+      「顧客のビジネスを顧客以上に理解する」ための基盤づくり。
+    </p>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんの考え方（インタビューより）</div>
+      <blockquote>基本的には広いところからだんだん下げていくっていうところです。全社の業績はどうで、全社的な視点で見ると経営課題って何で、というところを一旦見た上で、今回の対象事業ってどういう位置づけにあるのかを把握する。</blockquote>
+      <blockquote>お客さんの立ち位置って3C分析とかでどうなのか整理して、誰がお客様で、そのお客様ってカスタマージャーニー的にはどういう動き方するのかを整理して、そこに対してマーケティングのアプローチとして4P整理するとどんなことをやっていそうか。1から4まで踏まえると、どんな支援をするとうまくフィット感がありそうかっていうのを考える。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-1</span>
+          <span class="behavior-title">IR資料・財務データの調査</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          顧客企業のIR資料（決算説明会資料、半期報告書、中期経営計画など）を読み込み、全社業績・事業セグメント・成長戦略を把握する。
+          <span class="example">サンリオ: Q3累計の決算説明会資料から全社業績とピューロランド単体売上を把握。<br>ビーウィズ: 半期報告書・中計数値・セグメント構成を把握。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-2</span>
+          <span class="behavior-title">市場構造の把握</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag all">全4案件</span></div>
+        <div class="behavior-detail">
+          顧客が戦っている市場の規模・構造・トレンドを調査する。
+          <span class="example">サンリオ: IP経済圏と推し活市場（4.1兆円）の構造を把握。<br>パナソニック: ベトナム空調市場のPEST分析。10以上の外部ソースURLを明記。<br>東芝: ディスクリート半導体市場の3極構造。ビーウィズ: BPO市場（1兆1,000億円超）と生成AIの影響。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-3</span>
+          <span class="behavior-title">3C分析</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag all">全4案件</span></div>
+        <div class="behavior-detail">
+          Customer（顧客の顧客）、Competitor（競合）、Company（顧客企業自身）の3つの視点で市場を整理する。全案件で実施しており、早川さんの「標準装備」。
+          <span class="example">サンリオ: 社内用の「深い版」と顧客提示用の「提案版」の2種類を作成。競合は「テーマパーク同士」ではなく「時間の競合 / 予算の競合 / 体験の競合」の3層で再定義。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-4</span>
+          <span class="behavior-title">ペルソナ設計</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag all">全4案件</span></div>
+        <div class="behavior-detail">
+          顧客の顧客や意思決定者の具体的な人物像を設計する。案件によって詳しさを変えている。
+          <span class="example">東芝: 最も詳細。「深夜にデータシートを漁る半導体エンジニア」「EOLリスクを極端に嫌う購買担当者」と行動レベルまで描写。<br>パナソニック: ターゲット属性レベル。案件の目的に応じて深さを調整。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-5</span>
+          <span class="behavior-title">カスタマージャーニー設計</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">東芝</span></div>
+        <div class="behavior-detail">
+          顧客の顧客が認知から購入に至るまでの行動ステップを設計する。
+          <span class="example">情報収集 → 技術探索 → 技術検証 → 試作 → 評価 → 見積 → 発注の7ステップ。各ステップに「リアル」と「デジタル」のタッチポイントを配置。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">1-6</span>
+          <span class="behavior-title">AIを使った段階的リサーチとセカンドオピニオン</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          AIに一度に全部聞くのではなく、段階的に深掘りする。さらに外部専門家からのフィードバックも取得し、分析の精度を高める。
+          <span class="example">Geminiで全社業績 → 事業部 → 市場定義 → 3C → 戦略仮説 → ペルソナ → KPIと15ターンで段階的に深掘り。AIの3C分析に対して「競合はテーマパークではない」「モードの違いでは」と自分の仮説を3回ぶつけて修正。さらに外部コンサルタントから3,000字のFBを取得し統合。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんのAI活用の考え方</div>
+      <blockquote>AIもゴリゴリ使うんですが、ポイントはAIが吐き出してきたことを、ちゃんと自分の言葉で喋れるように咀嚼するってところがすごく重要。</blockquote>
+      <blockquote>一気に答えを出させることもできるんですけど、1個1個一問一答形式でやっていった方がいい。アウトプットが出てきたものに対して「それってどういうこと？」みたいなのを壁打ちする中で、内容を全部咀嚼していける。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>全4案件で「事業構造の上位理解」→「3C分析」を実施 ── 施策レベルから入っていない</li>
+        <li>新規コンペ（サンリオ）ではIR + AI + 専門家FBまで動員。既存案件では深さを調整</li>
+        <li>AIを「答えを出す道具」ではなく「壁打ち相手」として使い、自分の仮説をぶつけて深化させている</li>
+        <li>3C分析は全案件共通。ペルソナ・CJは案件特性に応じて深さを変えている</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PHASE 2 ========== -->
+  <section class="phase-section" id="phase2">
+    <div class="phase-header">
+      <div class="phase-number">2</div>
+      <h2>仮説構築</h2>
+    </div>
+    <p class="phase-subtitle">
+      フェーズ1の分析を踏まえ、「何を提案すべきか」「何をKPIとすべきか」の仮説を組み立てる。<br>
+      早川さんが「上から下に下ろしてくる」と表現する、提案準備の核心部分。
+    </p>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんの考え方（インタビューより）</div>
+      <blockquote>仮説の精度と言ったんですけど、もちろんそれは高ければ高いに越したことはないんだけども、多分より本質的には、仮に精度が高くなかった、外れちゃってたとしても、そこまで一生懸命自分たちのことを理解しようとしてくれたんだっていう態度とか姿勢みたいなものが多分伝わるはず。</blockquote>
+      <blockquote>AIが出してくる仮説って感覚的に結構ちょっと遠いことが多い感覚はあるので、ここはそうじゃなくてこっちじゃないみたいなところ、それこそ壁打ちした上で自分の中での腹落ち感・精度感を高めていく。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-1</span>
+          <span class="behavior-title">事業KGIから広告KPIまでの一気通貫導出</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          顧客の事業目標（KGI）を起点に、マーケティング施策のKPIまでを一本の線で繋ぐ。途中でプリンシプルのサービスメニューに引き寄せない。
+          <span class="example">「サンリオのKGI = 夢中時間の最大化 = LTVの最大化」<br>→ 「ピューロランド = 体験接点のひとつ」<br>→ 「広告のKPI = Sanrio+会員登録」<br>事業構造から広告KPIまでを、論理のチェーンで直線的に導出。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-2</span>
+          <span class="behavior-title">KPI候補の比較評価</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          KPIの候補を複数出し、評価軸を設けて構造的に比較する。
+          <span class="example">KPI候補4つ: Sanrio+会員登録 / 来場パスポート購入 / 予約時売上 / LTV<br>評価軸3つ: 事業KGIとの直結性 / 計測可能性 / 最大化余地<br>結論: 「Sanrio+会員登録」が最適。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-3</span>
+          <span class="behavior-title">事業KPIとWeb KPIの紐づけ</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">パナソニック</span></div>
+        <div class="behavior-detail">
+          顧客の売上に至るファネル（見込み客が顧客になるまでのステップ）を全段数値化し、「プリンシプルが改善できるのはどこか」を特定する。
+          <span class="example">訪問者 → 問合せ → チャット → 送客 → 受注 → 単価 → 金額の各段を数値化。<br>「広告で直接動かせるのはここ」「CRMで改善できるのはここ」と、改善レバーをファネル上にマッピング。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-4</span>
+          <span class="behavior-title">顧客の課題を起点にした仮説構築</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          顧客から聞いた課題を分析し、その原因と解決策の仮説を立てる。
+          <span class="example">顧客の声「デジマ経由の受注単価・ROIが低い」<br>→ 仮説: ミドルファネル層（比較検討段階の見込み客）へのアプローチで、検討プロセスの早期から営業が介入 → 受注単価の向上。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-5</span>
+          <span class="behavior-title">事業計画からの定量目標逆算</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          顧客の事業計画の数値を出発点に、達成に必要なリード数やチャネル配分を逆算する。
+          <span class="example">財務構造（中計数値） → SQL目標 → 商談化率 → 受注率 → リード目標 → チャネル別目標と、事業目標から施策の数値目標までを逆算チェーンで設計。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">2-6</span>
+          <span class="behavior-title">仮説の数値検証（推定と事実の分離）</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          仮説に含まれる数値について、「これは推定」「これは要確認」を明確に区別する。
+          <span class="example">「セグメント利益率20%は要検証」「来場者数180万人も要確認」と、推定値にフラグを立てて事実確認を実施。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>全ての仮説が「事業構造の上位」から下ろされている ── 施策アイデアから入っていない</li>
+        <li>KPI選定は候補比較型 ── 「なんとなく」ではなく評価軸を設けて選んでいる</li>
+        <li>推定と事実を明確に分離し、推定のまま提案に載せない</li>
+        <li>仮説の精度だけでなく「理解しようとする姿勢」が本質的に重要（早川さん談）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PHASE 3 ========== -->
+  <section class="phase-section" id="phase3">
+    <div class="phase-header">
+      <div class="phase-number">3</div>
+      <h2>提案体制づくり</h2>
+    </div>
+    <p class="phase-subtitle">
+      チームを編成し、提案準備を推進する。スケジュール設計、アジェンダ設計、作業分担、情報の流れの管理。
+    </p>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">3-1</span>
+          <span class="behavior-title">案件受領即日のスケジュール設計</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          案件を受けたその日のうちに、提案までのスケジュールを設計してチームに共有。
+          <span class="example">案件受領当日（4/23 11:55）に7ステップの仮スケジュールをSlackに投稿。先方からスケジュール変更があった際も当日中に対応。12:02（7分後）には翌日の社内MTGを自らセット。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">3-2</span>
+          <span class="behavior-title">MTGアジェンダの構造化</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          MTGの前に、ゴール・アジェンダ・時間配分・協議論点を事前に構造化して共有する。
+          <span class="example">45分構成で5項目に時間配分。協議論点を3つに絞り込んで事前提示:<br>a. ビジネス理解 &nbsp; b. 伴走支援の示し方 &nbsp; c. 短期施策の具体案</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">3-3</span>
+          <span class="behavior-title">分担確定後の自担当即日完了</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          分担を決めた後、まず自分が当日中に担当パートを仕上げる。
+          <span class="example">MTG直後（15:37）に7パートの分担をテキストで確定。当日中にフォルダ作成・骨子格納・自担当パートを完了。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">3-4</span>
+          <span class="behavior-title">方針協議の段階的実施</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          方針の協議を1回で済ませず、複数回に分けて段階的に深化させる。
+          <span class="example">3/31と4/13の2回にわたり方針協議を実施。1回目で仮説提示 → 2回目で分析深化・戦略具体化。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>サンリオでは案件受領から2日以内に全体制が整っている</li>
+        <li>MTGは「ゴール・論点・時間配分」を事前構造化 ── 会議を走らせず設計している</li>
+        <li>分担後に「まず自分がやって見せる」行動がある</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PHASE 4 ========== -->
+  <section class="phase-section" id="phase4">
+    <div class="phase-header">
+      <div class="phase-number">4</div>
+      <h2>提案資料づくり</h2>
+    </div>
+    <p class="phase-subtitle">
+      フェーズ1〜2の分析・仮説を、顧客に提示する提案書に落とし込む。
+    </p>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">4-1</span>
+          <span class="behavior-title">提案資料の構造設計</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span><span class="case-tag">東芝</span></div>
+        <div class="behavior-detail">
+          提案資料の全体構成を、案件の特性に合わせて設計する。
+          <span class="example">サンリオ: 与件整理 → 事業概況 → 提案概要（4段階STEP） → 見積 → スケジュール → 体制<br>東芝: 3C → ペルソナ → CJ → 施策（広告/SEO/解析） → 見積 → 体制</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">4-2</span>
+          <span class="behavior-title">顧客課題の本質整理</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          複数の課題を少数の本質に集約する。個別の問題をバラバラに並べず、構造化して提示する。
+          <span class="example">複数の課題を「2つの判断のしづらさ」に集約:<br>1. 事業貢献の不透明さ（広告が事業にどう効いているかが見えない）<br>2. 運用のブラックボックス（何をやっているのか把握できない）</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">4-3</span>
+          <span class="behavior-title">メディアプランニング・コンテンツ戦略の具体化</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">東芝</span><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          「方向性」ではなく「実行計画」レベルまで具体的な施策案を提示する。
+          <span class="example">東芝: LP x KW x ターゲティングの11パターンマッピング表。3プラン（250万/400万/650万円）で数値試算。<br>ビーウィズ: 15本のコンテンツ企画案を認知/興味関心/比較検討の3段階で設計。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">4-4</span>
+          <span class="behavior-title">見積設計</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span><span class="case-tag">東芝</span><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          「いくらか」だけでなく「どう使うか」まで設計する。
+          <span class="example">東芝: 6項目で通期1.1億円の見積。<br>ビーウィズ: 自身の工数（25h + 協議15h）まで含めた設計。「金額」と「投下リソース」の両面で提案。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんの見積に対する考え方</div>
+      <blockquote>初回提案の場合は複数、いずれにせよ見積もりも作ると思うんですけど、予算感はあんまり重要でないことの方が多い。予算1000万ですって言った時にプランとしては2000万、1000万、500万みたいなレンジで多分出す。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>提案資料の起点は常に「事業構造の理解」と「仮説」── サービスメニューの紹介から始まっていない</li>
+        <li>ビーウィズのコンテンツ戦略は15本という具体性 ── 「方向性」ではなく「実行計画」</li>
+        <li>見積は複数プランで提示し、予算ありきではなく価値ありきで設計</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PHASE 5 ========== -->
+  <section class="phase-section" id="phase5">
+    <div class="phase-header">
+      <div class="phase-number">5</div>
+      <h2>商談</h2>
+    </div>
+    <p class="phase-subtitle">
+      直前の準備、商談の進行、商談後のアクション。
+    </p>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんの商談に対する考え方</div>
+      <blockquote>ポイントは要はヒアリング、聞く場ではなくて、こう考えてきたけどそれで合ってるかっていう確認する場みたいな立ち位置にする。</blockquote>
+      <blockquote>プレゼンの場自体は言ってみたらほぼ儀式みたいなもので、やらなきゃいけないからプロセスとしてやってるだけで、ここ自体はさして重要じゃなく、担当者とのすり合わせの時点で結論が見えているみたいなことにしておく。</blockquote>
+      <blockquote>アイスブレイクのネタとして、企業のできればその事業に関わるところ、何かアイスブレイクになるようなネタがあれば、そこから始めていく。リアルタイム性が重要で、相談開始前30分とか5分で見つけに行ける。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">5-1</span>
+          <span class="behavior-title">移動中の再考察と直前更新</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          準備が完了した後も、ギリギリまで最適化を続ける。
+          <span class="example">訪問に向かう移動中に「広告効果の可視化がキー」と判断し、該当スライドを直前更新。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">5-2</span>
+          <span class="behavior-title">アイスブレイクの仕込み</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          商談の冒頭で、個人的な接点を示すスライドを用意。
+          <span class="example">提案資料の冒頭に、家族でピューロランドを訪問した写真のスライドを追加。「この仕事に個人的にも関心がある」ことを自然に伝える。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">5-3</span>
+          <span class="behavior-title">商談を「仮説検証の場」として進行</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          一方的なプレゼンではなく、仮説を提示して先方の反応で検証する対話型の場にしている。
+          <span class="example">与件・リサーチ内容について先方との認識ギャップを確認。質疑応答を「仮説の検証」として活用。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">5-4</span>
+          <span class="behavior-title">商談後の即日行動</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">サンリオ</span></div>
+        <div class="behavior-detail">
+          商談が終わったらその日のうちに次のアクションを起こす。
+          <span class="example">商談後に担当者と電話。スケジュール変更情報を即日社内共有。次回面談に向けた社内相談を依頼。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-box-label">早川さんが考える「勝ちパターンの起点」</div>
+      <blockquote>クリアすると行けたなというのは、最初の初手として、まずお客さんってどういう状況にあるんだっけっていうのをこちら側からしっかりある程度外から見えるところで把握して、そこで一定程度の精度の高い仮説を持ってくことによって、初回の時に少なくともその担当者自体はもうこちらの仲間にする。</blockquote>
+      <div class="quote-source">2026年4月15日 インタビューより</div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>「移動中に再考察 → 直前更新」── 準備完了後もギリギリまで最適化</li>
+        <li>提案を「仮説」として位置づけ、商談を「仮説検証の場」にしている</li>
+        <li>プレゼンは「儀式」。勝負は事前の担当者とのすり合わせで決まる（早川さん談）</li>
+        <li>商談後のアクション（電話・社内共有・次回準備）が全て即日</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== PHASE 6 ========== -->
+  <section class="phase-section" id="phase6">
+    <div class="phase-header">
+      <div class="phase-number">6</div>
+      <h2>既存顧客の深耕</h2>
+    </div>
+    <p class="phase-subtitle">
+      日常の伴走支援の中から、次の提案機会を生み出す行動。3社の既存案件から抽出。
+    </p>
+
+    <div class="behavior-list">
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">6-1</span>
+          <span class="behavior-title">「伴走支援」ポジショニングの継続的伝達</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">パナソニック</span></div>
+        <div class="behavior-detail">
+          「プリンシプルは広告の運用代行ではなく、事業成長に向けた伴走支援をしている」というポジショニングを、日常のやり取りの中で折に触れて伝え続ける。
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">6-2</span>
+          <span class="behavior-title">定期タイミングでの分析更新</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">パナソニック</span></div>
+        <div class="behavior-detail">
+          年度替わりなどのタイミングで、PEST/3Cの読み合わせを定期的に実施する。提案時に一度やって終わりにしない。
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">6-3</span>
+          <span class="behavior-title">KPI紐づけから次の仕事を生む</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">パナソニック</span></div>
+        <div class="behavior-detail">
+          事業KPIとWeb KPIの紐づけを協議する中で、自然に次の仕事が生まれる。
+          <span class="example">KPI紐づけの方針協議 → その議論の流れでタグマネ・解析が「やるべきこと」として浮上 → 新たな案件として受注。</span>
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">6-4</span>
+          <span class="behavior-title">年間伴走提案としての包括分析</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">東芝</span></div>
+        <div class="behavior-detail">
+          単発の施策提案ではなく、3C/ペルソナ/CJを含めた年間の伴走支援提案を実施。
+        </div>
+      </div>
+      <div class="behavior-card">
+        <div class="behavior-card-header">
+          <span class="behavior-id">6-5</span>
+          <span class="behavior-title">事業計画からの逆算目標を「叩き」として提示</span>
+        </div>
+        <div class="behavior-cases"><span class="case-tag">ビーウィズ</span></div>
+        <div class="behavior-detail">
+          顧客の事業計画から逆算した目標値を「叩き台」として提示する。顧客が自社では作れない価値を提供する行動。
+          <span class="example">事業計画の予測数値からデジタルマーケティングの目標値を逆算試算し、「叩き」としてクライアントに提示して目線合わせ。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-box-title">このフェーズの注目ポイント</div>
+      <ul>
+        <li>パナソニックの「KPI協議 → 新規案件化」は深耕の具体的成功パターン</li>
+        <li>既存顧客でも3C/PESTを「定期的に更新」── 一度やって終わりにしない</li>
+        <li>「事業計画から逆算した数値」を叩きとして出すのは、顧客が自力では作れない付加価値</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== CONNECTIONS ========== -->
+  <section class="connections">
+    <h2>フェーズ間の繋がり</h2>
+    <div class="connection-item">
+      <div class="connection-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+      <div class="connection-body">
+        <h3>フェーズ1 → 2: 事業理解から仮説まで一気通貫</h3>
+        <p>サンリオでは、事業構造の理解（フェーズ1）から広告KPIの仮説（フェーズ2）まで、「経営 → 事業 → マーケ → 施策」の一本道で繋がっている。途中でプリンシプルのサービスメニューに引き寄せる動きがない。</p>
+      </div>
+    </div>
+    <div class="connection-item">
+      <div class="connection-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div>
+      <div class="connection-body">
+        <h3>フェーズ1: 分析の深さを案件に合わせて調整</h3>
+        <p>3C分析は全案件で行うが、ペルソナは「属性レベル」から「行動レベル」まで深さが異なる。CJ設計は東芝のみ。「全部やる」ではなく「必要な深さでやる」判断がある。</p>
+      </div>
+    </div>
+    <div class="connection-item">
+      <div class="connection-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="connection-body">
+        <h3>フェーズ3: 案件受領から2日以内に体制構築</h3>
+        <p>サンリオでは、スケジュール設計 → MTG設定 → チーム指示 → アジェンダ設計 → 分担確定 → 自担当完了が2日以内に完了している。</p>
+      </div>
+    </div>
+    <div class="connection-item">
+      <div class="connection-icon"><svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+      <div class="connection-body">
+        <h3>フェーズ6 → 2: 日常の伴走から仮説構築を経て次の仕事へ</h3>
+        <p>パナソニックの「定期PEST/3C読み合わせ → KPI紐づけ → 新規案件化」は、フェーズ6（日常の深耕）がフェーズ2（仮説構築）を経由して新たな仕事に繋がるパターン。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  早川モデル展開プロジェクト / 2026年6月 作成 / 4案件14ソース + インタビューから構成<br>
+  本資料は社外秘です。無断転載・共有はご遠慮ください。
+</footer>
+
+</div><!-- /content -->
+
+<script>
+const HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8';
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+async function unlock() {
+  const pw = document.getElementById('pw').value;
+  const hash = await sha256(pw);
+  if (hash === HASH) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  } else {
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
+  }
+}
+document.getElementById('pw').addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+</script>
+</body>
+</html>
