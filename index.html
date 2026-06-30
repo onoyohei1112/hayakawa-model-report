@@ -203,6 +203,19 @@
   .try-box ol li { font-size:14.5px; color:var(--text-primary); line-height:1.85; margin-bottom:12px; }
   .try-box ol li strong { color:var(--brand-dark); }
 
+  /* ===== OUTPUTS (アウトプットと合格ライン) ===== */
+  .ao-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:14px; overflow:hidden; }
+  .ao-card.is-core { border:1.5px solid var(--brand-primary); }
+  .ao-head { display:flex; align-items:center; gap:10px; padding:13px 22px; background:var(--surface-alt); border-bottom:1px solid var(--border); flex-wrap:wrap; }
+  .ao-head h4 { font-size:16px; font-weight:700; }
+  .ao-core { display:inline-block; font-size:10.5px; font-weight:700; color:#fff; background:var(--brand-primary); padding:2px 9px; border-radius:5px; }
+  .ao-body { padding:16px 22px; }
+  .ao-body p { font-size:14px; color:var(--text-secondary); line-height:1.85; }
+  .ao-body p + p { margin-top:10px; }
+  .ao-lbl { display:inline-block; font-size:11.5px; font-weight:700; padding:2px 9px; border-radius:5px; margin-right:7px; }
+  .ao-lbl.w { background:var(--brand-pale); color:var(--brand-primary); }
+  .ao-lbl.p { background:var(--success-bg); color:var(--success); }
+
   /* ===== STEPS ===== */
   .step {
     background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
@@ -294,6 +307,7 @@
     <a href="#contrast">勝敗の分かれ目</a>
     <span class="seg">実践編</span>
     <a href="#steps">6ステップ</a>
+    <a href="#outputs">アウトプット</a>
     <a href="#try">やってみる</a>
     <span class="seg">応用編</span>
     <a href="#farming">既存深耕</a>
@@ -659,9 +673,94 @@
     </div>
   </section>
 
-  <!-- 5. まず、やってみる -->
+  <!-- 5. アウトプットと合格ライン -->
+  <section id="outputs" style="padding-top:8px;">
+    <h2><span class="num">5</span>結局どんなアウトプットを出していたか ── 10の成果物と「合格ライン」</h2>
+    <p class="lead">6ステップで考え抜いた結果、フェーズ1・2では最終的に次の<strong>10個のアウトプット</strong>が出ます。早川さんが4案件で実際に出していたものを抽象化し、各アウトプットの<strong>「合格ライン（満たすべき品質）」</strong>を併記しました。<span style="color:var(--brand-primary);font-weight:600;">コア</span>の3つ（メインイシューの特定／KGI→KPIロジックツリー／追うべきKPIの確定）は、ここが形になっていないと提案全体が成立しない最重要項目です。</p>
+
+    <h3>フェーズ1：顧客理解（5つ）</h3>
+    <div class="ao-card">
+      <div class="ao-head"><h4>① 事業・財務構造の解読シート</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>一次情報（IR・中期経営計画）から、顧客のセグメント別の稼ぎ方と、全社KGIの中での「対象事業の位置づけ」を再構成した1枚。</p>
+        <p><span class="ao-lbl p">合格ライン</span>セグメント別売上が数値で示され、対象事業の規模・構成比が切り出されている。全社KGIが抽象語でなく中計の原文言・数値で引用され、「全体の中での位置づけ」が一文で言い切られている（「売上◯億・業界◯位」止まりは不可）。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>② 市場・外部環境分析（PEST／市場構造マップ）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>対象市場の規模・成長・構造変化を出典付きで整理し、市場を製品カテゴリでなく「お金・時間・体験の経済圏」として捉え直したもの。</p>
+        <p><span class="ao-lbl p">合格ライン</span>市場規模が定量で示され、各マクロ要因に「対象事業にどう効くか」が紐づき、出典が論点ごとに付いている。同業の慣習的なくくり（テーマパーク同士 等）から出て、経済圏として捉え直せている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>③ 3C分析（社内深掘り版＋顧客提示版）＋競合の再定義</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>「社内用の深い版」と「顧客提示用の版」の2層の3C。競合を同業でなく「ユーザーの時間・予算・体験・関心を奪う相手」へ再定義したもの。</p>
+        <p><span class="ao-lbl p">合格ライン</span>2版が目的別に作り分けられ、各Cで事実と示唆が分かれている。競合が同業リストでなく具体的な異カテゴリの相手として、複数候補から棄却理由付きで1つに絞られ、後段の役割分担に効いている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>④ ペルソナ＆カスタマージャーニー（行動レベル）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>エンドユーザーの動機と行動を、属性でなく「何を見て・何と比較し・どこで離れるか」まで描き、施策の効きどころを特定する土台。</p>
+        <p><span class="ao-lbl p">合格ライン</span>ペルソナが属性カードでなく動機・状況を持つ人物像になっている。ジャーニーが段階ラベルでなく各段の行動・障壁まで具体化され、施策（広告／CRM）の効きどころが特定の段にマッピングされている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>⑤ 顧客の自社語キーワード抽出（提案の起点）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>顧客自身がIR・プレスで実際に使っている、事業の核を表す言葉を原典付きで1語に絞ったもの。提案全体の起点。</p>
+        <p><span class="ao-lbl p">合格ライン</span>顧客の一次発信から原典付きで引用された言葉である（こちらの造語・一般語でない）。候補を2つ以上広げて採否理由付きで1語に絞り、その言葉が後段のKGI・提案に実際に接続している。</p>
+      </div>
+    </div>
+
+    <h3>フェーズ2：仮説構築（5つ）</h3>
+    <div class="ao-card is-core">
+      <div class="ao-head"><h4>⑥ メインイシューの特定</h4><span class="ao-core">コア・最重要</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>依頼の背後にある「本当に追うべき経営課題」を、施策より1段上の問いとして言語化したもの。早川モデルの核その1。</p>
+        <p><span class="ao-lbl p">合格ライン</span>起点が汎用語（DX推進等）でなく一次情報の引用語。施策単体でなく事業・全社KGIの文脈に接続され、「それは何のため？」で施策より明確に上の抽象度に登れている。その顧客固有の固有名詞・文脈を含み、他社にコピペ流用できない記述になっている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>⑦ 課題の本質集約（症状→診断への変換）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>散らばる症状を「打ち手を打てる課題」へ変換し（症状→診断）、結節点に集約する過程そのもの。</p>
+        <p><span class="ao-lbl p">合格ライン</span>症状の列挙から診断への変換が一文で明示され、棄却した枝が理由付きで残っている。「解けば連動する」結節点に集約され、後段のKPI設計に繋がる粒度（メインイシューの言い換え再掲は不可）。</p>
+      </div>
+    </div>
+    <div class="ao-card is-core">
+      <div class="ao-head"><h4>⑧ KGI→KPIロジックツリー（ファネル数値化・役割分担を含む）</h4><span class="ao-core">コア・最重要</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>メインイシュー＝KGIを頂点にMECEに分解し、測定可能なKPIまで降ろした木。施策の効くノード、ファネル全段の数値化、役割分担（広告／CRM）まで含む。早川モデルの核その2。</p>
+        <p><span class="ao-lbl p">合格ライン</span>頂点がメインイシュー（KGI）と一致し、分解がMECEで親子が論理で繋がる。施策→KGIの貢献経路が1本の線で辿れ、ファネル全段が転換率／実数で埋まりボトルネックが特定され、各段に「どの施策で動かすか」（自社／CRM等の守備範囲）が割り当てられている（施策起点・接続切れ・数値なしは不可）。</p>
+      </div>
+    </div>
+    <div class="ao-card is-core">
+      <div class="ao-head"><h4>⑨ 追うべきKPIの確定（候補比較→1つへ収束）</h4><span class="ao-core">コア・最重要</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>ツリー上の指標候補を複数挙げ、明示した評価軸で比較し、今回追う1つに収束した結論と根拠。「論理で一本に繋ぐ」が最も濃く出る成果物。</p>
+        <p><span class="ao-lbl p">合格ライン</span>候補が3つ以上、評価軸（最低でもKGI直結性・計測可能性・改善余地の3軸）で比較され、各候補×各軸が追跡可能。棄却理由が残り、確定KPIが実際に今回の施策で動かせる指標になっている（決め打ち・1軸・測れない指標は不可）。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><h4>⑩ 数値目標の逆算チェーン</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">何を出すか</span>確定KPIを、KGI（経営目標数値）から逆算して具体的な目標数値（必要リード・チャネル配分）まで落とした連鎖。</p>
+        <p><span class="ao-lbl p">合格ライン</span>起点がKGIの実数値で、各段の転換率に根拠（実績／業界水準／推定の前提）が併記され、施策が追う最終数まで切れずに到達。出た数値の妥当性が検証され、起点数値が非開示なら決算書自作等で先回りして自給できている。</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="t">この10個が、評価の対象になります</div>
+      <p>学習者は、自分の担当案件でこの10アウトプットを準備します。<strong>コア3つ（⑥⑧⑨）が形になっているか</strong>がまず問われ、続いて全体の網羅性と質で評価されます。各「合格ライン」が、その質のものさしです。</p>
+    </div>
+  </section>
+
+  <!-- 6. まず、やってみる -->
   <section id="try" style="padding-top:8px;">
-    <h2><span class="num">5</span>まず、やってみる ── 明日からの3アクション</h2>
+    <h2><span class="num">6</span>まず、やってみる ── 明日からの3アクション</h2>
     <p class="lead">ここまでの内容を、いきなり全部やる必要はありません。担当顧客を1社えらび、次の順で30分。<strong>「自分の顧客がどこで詰まっているか」を1つ言葉にできれば十分</strong>です。</p>
 
     <div class="keymsg try-box">
@@ -709,10 +808,10 @@
   <!-- ============ 応用編 ============ -->
   <div class="part-divider"><div class="line"></div></div>
 
-  <!-- 6. 既存深耕（応用編） -->
+  <!-- 7. 既存深耕（応用編） -->
   <section id="farming" style="padding-top:8px;">
     <span class="part-label">応用編 ── 学んだ型を、事業の成長につなげる</span>
-    <h2><span class="num">6</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
+    <h2><span class="num">7</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
     <p class="lead">6ステップの型が身につくと、それは<strong>既存顧客から新しい仕事（SQL）を生む力</strong>になります。いま会社として狙っているSQL創出に最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
 
     <div class="card">
