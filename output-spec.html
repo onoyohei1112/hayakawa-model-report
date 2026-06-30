@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>早川モデル フェーズ1・2 アウトプット仕様と評価基準</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+  :root{
+    --bg:#FFFFFF;--surface:#F8FAFC;--surface-alt:#F1F5F9;--border:#E2E8F0;--border-strong:#CBD5E1;
+    --text-primary:#0F172A;--text-secondary:#475569;--text-muted:#94A3B8;
+    --brand-primary:#1E40AF;--brand-dark:#1E3A8A;--brand-light:#DBEAFE;--brand-pale:#EFF6FF;--brand-accent:#3B82F6;
+    --highlight-bg:#FEF3C7;--highlight-border:#FCD34D;--success:#16A34A;--success-bg:#F0FDF4;
+    --danger:#DC2626;--danger-bg:#FEF2F2;--danger-border:#FECACA;--teal:#0F766E;--teal-bg:#F0FDFA;
+    --radius:14px;--radius-sm:8px;--shadow:0 4px 12px rgba(15,23,42,.06);--shadow-md:0 8px 24px rgba(15,23,42,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;color:var(--text-primary);background:var(--surface);line-height:1.8;font-size:16px;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+  #gate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1E40AF 0%,#1E3A8A 100%);padding:24px}
+  .gate-card{background:#fff;border-radius:var(--radius);padding:40px 36px;width:100%;max-width:400px;box-shadow:var(--shadow-md);text-align:center}
+  .gate-card h1{font-size:18px;font-weight:700;margin-bottom:8px}
+  .gate-card p{font-size:13px;color:var(--text-secondary);margin-bottom:24px}
+  .gate-card input{width:100%;padding:14px 16px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);font-size:15px;margin-bottom:12px;font-family:inherit}
+  .gate-card input:focus{outline:none;border-color:var(--brand-primary)}
+  .gate-btn{width:100%;padding:14px;background:var(--brand-primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+  .gate-btn:hover{background:var(--brand-dark)}
+  .gate-err{color:var(--danger);font-size:13px;margin-top:12px;min-height:18px}
+  #content{display:none}
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:960px;margin:0 auto;padding:12px 24px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .nav-inner .brand{font-size:13px;font-weight:700;color:var(--brand-primary);margin-right:6px}
+  .nav-inner a{font-size:12px;color:var(--text-secondary);text-decoration:none;padding:5px 10px;border-radius:6px;white-space:nowrap}
+  .nav-inner a:hover{background:var(--brand-pale);color:var(--brand-primary)}
+  .hero{background:linear-gradient(135deg,#1E40AF 0%,#1E3A8A 100%);color:#fff;padding:60px 24px 52px;text-align:center}
+  .hero-badge{display:inline-block;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;padding:7px 16px;border:1px solid rgba(255,255,255,.35);border-radius:100px;margin-bottom:22px}
+  .hero h1{font-size:32px;font-weight:700;line-height:1.35;margin-bottom:18px;letter-spacing:.03em}
+  .hero p{font-size:15.5px;color:rgba(255,255,255,.86);max-width:680px;margin:0 auto;line-height:1.9}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  section{padding:48px 0}
+  h2{font-size:25px;font-weight:700;line-height:1.4;margin-bottom:12px;letter-spacing:.02em}
+  h2 .num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--brand-primary);color:#fff;border-radius:9px;font-size:16px;margin-right:12px;vertical-align:middle;font-family:'Inter',sans-serif}
+  .lead{font-size:15.5px;color:var(--text-secondary);margin-bottom:24px;line-height:1.9}
+  .phase-label{display:inline-block;font-size:13px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:6px 16px;border-radius:100px;margin-bottom:16px}
+  .insight{background:var(--brand-pale);border-left:4px solid var(--brand-primary);border-radius:0 10px 10px 0;padding:20px 24px;margin:20px 0}
+  .insight .t{font-size:13px;font-weight:700;color:var(--brand-primary);margin-bottom:8px}
+  .insight p{font-size:14.5px;color:var(--text-primary);line-height:1.85}
+  .insight strong{color:var(--brand-dark)}
+  /* scoring overview */
+  .score-grid{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
+  .score-box{flex:1;min-width:150px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);text-align:center}
+  .score-box .v{font-size:30px;font-weight:700;color:var(--brand-primary);font-family:'Inter',sans-serif;line-height:1.1}
+  .score-box .v small{font-size:15px;color:var(--text-muted)}
+  .score-box .k{font-size:12.5px;color:var(--text-secondary);margin-top:6px}
+  .score-box.pass .v{color:var(--success)}
+  .rulebox{background:var(--surface-alt);border:1px dashed var(--border-strong);border-radius:var(--radius);padding:22px 24px;margin:18px 0}
+  .rulebox h4{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--text-primary)}
+  .rulebox p{font-size:13.5px;color:var(--text-secondary);line-height:1.9}
+  /* table */
+  .table-wrap{overflow-x:auto;margin:18px 0;border-radius:var(--radius);border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse;background:#fff;font-size:14px;min-width:560px}
+  thead{background:var(--brand-primary);color:#fff}
+  th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+  th{font-weight:600;font-size:13px}
+  td.pt{text-align:right;font-weight:700;font-family:'Inter',sans-serif;color:var(--brand-primary);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  tr.sumrow td{background:var(--brand-pale);font-weight:700}
+  .corepill{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--danger);padding:2px 8px;border-radius:5px;margin-left:6px;vertical-align:middle}
+  /* output card */
+  .out-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+  .out-card.is-core{border:1.5px solid var(--brand-primary)}
+  .out-head{display:flex;align-items:center;gap:12px;padding:16px 22px;background:var(--surface-alt);border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .out-pts{flex-shrink:0;background:var(--brand-primary);color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:15px;padding:6px 12px;border-radius:8px}
+  .out-head h4{font-size:16px;font-weight:700;flex:1;min-width:200px}
+  .out-body{padding:18px 22px}
+  .out-what{font-size:14.5px;color:var(--text-primary);margin-bottom:14px;line-height:1.85}
+  .out-sec{margin-bottom:13px}
+  .out-sec:last-child{margin-bottom:0}
+  .out-lbl{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:6px}
+  .lbl-do{background:var(--brand-pale);color:var(--brand-primary)}
+  .lbl-ex{background:var(--teal-bg);color:var(--teal)}
+  .lbl-eval{background:#EEF2FF;color:#4338CA}
+  .lbl-ng{background:var(--danger-bg);color:var(--danger)}
+  .out-sec p{font-size:14px;color:var(--text-secondary);line-height:1.85}
+  .out-sec ul{list-style:none;margin:4px 0 0}
+  .out-sec ul li{position:relative;padding-left:22px;margin-bottom:7px;font-size:13.5px;color:var(--text-secondary);line-height:1.8}
+  .out-sec ul li::before{content:'';position:absolute;left:5px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--brand-accent)}
+  /* level cards */
+  .lvl{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);margin-bottom:14px}
+  .lvl .lv-name{flex:0 0 84px;font-weight:700;font-size:15px;color:var(--brand-primary)}
+  .lvl p{font-size:14px;color:var(--text-secondary);line-height:1.85}
+  .keymsg{background:var(--highlight-bg);border:1px solid var(--highlight-border);border-radius:var(--radius);padding:22px 26px;margin:20px 0}
+  .keymsg .t{font-size:13px;font-weight:700;color:#92660A;margin-bottom:10px}
+  .keymsg p{font-size:15px;color:#422006;line-height:1.85}
+  footer{background:var(--brand-dark);color:rgba(255,255,255,.75);text-align:center;padding:34px 24px;font-size:13px;line-height:1.9}
+  footer strong{color:#fff}
+  @media(max-width:640px){.hero h1{font-size:24px}h2{font-size:20px}section{padding:36px 0}.nav-inner a{padding:4px 7px;font-size:11px}}
+</style></head><body><div id="gate"><div class="gate-card">
+  <h1>早川モデル ─ アウトプット仕様と評価基準</h1>
+  <p>閲覧にはパスワードが必要です</p>
+  <input type="password" id="pw" placeholder="パスワードを入力" autocomplete="off">
+  <button class="gate-btn" onclick="unlock()">開く</button>
+  <div class="gate-err" id="err"></div>
+</div></div><div id="content"><nav><div class="nav-inner">
+  <span class="brand">アウトプット仕様</span>
+  <a href="#score">採点全体像</a><a href="#list">一覧・配点</a><a href="#p1">フェーズ1</a><a href="#p2">フェーズ2</a><a href="#level">難易度</a><a href="#fb">合否・FB</a>
+</div></nav>
+<div class="hero">
+  <span class="hero-badge">PRINCIPLE INC. / HAYAKAWA MODEL ── PHASE 1・2 OUTPUT SPEC</span>
+  <h1>フェーズ1・2 アウトプット仕様<br>と 評価基準（100点・合否）</h1>
+  <p>早川モデルの中核＝「事前の顧客理解（フェーズ1）」と「仮説構築（フェーズ2）」で、実際に出すべきアウトプットの一覧・出し方・質の見方をまとめ、AI（クライアントAI）が100点満点で採点・合否を出すための基準にしたものです。学習者はこれを見て自分のアウトプットを準備し、提出します。</p>
+</div>
+<div class="wrap">
+
+  <section style="padding-top:40px;padding-bottom:8px;">
+    <div class="insight" style="margin-top:0">
+      <div class="t">このページの位置づけ</div>
+      <p>本ページは<strong>「何を・どの質で出せば合格か」の正本</strong>です。① 学習者は下記10アウトプットを自分の担当案件で準備 → ② テキストで提出 → ③ クライアントAIが<strong>各アウトプットの網羅性×質</strong>で採点し、<strong>100点満点・合否</strong>と「買う/買わない」「Good &amp; More」を返します。配点・評価観点は早川さんの4案件（サンリオ／パナソニック／東芝／ビーウィズ）の実アウトプットを抽象化し、網羅性を検証して設定しています（現時点版）。</p>
+    </div>
+  </section>
+
+  <section id="score">
+    <h2><span class="num">A</span>採点の全体像</h2>
+    <p class="lead">フェーズ2（仮説構築）に重みを置きつつ、フェーズ1（顧客理解）も相応に評価します。核心3項目は<strong>足切り（コア）</strong>です。</p>
+    <div class="score-grid">
+      <div class="score-box"><div class="v">40<small>点</small></div><div class="k">フェーズ1：顧客理解</div></div>
+      <div class="score-box"><div class="v">60<small>点</small></div><div class="k">フェーズ2：仮説構築</div></div>
+      <div class="score-box"><div class="v">100<small>点</small></div><div class="k">満点</div></div>
+      <div class="score-box pass"><div class="v">70<small>点〜</small></div><div class="k">合格ライン</div></div>
+    </div>
+    <div class="rulebox">
+      <h4>採点・合否のルール</h4>
+      <p>【採点の基本式】項目得点＝配点×網羅係数（成果物として出ているか：0／0.5／1.0）×質係数（評価観点をどれだけ満たすか：0〜1.0）。『出ているだけ』では満点は出ず、『論理は鋭いが成果物として形になっていない』も満点は出ない。<br><br>【判定フロー】合否は二段足切り（コア）→総合点閾値、の順で判定する。<br>①コア足切り（網羅と質を分離した二段ゲート）：コア3項目（p2-issue／p2-kpitree／p2-kpiselect）それぞれについて、(A)網羅係数=1.0（成果物として形になっているか）を満たすか→満たさなければ即不合格（コア欠落）。(B)Aを満たす場合、質係数が当該難易度の最低値（初級0.50／中級0.60／上級0.75）以上か→1つでも下回れば即不合格。※足切りは『最終得点の％』ではなく『網羅=1.0必須＋質係数の最低値』で判定する。これにより、網羅0.5（部分提出）の項目が質満点でも数学的にコアを通過できてしまうバグ、および上級で網羅1.0×質上限を割って観点完備でも落ちるバグを解消する。『論理は鋭いが形になっていない（網羅0.5）』と『形はあるが質が低い（質&lt;最低値）』を別々に落とせる。<br>②総合点閾値：コアを通過した場合のみ総合点を集計。70点以上で合格、60〜69点は条件付き再提出（コアは通過だが詰めが甘い）、60点未満は不合格。コア未通過時は総合点は参考表示のみとする。<br><br>【評価観点の客観化原則】評価観点は、ドキュメント上で確認可能な要素（語数・引用・出典・表の有無・数値の有無・固有名詞の数）に還元して判定する。内心・意図・努力は、それが文面に痕跡として残っている場合のみ加点する（『〜と感じる解像度か』ではなく『固有名詞を3点以上含むか』で判定する）。<br><br>【二重計上の防止】単一イシュー案件（問題が元から1つに見える案件。例：東芝『意味の不明瞭さ』）では、p2-issue（メインイシュー特定）とp2-converge（症状→診断の変換）が同一記述に縮退しやすい。p2-convergeは『集約という結果の有無』でなく『症状→診断への変換プロセスと棄却理由が新たに示されたか』のみを採点し、p2-issueの言い換え・再掲には加点しない。変換プロセスが新たに示された分だけp2-convergeを加点する。<br><br>【コアの範囲】コアは3項目（p2-issue／p2-kpitree／p2-kpiselect）を維持する。これは『メインイシューを掴み論理で一本のKPIに繋ぐ』早川モデルの核そのものであり、フェーズ1がどれだけ網羅・高品質でも崩れれば提案として成立しないため容赦なく落とす。p2-backcalc（逆算チェーン）は実装直結価値が高く配点を8点に増やしたが、起点数値が顧客非開示で自作不能な案件もあり全案件必須化は酷なため、コアには含めない。<br><br>【加点要素の扱い】外部専門家の第三者知見を取りに行き自分の分析と統合する挙動（p1-market のFB統合観点）は、コンペ濃度に依存するため必須ではなく加点要素。難易度宣言時に重みを調整する。<br><br>【運用注記】(1)採点はフェーズ2のコア3項目から先に読み足切りを判定する（時間配分の最適化）。(2)『顧客の言葉（p1-keyword）』が空欄の提案は論理が立派でも質係数を上げない（早川モデルは顧客の語が起点）。(3)難易度は採点前に、提出者の想定役割（新人=初級／標準担当=中級／早川相当=上級）で事前指定する。指定が無ければ中級を既定とする。(4)コア質係数の最低値（0.50／0.60／0.75）は実データ3〜5件で一度キャリブレーションすることを推奨。<br><br>【配点根拠】フェーズ2=60点はKGI→KPI接続が早川モデルの核であることを反映。コア3項目=46点。p2-converge は p2-issue と機能が重なる二重計上リスクを踏まえ8→6点へ減、その分を実装直結価値の高い p2-backcalc に振り6→8点へ増（差し引き0、合計100維持）。</p>
+    </div>
+    <p class="lead" style="margin-top:18px;margin-bottom:8px;"><strong>コア（足切り対象）3項目</strong> ── これが成果物として形になっていない場合、他が満点でも不合格：</p>
+    <ul style="list-style:none">
+      <li style="padding:6px 0;font-size:14.5px;font-weight:600;color:var(--brand-dark)">● メインイシュー（顧客の真の経営課題）の特定</li><li style="padding:6px 0;font-size:14.5px;font-weight:600;color:var(--brand-dark)">● KGI→KPIロジックツリー（ファネル数値化・改善レバー・役割分担を含む）</li><li style="padding:6px 0;font-size:14.5px;font-weight:600;color:var(--brand-dark)">● 追うべきKPIの確定（候補の多軸比較→1つへの収束）</li>
+    </ul>
+  </section>
+
+  <section id="list" style="padding-top:8px;">
+    <h2><span class="num">B</span>評価アウトプット一覧と配点</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>フェーズ</th><th>アウトプット</th><th style="text-align:right">配点</th></tr></thead>
+      <tbody><tr><td>フェーズ1</td><td>事業・財務構造の解読シート（一次情報ベース＋施策の意味）</td><td class="pt">8</td></tr><tr><td>フェーズ1</td><td>市場・外部環境分析（PEST／市場構造マップ）</td><td class="pt">7</td></tr><tr><td>フェーズ1</td><td>3C分析（社内深掘り版＋顧客提示版）＋競合の再定義</td><td class="pt">8</td></tr><tr><td>フェーズ1</td><td>ペルソナ＆カスタマージャーニー（行動レベル）</td><td class="pt">7</td></tr><tr><td>フェーズ1</td><td>顧客の自社語キーワード抽出（提案の起点）</td><td class="pt">10</td></tr><tr><td>フェーズ2</td><td>メインイシュー（顧客の真の経営課題）の特定<span class="corepill">コア</span></td><td class="pt">16</td></tr><tr><td>フェーズ2</td><td>課題の本質集約（症状→診断への変換プロセス）</td><td class="pt">6</td></tr><tr><td>フェーズ2</td><td>KGI→KPIロジックツリー（ファネル数値化・改善レバー・役割分担を含む）<span class="corepill">コア</span></td><td class="pt">18</td></tr><tr><td>フェーズ2</td><td>追うべきKPIの確定（候補の多軸比較→1つへの収束）<span class="corepill">コア</span></td><td class="pt">12</td></tr><tr><td>フェーズ2</td><td>数値目標の逆算チェーン（KGIから施策KPI目標値への割り戻し）</td><td class="pt">8</td></tr><tr class="sumrow"><td></td><td>合計</td><td class="pt">100</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section id="p1" style="padding-top:8px;">
+    <span class="phase-label">フェーズ1 ── 事前の顧客理解（40点）</span>
+    <h2><span class="num">C</span>顧客理解のアウトプット</h2>
+    <p class="lead">「顧客が戦っている事業と市場を、一次情報から自分の言葉で再構成する」段。提案の土台。</p>
+    <div class="out-card">
+  <div class="out-head"><span class="out-pts">8点</span><h4>事業・財務構造の解読シート（一次情報ベース＋施策の意味）</h4></div>
+  <div class="out-body">
+    <p class="out-what">顧客がどのセグメントでどれだけ稼ぎ、全社KGIの中で『今回の対象事業（拠点・製品・サービス）』がどこに位置づくかを、一次情報から再構成したもの。既存案件では、その対象施策が事業の中で『何のために存在するか（意味）』の整理まで含む。フェーズ2でKGIから役割を逆算する土台になる。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) IR・決算説明資料・有報・中期経営計画・プレスを収集する（開示が薄い／非上場なら業界統計・報道・公開数値から決算書相当を自作する）。2) セグメント別の売上・利益を一覧化し、対象事業の売上規模・構成比を切り出す。3) 全社KGI/経営目標（中計の数値・掲げる方向性）を数値・文言で抜き出す。4) 『全体の中で対象事業がどこに位置づくか』を一文で言い切る。5) 既存案件では『この施策は何のためにやるのか』を事業目的まで遡って一文で定義する。6) 非開示項目は『不明』で止めず、推定値・推定の前提・参照した代替ソース（業界統計名／URL）を併記して自作で埋める。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：IR・決算説明資料からセグメント別業績とピューロランド単体売上を把握し『ピューロランド＝グループのIP接点の一つ』と位置づけ。ビーウィズ：数値が共有されにくいと見越し決算書から事業計画を自作。東芝：間接部門でのデジマの『意味（何のためにやるか）』を整理し定例会設計に接続。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>セグメント別の売上または利益が数値（金額・構成比）で記載され、対象事業の売上規模または構成比が特定の数値として切り出されているか（『売上◯◯億・業界◯位』だけ＝該当しない）</li><li>出典が一次情報（IR・決算・有報・中計）で、資料名またはURLが論点に添えられているか</li><li>全社KGI／経営目標が『成長を目指す』等の抽象語でなく、具体的な数値または中計の原文言として引用されているか</li><li>『全体の中での対象事業の位置づけ』が一文で言い切られているか（接点の一つ／一部門／主力 等、相対位置が明記されているか）</li><li>非開示項目に対し、推定値とその前提、参照した代替ソース（業界統計名／報道／URL）の3点が文面に併記されているか（『不明』で止まっていないか）</li><li>既存案件では施策の意味が『リード獲得』等の手段目的でなく、事業目的（何のために間接部門でデジマをやるか 等）まで遡って一文で定義されているか</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>『売上◯◯億円・業界◯位』程度で止まりセグメント分解も対象事業の切り出しもない／全社目標を『成長を目指す』等の抽象記述で済ませる／出典が二次まとめ・古いデータ／非開示時に『不明』で止め推定の前提・代替ソースを併記しない／施策の意味を『リードを増やす』で止め事業目的に接続しない。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">7点</span><h4>市場・外部環境分析（PEST／市場構造マップ）</h4></div>
+  <div class="out-body">
+    <p class="out-what">対象事業が置かれた市場の規模・成長性・構造変化・マクロ要因を出典付きで整理し、『なぜ今この事業／施策が重要か』の外部的根拠にしたもの。市場を製品カテゴリでなく『お金・時間・体験の流れ＝経済圏』として捉え直す。コンペ濃度の高い案件では、外部専門家の知見を取りに行き自分の分析と突合した痕跡が加点される。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) 対象事業のドメインを定義し、隣接・上位市場まで含めて規模・成長率を調べる。2) 市場を動かす構造（誰がプレイヤーで、お金・時間・体験がどう流れるか）を図／マップ化する。3) PESTの4観点で対象事業に効くマクロ要因のみ抽出する（無関係な一般論は捨てる）。4) 各論点に外部ソースのURL／資料名を必ず添える。5) コンペ案件では外部コンサル・専門家のFB等の第三者知見を取得し、自分のAI分析と突合・統合する（加点要素）。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：IP経済圏・推し活市場（4.1兆円）を調査し『テーマパーク』でなく市場全体の経済圏として捉え直した。さらに外部コンサルから約3000字のFBを取得し、自分のAI分析と突合・統合して提案の客観性を担保した。パナソニック：ベトナム空調市場のPEST分析を10以上の外部ソースURL明記で実施。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>市場規模・成長率が定量（金額・成長率%）で示され、対象事業に効く隣接／上位市場まで射程に入っているか</li><li>PESTの羅列でなく各要因に『対象事業にどう効くか』が1行以上で紐づいているか</li><li>外部ソースのURL／出典が論点ごとに明記され検証可能か（2つ以上の独立ソースの突合があるか）</li><li>市場を製品カテゴリの慣習的くくり（テーマパーク同士・空調メーカー同士）でなく『お金・時間・体験の経済圏』として捉え直した記述があるか</li><li>【加点】外部専門家・コンサルの第三者知見（FB・レポート等）を取得し、自分の分析と統合・突合した痕跡が文面に残っているか（差分・採否・反映箇所が分かるか）。コンペ濃度の低い案件では必須ではなく、難易度宣言で重みを調整する</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>PEST4象限を一般論（少子高齢化・DX進展…）で埋め対象事業との接続がない／市場規模の数字を1つ置いただけで構造の図解がない／出典なしの『と言われている』記述／自社業界の慣習的くくり（テーマパーク同士・空調メーカー同士）から出られない。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">8点</span><h4>3C分析（社内深掘り版＋顧客提示版）＋競合の再定義</h4></div>
+  <div class="out-body">
+    <p class="out-what">Customer／Competitor／Companyの3視点の現状整理を『社内用の深い版』と『顧客提示用の版』の2層で持ち、かつCompetitorを同業他社でなく『エンドユーザーの限られた資源（時間・予算・体験・関心）を奪い合う相手』として再定義したもの。再定義は複数候補を広げてから根拠付きで1つに絞り込む（発散→収束）。提案の前提（誰に勝つための施策か）を変える。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) 社内深掘り版を作る（仮説・生データ・行間まで含め判断材料を網羅）。2) 各Cで事実と示唆（So What）を分けて書く。3) 顧客提示版へ再構成する（腹落ちする粒度・順序・言葉に絞り、提案ストーリーに乗せる）。4) 競合再定義：素朴な同業を列挙→エンドユーザーが使う資源を特定→同じ資源を奪う異業種・異カテゴリの候補を複数洗い出し→棄却理由を付けて『本当の競合は◯◯』と1つに絞り言い切る。5) 2版の差分を意図的に管理する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：3Cを社内用の深い版と顧客提示用の提案版の2種で作成し、競合を『テーマパーク同士』でなく『時間・予算・体験の競合』へ再定義（複数の資源競合候補から絞り込み）。パナソニック・東芝：3Cを作成（東芝は既存深耕の文脈）。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>社内深掘り版と顧客提示版が2つ別々に存在し、粒度・語彙・順序が目的別に変えてあるか（1版を流用しただけでないか）</li><li>各Cで事実と示唆（So What）が分離して記述されているか</li><li>Company（顧客企業）の分析がp1-bizstructureのセグメント・位置づけと数値・位置づけの両面で整合しているか</li><li>競合を同業からズラして再定義できているか（時間・予算・体験・関心を奪う具体的な相手が固有名詞または具体カテゴリで挙がるか）</li><li>再定義が複数候補を広げてから棄却理由付きで1つに収束しているか（発散→収束の跡があり、『広い意味では何でも競合』の抽象化で止まっていないか）</li><li>再定義の根拠がエンドユーザー視点で説明され、後段の戦略・役割分担（p2-kpitree）に効いているか（言いっぱなしでないか）</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>3Cが1版だけで社内思考用と顧客提示用が未分化（深さも訴求もどっちつかず）／事実の羅列のみで示唆がない、または示唆だけで根拠がない／Competitorが同業他社の社名リストで終わり再定義がない／競合候補を1つ決め打ちで棄却理由がない／『広い意味では何でも競合』と抽象化しすぎ施策に効かない。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">7点</span><h4>ペルソナ＆カスタマージャーニー（行動レベル）</h4></div>
+  <div class="out-body">
+    <p class="out-what">対象事業のエンドユーザー（または顧客企業の担当者）が誰で、どんな動機・行動で意思決定に至るかを抽象属性でなく『具体的な行動の連なり』として描き、どの施策がどの行動に効くかを特定する土台にしたもの。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) 主要顧客セグメントを定義し代表ペルソナを設定する。2) 認知→検討→行動→継続の各段でペルソナが取る行動・触れる接点・感じる障壁を書き出す。3) 『検討する』でなく『何を見て・何と比較し・何で離脱するか』まで行動レベルで具体化する。4) ジャーニー上に『広告／CRM／その他施策が効く地点』を仮マッピングし、後段のファネル設計に接続する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>東芝：ペルソナ・カスタマージャーニーを行動レベルまで詳細作成（CJが施策・KPIに接続する粒度＝満点級）。サンリオ：ペルソナ作成。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>ペルソナが属性の羅列（年代・性別・関心度）でなく、動機・文脈・抱える状況を持った人物像として記述されているか</li><li>ジャーニーが各段階で具体的な行動・接点・障壁まで落ちているか（段階名のラベルだけでなく『何を見て・何と比較し・何で離脱するか』が書かれているか）</li><li>ジャーニー上に施策（広告／CRM等）の効きどころが具体的な段に仮マッピングされ、後段のファネル設計（p2-kpitree）に接続するか</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>ペルソナが『30代女性、関心高い』程度の属性カードで止まる／ジャーニーが段階名（認知・検討・購入）のラベルだけで各段の中身がない／ジャーニーと施策の接続がなく描いて終わり。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">10点</span><h4>顧客の自社語キーワード抽出（提案の起点）</h4></div>
+  <div class="out-body">
+    <p class="out-what">顧客自身がIR・プレス・経営者発信で実際に使っている、事業の核を表す言葉を原典付きで抜き出したもの。早川モデルはこの『顧客が使う言葉』を提案全体の起点に置く（AIで候補を広げ、自分で噛み砕いて1語に絞る）。フェーズ2の起点なので配点を厚くする。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) IR・中計・プレス・トップメッセージ・採用ページ等から繰り返し使われる象徴的な言葉を収集する。2) AIで候補を2つ以上広げ、各候補を頻度・象徴性・経営目標との結びつきで評価する。3) 各候補の採否理由を1行以上で書き、『この事業の核を一語で表すと顧客はこう言っている』という言葉を1つ選ぶ。4) その言葉をKGI／提案テーマの起点として固定し、自分の言葉に置き換えない。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：顧客が掲げる『夢中時間』をIR・プレスから原典付きで抽出し提案の起点に据え、後段でKGI『夢中時間＝LTVの最大化』へ展開した。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>提案の起点となる言葉が、顧客の一次発信（IR・プレス・トップメッセージ等）から原典（資料名／URL／発言箇所）付きで引用されているか（こちらの造語・一般用語でないか）</li><li>その言葉が経営目標・事業の核と結びつく根拠が記述されているか</li><li>候補語が2つ以上列挙され、各候補の採否理由（頻度／象徴性／経営目標との結びつき）が1行以上で書かれ、最終1語の選定根拠が明示されているか（発散→収束の跡）</li><li>選んだ言葉が後段のKGI（p2-issue）／提案ストーリーに実際に接続して使われているか（飾りで終わっていないか）</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>提案テーマが提案側の造語・一般用語（『DX推進』等）で顧客の言葉になっていない／候補を1語だけ拾い採否比較がない／言葉は拾ったがKGI・提案ストーリーに接続せず飾りで終わる／原典（出典）がなく本当に顧客が使った語か検証できない。</p></div>
+  </div>
+</div>
+  </section>
+
+  <section id="p2" style="padding-top:8px;">
+    <span class="phase-label">フェーズ2 ── 仮説構築（60点）</span>
+    <h2><span class="num">D</span>仮説構築のアウトプット</h2>
+    <p class="lead">早川モデルの核心＝「メインイシュー ⇄ KPI の接続」が最も濃く出る段。コア3項目はここに集中します。</p>
+    <div class="out-card is-core">
+  <div class="out-head"><span class="out-pts">16点</span><h4>メインイシュー（顧客の真の経営課題）の特定<span class="corepill">コア・足切り対象</span></h4></div>
+  <div class="out-body">
+    <p class="out-what">顧客が表面的に語る要望や施策テーマの背後にある『本当に追うべき経営課題』は何か。『広告を出したい』ではなく『なぜそれが経営上重要なのか』という1段上の問い。担当者のつまずき①（経営課題が見えない）を解消する、早川モデルの核その1。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) 顧客が実際に使う言葉を一次情報（IR・決算・プレス・定例会の発言）から抽出する。2) その言葉に『それは何のため？』を繰り返し、抽象度を登る。3) 事業全体の中での当該施策の位置づけ（接点の一つ／一部門）を定める。4) 出来上がったメインイシューに顧客固有の固有名詞・事業文脈・一次情報の語が含まれ、他社にコピペ流用できない記述になっているかで検証する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：顧客の言葉『夢中時間』を抽出→『夢中時間＝LTVの最大化』をKGIと置き、ピューロランドを『グループのIP接点の一つ』と位置づけた。東芝：事業背景から『間接部門でデジマをやる意味の不明瞭さ』をメインイシューとして特定した。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>メインイシューの起点が、汎用語リスト（DX推進／生産性向上／売上拡大／ブランディング 等）に該当せず、一次情報からの引用語（原典付き）になっているか</li><li>施策単体でなく事業／経営の文脈に接続されているか（『広告の話』で閉じていないか、事業構造・全社KGIへの参照があるか）</li><li>『それは何のため？』が1回以上登られ、抽象度が施策より明確に上にあるか（『夢中時間＝LTV最大化』『意味の不明瞭さ』は適切／施策の言い換え・浅い課題列挙は不可）</li><li>メインイシューが、その顧客固有の固有名詞・事業文脈・一次情報の語を3点以上含み、他社にコピペ流用できない記述になっているか</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>顧客の要望（広告を出したい）をそのままイシューにし1段上に登れていない／自社（代理店）の課題（受注したい）とすり替わっている／一般論の経営課題（DX推進等）でこの顧客固有の言葉・文脈になっていない（他社にそのまま使える記述）。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">6点</span><h4>課題の本質集約（症状→診断への変換プロセス）</h4></div>
+  <div class="out-body">
+    <p class="out-what">特定したメインイシュー（p2-issue）を、解くべき問いに変換する過程そのもの。問題（symptom＝腕が痛い）を打ち手を打てる課題（diagnosis＝骨が折れている）に変換するプロセスと、その過程で棄却した症状・枝の理由を明示したもの。メインイシューの言い換えではなく、『なぜその診断に至り、他の症状をなぜ捨てたか』という変換の論理を採点する。担当者のつまずきの型のどれに当たるかも判定する。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) 散在する問題・不満・症状を複数列挙する（腕が痛い／熱がある…に相当する表層の訴え）。2) それらの共通原因／上位概念を探り、『腕が痛い→骨が折れている』のように症状を診断（打ち手を打てる課題）へ変換する。3) その過程で『この症状は本質でない』と棄却した枝を、棄却理由付きで残す。4) 『この1つが解ければ他も連動して解ける』という結節点に集約する。5) 担当者のつまずきの型（経営課題が見えない／課題とKPIの接続が切れている／追うKPIが定まらない）のどこに当たるか判定する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：散在する不安を『2つの判断のしづらさ』（①事業貢献の不透明さ＋②運用のブラックボックス）へ、症状から診断に変換して集約。東芝：表層の戸惑い（何をすべきか／効果が見えない 等）を『意味の不明瞭さ』1点に診断し直し、定例会設計（事業背景の見合わせ）に直結させた。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>症状（symptom）の列挙から診断（打ち手を打てる課題）への変換プロセスが明示的に挟まれているか（『腕が痛い→骨が折れている』に相当する変換の一文があるか）</li><li>変換の過程で棄却した症状・枝が、棄却理由付きで残っているか（なぜそれは本質でないかが書かれているか）</li><li>集約の単位が『解けば連動する』結節点になっているか（並列の課題羅列でないか）</li><li>集約後の課題が後続のKPI設計（p2-kpitree）にそのまま繋がる粒度か（抽象すぎて打ち手が出ない、ではない）</li><li>【二重計上ガード】p2-issueで特定したメインイシューの単なる言い換え・再掲に留まっていないか。変換プロセスと棄却理由が新たに示された分のみを採点し、言い換えだけなら加点しない</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>問題を課題化せず症状をそのまま『課題』と呼ぶ（変換プロセスが抜ける）／p2-issueのメインイシューを言葉を変えて再掲しただけで、診断への変換も棄却理由もない／課題が5個も10個も並列で結節点がない／逆に抽象化しすぎて（『成長が課題』等）打ち手に降ろせない。</p></div>
+  </div>
+</div><div class="out-card is-core">
+  <div class="out-head"><span class="out-pts">18点</span><h4>KGI→KPIロジックツリー（ファネル数値化・改善レバー・役割分担を含む）<span class="corepill">コア・足切り対象</span></h4></div>
+  <div class="out-body">
+    <p class="out-what">メインイシュー＝KGIを頂点に、構成要素をMECEに分解し測定可能な指標まで降ろした木構造。当該施策がどのノードに効くかを位置づけ、ファネル全段の数値化と『広告で動かせる所／CRMで直す所』の改善レバー、さらに施策間の役割分担（守備範囲の分割）まで実装に降ろす。担当者のつまずき②（課題とKPIの接続切れ）を解消する、早川モデルの核その2。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) メインイシューをKGIとして頂点に置く。2) KGIを因数分解する（足し算・掛け算の構造で／MECEに）。3) 各枝を施策で測定・関与できる指標まで降ろす。4) 施策が効くノードを明示し、KGIまで線で辿れるようにする。5) ファネル全段（認知→訪問→問合せ→商談→受注→単価→金額 等）を数値化しボトルネックを特定する。6) 各段・各課題を『どの施策（広告／CRM／定例会）で動かすか』に割り当て、施策間の境界と自社／他社の守備範囲を明示する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：『夢中時間＝LTV最大化』（KGI）→ピューロランド＝IP接点→広告が担う役割を逆算→『Sanrio+会員登録』に接続し、役割分担を『新規獲得＝広告／再来場＝CRM』と設計。パナソニック：ファネル（訪問者→問合せ→チャット→送客→受注→単価→金額）を全段数値化し広告／CRMの改善レバーをマッピング。東芝：課題（意味の不明瞭さ）に対し定例会へ『事業背景の見合わせ』を織り込む運用プロセス側の役割を設計。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>頂点がp2-issueのメインイシュー（KGI）と一致しているか（途中の指標を頂点に置いていないか）</li><li>分解がMECEで、各ノードが親子で論理的に繋がっているか（枝の重複・漏れがないか、飛躍で繋いでいないか）</li><li>施策が効くノードが明示され、施策→KGIの貢献経路が1本の線で辿れるか</li><li>ファネルが全段、定性語（弱い／強い）でなく転換率または実数で埋まり、ボトルネックまたは高インパクト段が特定されているか</li><li>各段に『どの施策で動かせるか』のラベルが付き、自社（広告）と他施策（CRM等）の守備範囲が区別され、空白段・重複がないか</li><li>役割が打ち手だけでなく運用プロセス（定例会等）まで含めて設計されているか（既存深耕案件で特に）</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>KGIを置かずKPI候補をいきなり並べる（頂点欠落）／分解がMECEでなく枝が重複・漏れ／ツリーは描けたが施策がどのノードに効くかの接続がない（絵に描いた餅）／ファネルの段は描けたが数値が入っていない／改善レバーのラベリングがなく現状把握止まり／全部を自社施策（広告）で抱え境界が曖昧で空白段が残る。</p></div>
+  </div>
+</div><div class="out-card is-core">
+  <div class="out-head"><span class="out-pts">12点</span><h4>追うべきKPIの確定（候補の多軸比較→1つへの収束）<span class="corepill">コア・足切り対象</span></h4></div>
+  <div class="out-body">
+    <p class="out-what">ロジックツリー上の指標候補を複数挙げ、明示した評価軸で比較し、今回追う1つに絞り込んだ結論と根拠。担当者のつまずき③（追うKPIが定まらない）を解消する、早川モデルの『論理で一本に繋ぐ』が最も濃く出る成果物。複数候補を広げてから棄却理由付きで1つに収束する（発散→収束）。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) ツリーから追いうる指標候補を複数列挙する（3〜5個）。2) 比較軸を定義する（最低限：①事業KGIとの直結性 ②計測可能性 ③改善余地／最大化余地）。3) 各候補を各軸で評価する（表形式）。4) 総合で1つに確定し『なぜこれか／なぜ他でないか』を候補ごとに言語化する。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>サンリオ：KPI候補4つ（会員登録／来場パスポート購入／予約時売上／LTV）を3軸（事業KGIとの直結性・計測可能性・最大化余地）で比較し『Sanrio+会員登録』1つに確定（4候補×3軸→1確定＝満点級）。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>候補が3つ以上挙がっているか（1案だけ＝比較になっておらず該当しない）</li><li>評価軸が明示され、最低限KGI直結性・計測可能性・改善余地の3軸を含むか</li><li>各候補×各軸が表等で埋まり、比較が追跡可能か（結論だけで過程がないのは該当しない）</li><li>棄却した候補それぞれに、なぜ選ばなかったかの理由が1行以上で残っているか（発散→収束の収束根拠があるか）</li><li>確定したKPIが現実に今回の施策で動かせる指標か（測れない／施策で動かせない指標＝LTVそのもの等を最終KPIに選んでいないか）</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>候補を比較せず最初から1つに決め打ち（比較プロセスの欠落）／軸が1つ（直結性だけ等）で計測可能性・改善余地が抜ける／KGI直結性は高いが計測・改善できない指標を選ぶ／棄却した候補の理由が残っていない。</p></div>
+  </div>
+</div><div class="out-card">
+  <div class="out-head"><span class="out-pts">8点</span><h4>数値目標の逆算チェーン（KGIから施策KPI目標値への割り戻し）</h4></div>
+  <div class="out-body">
+    <p class="out-what">確定したKPIを、KGI（経営目標数値）から逆算して具体的な目標数値に落とした連鎖。『中計いくら→そのためにリード何件』を段階の掛け率で繋ぐ。KPIを『確定』するだけでなく『いくつ追うか』を実数に落とすことで、提案が社内予算を通せる状態になる。起点数値が共有されない場合は先回りで自作する。</p>
+    <div class="out-sec"><span class="out-lbl lbl-do">出し方</span><p>1) KGIの数値目標を起点に置く（中計・事業計画の数字／共有されないなら決算書から自作）。2) 各段の転換率（受注率・商談化率・歩留まり等）を定義・推定し出所を明記する。3) 上から順に割り戻し、施策が直接追う数（リード数・チャネル別目標等）まで降ろす。4) 出た数値の妥当性（達成可能性）を感度チェックする。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-ex">早川さんの実例</span><p>ビーウィズ：中計数値→SQL目標→商談化率→受注率→リード目標→チャネル別目標、という逆算チェーンを設計（事業計画から施策の数値目標まで一気通貫）。フェーズ1で決算書から事業計画を自作し逆算の起点数値を先回りで自給した。</p></div>
+    <div class="out-sec"><span class="out-lbl lbl-eval">質を見る観点（AIが採点に使う）</span><ul><li>起点がKGIの実数値か（定性目標でなく具体的な金額・件数から始まっているか）</li><li>各段の転換率に根拠／出所（実績値／業界水準／推定の前提）が併記されているか（根拠なしのエイヤ掛け率でないか）</li><li>チェーンが切れずに、施策が追う最終数（リード数／チャネル別目標）まで到達しているか（SQLや商談の途中で止まっていないか）</li><li>逆算結果が現実的か（必要リード数等が非現実的な値になっていないかの感度チェックの記述があるか）</li><li>起点数値が顧客非開示の場合に、決算書自作等で先回りして起点を自給できているか（『数値が出ないので算出不可』で止まっていないか）</li></ul></div>
+    <div class="out-sec"><span class="out-lbl lbl-ng">よくある不足</span><p>KGIの数値が顧客から出ないと止まる（先回りで自作する発想がない）／転換率が根拠なしの仮置きで逆算結果の信頼性がない／チェーンが途中（SQLや商談まで）で止まり施策が追う最終数まで降りない／逆算しっぱなしで出た数値の妥当性を検証していない。</p></div>
+  </div>
+</div>
+  </section>
+
+  <section id="level" style="padding-top:8px;">
+    <h2><span class="num">E</span>難易度（3段階）</h2>
+    <p class="lead">同じアウトプットでも、要求する質と採点の厳しさを3段階で変えます。</p>
+    <div class="lvl"><div class="lv-name">初級</div><p>狙い＝型を一通り回せるか。合格閾値60点。コア二段足切り＝(A)網羅係数1.0（成果物として出ている）必須、かつ(B)質係数0.50以上。質係数：方向が合っていれば0.7程度まで許容し、論理の飛びは『惜しい』で減点に留める。助け舟あり（詰まったら次の問い『それは何のため？』をヒントとして与え、再考機会を1回与える）。採点スタンスは育成：良い兆しを拾い言語化して伸ばす。FBはMore2点まで、励まし＋助け舟をMoreに1つ織り込む（例：『ここで〈それは何のため？〉と一段上げるとメインイシューに届く』）。</p></div>
+    <div class="lvl"><div class="lv-name">中級</div><p>狙い＝実務でそのまま使えるか（標準）。合格閾値70点。コア二段足切り＝(A)網羅係数1.0必須、かつ(B)質係数0.60以上。質係数：評価観点を素直に満たして初めて0.8、観点が1つ欠けるごとに減点。助け舟なし（出されたものを標準観点で評価）。採点スタンスは第三者の評価者：事実と論理で淡々と。FBはGood3・More3を淡々と、買う／買わないは標準的な担当者目線。</p></div>
+    <div class="lvl"><div class="lv-name">上級</div><p>狙い＝早川さん本人と同等か。合格閾値80点。コア二段足切り＝(A)網羅係数1.0必須、かつ(B)質係数0.75以上（＝単なる観点充足=0.7を超え、踏み込んだ質が要る）。質係数：観点を満たすのは当然で0.7止まり、0.9以上は『自分が先方担当者なら即発注』レベルのみ。助け舟なし、むしろ反証で詰める（『その競合再定義、顧客は本当にそう困っているか？』『そのKPI、計測できるのか？』『KGIとの直結性を証明して』）。採点スタンスは容赦なく詰める：論理の穴・根拠の薄さ・顧客の言葉の不使用を一つずつ突き、甘い確定は全て差し戻す。FBは『条件付きで買う』を原則安売りせず、Moreは全て反証つきで答えられなければ買う／買わないを下げる。上級では質係数の根拠を『早川さんと一致するか』でなく『先方担当者が発注するか』に置き、本人超えの別解を不当に減点しない。※二段足切りにより、上級でコアを完全提出し全観点を満たしても落ちる旧バグ（網羅1.0×質上限0.7=70%&lt;75%）は解消済み：足切りは質係数0.75以上で判定し、観点充足の0.7を超える踏み込みを要求する設計に統一した。</p></div>
+  </section>
+
+  <section id="fb" style="padding-top:8px;padding-bottom:56px;">
+    <h2><span class="num">F</span>合否とフィードバック（買う／買わない・Good &amp; More）</h2>
+    <div class="keymsg">
+      <div class="t">フィードバックの出し方</div>
+      <p>採点表（点数）の後に、必ず以下の定性FBを付ける。点数は判定、定性FBは改善のための納得材料という役割分担。\n\n【買う／買わない（最上段・結論ファースト）】評価者が『先方の担当者／決裁者』になりきり、発注したいと思うかを一言で言い切る。点数および最上段の判定と必ず整合させる。フォーマット：『【判定】合格／条件付き再提出／不合格（コア欠落）』『【買う・買わない】買う／条件付きで買う／買わない』『【一言理由】先方担当者の主観で』。\n\n判定と買う／買わないの対応原則：合格→買う／条件付きで買う、条件付き再提出→条件付きで買う／今は買わない、不合格→買わない。\n\n【整合ガード】買う／買わないは必ず最上段の判定と整合させる。上級で『条件付き再提出』なのに反証に答えられず買う／買わないを『買わない』に振りたい場合は、買う／買わないだけを下げるのでなく、判定自体を『不合格』に下げて整合させる（判定=条件付き再提出のまま買わない、という不整合を残さない）。\n\n理由の例：買う＝『経営課題から今期動かすKPIまで一本で繋がっていて、これなら社内で予算を通せる。運用のブラックボックスも解消される実感がある』／買わない＝『分析は丁寧だが、結局どの指標を追えば事業に効くのかが自分の言葉で語れていない。これでは社内を説得できない』。\n\n【Good &amp; More（Good 3点・More 3点を上限）】『指摘の数』でなく『次に何を直せば買ってもらえるか』に絞る。各項目は該当する評価項目のidを添え点数と紐づける。Good（良かった点／このまま伸ばす）＝観点を満たした箇所をなぜ効いているかまで言語化する（例：『顧客の言葉〈夢中時間〉を起点に据えた(p1-keyword)。提案全体に一本の背骨が通り、先方が自分事として読める』）。More（もっと良くする点）＝必ず①どこが(id)②なぜ足りないか③どう直すか の3点セットで書き、抽象的なダメ出しは禁止（例：『追うべきKPIの確定(p2-kpiselect)。3軸での比較は良いが、棄却理由が会員登録以外に残っていない。〈なぜSQLでなく会員登録か〉を数字で語れると先方は迷わず予算を通せる』）。Moreは減点に直結した項目から優先して挙げ、不合格時はコア項目(p2-issue／p2-kpitree／p2-kpiselect)のMoreを必ず先頭に置く。\n\n【難易度別トーン】初級＝Moreは2点まで、励まし＋次の問い（助け舟）を1つ織り込む。中級＝Good3・More3を淡々と、標準的な担当者目線。上級＝『条件付きで買う』を安売りせず、Moreは全て反証つき。反証に答えられなければ判定ごと下げて買わないに振る（上記・整合ガードに従う）。\n\n注意：このルーブリックは早川さんの過去アウトプットを正解とする教師あり設計のため、本人を超える別解（例：競合再定義のより鋭い切り口、新しいKPIの取り方）を模範解答との差分で不当に減点するリスクがある。上級では質係数の根拠を『早川さんと一致するか』でなく『先方担当者が発注するか』に置くことで対処する。</p>
+    </div>
+  </section>
+
+</div>
+<footer>
+  <strong>早川モデル ─ フェーズ1・2 アウトプット仕様と評価基準（現時点版）</strong><br>
+  株式会社UNCOACH × 株式会社プリンシプル　／　2026年6月　作成<br>
+  本基準は早川さんの4案件の実アウトプットを抽象化し、網羅性を検証して設定した中間整理です。
+</footer>
+</div><script>
+const HASH='a9c9439afa998a113825574961992e72f635d97b6ee2b72bf54e5701222d3bb3';
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function unlock(){const p=document.getElementById('pw').value;if(await sha256(p)===HASH){document.getElementById('gate').style.display='none';document.getElementById('content').style.display='block';try{sessionStorage.setItem('hm_unlocked','1')}catch(e){}}else{document.getElementById('err').textContent='パスワードが違います';document.getElementById('pw').value=''}}
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+try{if(sessionStorage.getItem('hm_unlocked')==='1'){document.getElementById('gate').style.display='none';document.getElementById('content').style.display='block'}}catch(e){}
+</script></body></html>
