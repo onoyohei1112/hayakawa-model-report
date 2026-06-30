@@ -87,7 +87,8 @@
     max-width: 920px; margin: 0 auto; padding: 12px 24px;
     display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
   }
-  .nav-inner .brand { font-size: 13px; font-weight: 700; color: var(--brand-primary); margin-right: 8px; }
+  .nav-inner .brand { font-size: 13px; font-weight: 700; color: var(--brand-primary); margin-right: 6px; }
+  .nav-inner .seg { font-size: 11px; font-weight: 700; color: var(--text-muted); margin: 0 2px 0 6px; }
   .nav-inner a {
     font-size: 12px; color: var(--text-secondary); text-decoration: none;
     padding: 5px 10px; border-radius: 6px; transition: all .15s; white-space: nowrap;
@@ -105,7 +106,7 @@
     border-radius: 100px; margin-bottom: 24px;
   }
   .hero h1 { font-size: 38px; font-weight: 700; line-height: 1.3; margin-bottom: 20px; letter-spacing: .03em; }
-  .hero p { font-size: 16px; color: rgba(255,255,255,.86); max-width: 660px; margin: 0 auto; line-height: 1.9; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,.86); max-width: 680px; margin: 0 auto; line-height: 1.9; }
 
   /* ===== LAYOUT ===== */
   .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
@@ -131,6 +132,10 @@
   .card h4 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
   .card p { color: var(--text-secondary); font-size: 15px; }
   .card p + p { margin-top: 10px; }
+
+  /* phase pills */
+  .phase-pill { display:inline-block; padding:6px 12px; border-radius:8px; font-size:12.5px; font-weight:600; background:var(--surface-alt); color:var(--text-secondary); }
+  .phase-pill.on { background:var(--brand-primary); color:#fff; }
 
   /* principle cards */
   .principle {
@@ -182,19 +187,6 @@
   .fail p { font-size: 15px; color: #5a1a1a; }
   .fail p + p { margin-top: 10px; }
 
-  /* ===== TABLE ===== */
-  .table-wrap { overflow-x: auto; margin: 20px 0; border-radius: var(--radius); border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 14px; min-width: 560px; }
-  thead { background: var(--brand-primary); color: #fff; }
-  th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--border); }
-  th { font-weight: 600; font-size: 13px; }
-  td:first-child { font-weight: 600; }
-  tbody tr:last-child td { border-bottom: none; }
-  .dot { color: var(--brand-primary); font-size: 15px; font-weight: 700; }
-  .dot-sub { color: var(--text-muted); font-size: 13px; }
-  .dash { color: var(--text-muted); }
-  .tbl-note { font-size: 13px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8; }
-
   /* ===== FIGURES (SVG) ===== */
   .figure { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:24px 0; box-shadow:var(--shadow); }
   .figure .fig-cap { display:inline-block; font-size:12px; font-weight:700; color:var(--brand-primary); background:var(--brand-pale); padding:4px 12px; border-radius:100px; margin-bottom:8px; }
@@ -208,7 +200,7 @@
   .ssub { font-size:12px; fill:var(--text-muted); }
   .slabel { font-size:12.5px; font-weight:600; fill:var(--brand-primary); }
   .try-box ol { margin:12px 0 0 20px; }
-  .try-box ol li { font-size:14.5px; color:var(--text-primary); line-height:1.85; margin-bottom:9px; }
+  .try-box ol li { font-size:14.5px; color:var(--text-primary); line-height:1.85; margin-bottom:12px; }
   .try-box ol li strong { color:var(--brand-dark); }
 
   /* ===== STEPS ===== */
@@ -247,11 +239,8 @@
   }
   ul.clean li strong { color: var(--text-primary); }
 
-  .divider { height: 1px; background: var(--border); margin: 8px 0; }
-  .part-divider {
-    text-align: center; padding: 40px 0 8px;
-  }
-  .part-divider .line { height: 2px; background: linear-gradient(90deg, transparent, var(--brand-light), transparent); margin-bottom: 0; }
+  .part-divider { text-align: center; padding: 40px 0 8px; }
+  .part-divider .line { height: 2px; background: linear-gradient(90deg, transparent, var(--brand-light), transparent); }
 
   /* footer / note */
   .endnote {
@@ -276,6 +265,7 @@
     section { padding: 40px 0; }
     .nav-inner { gap: 2px; }
     .nav-inner a { padding: 4px 7px; font-size: 11px; }
+    .nav-inner .seg { display:none; }
   }
 </style>
 </head>
@@ -298,20 +288,21 @@
 <nav>
   <div class="nav-inner">
     <span class="brand">早川モデル</span>
-    <a href="#overview">全体像</a>
+    <span class="seg">概念編</span>
+    <a href="#core">核心</a>
     <a href="#principles">思考原則</a>
-    <a href="#phases">フェーズ別行動</a>
-    <a href="#contrast">勝ち筋と失注</a>
+    <a href="#contrast">勝敗の分かれ目</a>
+    <span class="seg">実践編</span>
+    <a href="#steps">6ステップ</a>
     <a href="#farming">既存深耕</a>
-    <a href="#manual">再現マニュアル</a>
-    <a href="#next">今後</a>
+    <a href="#try">やってみる</a>
   </div>
 </nav>
 
 <div class="hero">
   <span class="hero-badge">PRINCIPLE INC. / HAYAKAWA MODEL ── 現時点版</span>
   <h1>早川モデル<br>思考と再現の手引き</h1>
-  <p>トップ営業・早川さんが「何を考え、何を見て判断しているか」を整理し、他のメンバーがそれをどう再現できるかまでをまとめた資料です。4案件の行動分析と、ご本人へのインタビュー（2026年6月）に基づいています。</p>
+  <p>トップ営業・早川さんが「何を考え、何を見て判断しているか」を、あなたが自分の案件で再現できるところまで分解した手引きです。前半＝考え方を理解する「概念編」、後半＝自分でやってみる「実践編」。4案件の行動分析と、ご本人へのインタビュー（2026年6月）に基づいています。</p>
 </div>
 
 <div class="wrap">
@@ -324,14 +315,14 @@
     </div>
   </section>
 
-  <!-- ============ 第1部 ============ -->
+  <!-- ============ 概念編 ============ -->
   <div class="part-divider"><div class="line"></div></div>
 
-  <!-- 全体像 -->
-  <section id="overview">
-    <span class="part-label">第1部　早川モデル ── 何をやっているか</span>
-    <h2><span class="num">1</span>全体像：すべては「メインイシュー ⇄ KPI の接続」</h2>
-    <p class="lead">早川さんの提案準備は6つのフェーズに分かれますが、その全体を貫く<strong>背骨は一本</strong>です。それは「顧客が本当に追うべき経営課題（＝メインイシュー）を掴み、今回の提案で動かせる指標（＝KPI）に、論理で一本につなぐ」こと。新規案件も既存深耕も、この背骨は変わりません。</p>
+  <!-- 1. 核心 -->
+  <section id="core">
+    <span class="part-label">概念編 ── 早川さんの「考え方」を理解する</span>
+    <h2><span class="num">1</span>核心：すべては「メインイシュー ⇄ KPI の接続」</h2>
+    <p class="lead">早川さんのやっていることは、突き詰めると<strong>一本の線</strong>です。それは「顧客が本当に追うべき経営課題（＝メインイシュー）を掴み、今回の提案で動かせる指標（＝KPI）に、論理で一本につなぐ」こと。新規案件も既存深耕も、この背骨は変わりません。早川さん自身も、他メンバーに一番再現してほしいこととして<strong>「顧客の課題を起点にした仮説構築」</strong>を挙げています。</p>
 
     <div class="keymsg">
       <div class="t">モデルの核心（ご本人の言葉）</div>
@@ -426,13 +417,13 @@
 
     <div class="card">
       <h4>「上から下ろす」一本の線（サンリオの例）</h4>
-      <p>顧客が掲げる言葉「夢中時間」（＝LTVの最大化）を出発点に、ピューロランドをグループ全体のIP接点の一つと位置づけ、そこから広告が担うべき役割を逆算。最終的に追うべきKPIを「Sanrio+会員登録」に接続しました。施策（KPI）の話から入るのではなく、<strong>経営課題から下ろしてくる</strong>のが特徴です。</p>
+      <p>顧客が掲げる言葉「夢中時間」（＝LTVの最大化）を出発点に、ピューロランドをグループ全体のIP接点の一つと位置づけ、そこから広告が担うべき役割を逆算。最終的に追うべきKPIを「Sanrio+会員登録」に接続しました。施策（KPI）の話から入るのではなく、<strong>経営課題から下ろしてくる</strong>のが特徴です。（この引き方は、実践編の図Cで一枚にしています。）</p>
     </div>
   </section>
 
-  <!-- 思考原則 -->
+  <!-- 2. 思考原則 -->
   <section id="principles">
-    <h2><span class="num">2</span>早川モデルを支える6つの思考原則</h2>
+    <h2><span class="num">2</span>早川さんの頭の中 ── 6つの思考原則</h2>
     <p class="lead">行動の背後で一貫して働いている「判断の癖」を6つに整理しました。これが、表面的な作業（リサーチ・資料作成）を「勝てる提案」に変えている部分です。</p>
 
     <div class="principle">
@@ -488,59 +479,10 @@
     </div>
   </section>
 
-  <!-- フェーズ別 -->
-  <section id="phases">
-    <h2><span class="num">3</span>フェーズ別の具体行動</h2>
-    <p class="lead">背骨（メインイシュー⇄KPI接続）を、実際の提案プロセスに沿って6フェーズに分けたものです。インタビューで確認したとおり、<strong>フェーズ1〜5はすべての案件で共通して行う「型」</strong>であり、案件ごとの差は「資料を共有していないだけ」で、行動としては概ね同じです。</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>フェーズ</th><th>サンリオ<br><span style="font-weight:400;font-size:11px;">新規/6社</span></th><th>パナソニック<br><span style="font-weight:400;font-size:11px;">新規/3社</span></th><th>東芝<br><span style="font-weight:400;font-size:11px;">既存</span></th><th>ビーウィズ<br><span style="font-weight:400;font-size:11px;">既存</span></th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1. 事業・顧客理解</td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td></tr>
-          <tr><td>2. 仮説構築</td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td></tr>
-          <tr><td>3. 提案体制づくり</td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot-sub">△</span></td><td><span class="dot">●</span></td></tr>
-          <tr><td>4. 提案資料づくり</td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td></tr>
-          <tr><td>5. 商談</td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td></tr>
-          <tr><td>6. 既存顧客の深耕</td><td><span class="dash">―</span></td><td><span class="dot-sub">△</span></td><td><span class="dot">●</span></td><td><span class="dot">●</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="tbl-note">● 実施　／　△ 軽め・状況により　／　― 該当せず<br>※ フェーズ3（体制づくり）は、すでに体制がある既存顧客では軽くなります。フェーズ6（既存深耕）は、取引が継続している顧客で上乗せされる動きです。新規・既存にかかわらず、<strong>1〜2の「メインイシューを掴む」背骨は全件共通</strong>です。</p>
-
-    <h3>各フェーズの中身</h3>
-    <div class="card">
-      <h4>1. 事業・顧客理解</h4>
-      <p>IR・プレス・RFPを読み込み、顧客が掲げる言葉と事業構造を把握する。「粛々と調べる作業」と「どこから切り込むか・どんなキャラクターで臨むか」を<strong>並行</strong>して考えるのが特徴。AIで広げ、自分で噛み砕く。</p>
-    </div>
-    <div class="card">
-      <h4>2. 仮説構築</h4>
-      <p>RFPを繰り返し読み、「本当のメインイシューはどれか」を問い続ける。複数の切り口を出した上で、「自分が担当者なら一番納得するもの」でロジックツリーを絞り込み、追うべきKPIまで一本に接続する。<strong>このフェーズが早川モデルの中心</strong>。</p>
-    </div>
-    <div class="card">
-      <h4>3. 提案体制づくり</h4>
-      <p>案件を受けてから、チームの段取り（スケジュール・役割分担）を素早く組む。既存顧客で体制が既にある場合は、ここは軽くなる。</p>
-    </div>
-    <div class="card">
-      <h4>4. 提案資料づくり</h4>
-      <p>フェーズ1〜2で組んだ論理を、顧客が社内で説明しやすい資料に落とす。<strong>1・2の内容が、いかに資料に転換されているかが勝負</strong>（資料作法そのものは世の中に定石がある領域）。</p>
-    </div>
-    <div class="card">
-      <h4>5. 商談</h4>
-      <p>メインイシューへの合意を確認してから「だからこれが必要」と接続する。プレゼンは確認の場。仮説が事実と違ったときの切り返しは、ジュニアには難しい部分（後述）。</p>
-    </div>
-    <div class="card">
-      <h4>6. 既存顧客の深耕</h4>
-      <p>取引中の顧客から「次の与件」を生み出す動き。ステップというより日常の積み重ね。詳細は<a href="#farming" style="color:var(--brand-primary);font-weight:600;">第5節</a>。</p>
-    </div>
-  </section>
-
-  <!-- 勝ち筋と失注 -->
+  <!-- 3. 勝敗の分かれ目 -->
   <section id="contrast">
-    <h2><span class="num">4</span>勝ち筋と失注の対比 ── 分かれ目はどこか</h2>
-    <p class="lead">早川さん自身の「勝った案件」と「失注した案件」を比べると、モデルの核心がより鮮明になります。これは人を増やさずに精度を上げる、本プロジェクトの重要な視点です。</p>
+    <h2><span class="num">3</span>なぜ勝敗が分かれるか ── 勝ち筋と失注（KEEN）</h2>
+    <p class="lead">「核心がある／ない」が本当に勝敗を分けるのか。早川さん自身の<strong>勝った案件と失注した案件を比べる</strong>と、それがはっきり見えます。</p>
 
     <div class="fail">
       <span class="tag">失注事例</span>
@@ -551,7 +493,7 @@
 
     <div class="insight">
       <div class="t">この対比からわかること</div>
-      <p>勝ち案件にあって、失注案件になかったのは<strong>「メインイシューの深掘りと接続」そのもの</strong>でした。つまり、早川モデルの核心（第1節）が「あるか / ないか」が、勝敗の分かれ目だったという仮説を、ご本人の中の勝ち負けが裏づけています。</p>
+      <p>勝ち案件にあって、失注案件になかったのは<strong>「メインイシューの深掘りと接続」そのもの</strong>でした。つまり、ここまで見てきた核心が「あるか / ないか」が勝敗の分かれ目だった、という仮説を、ご本人の中の勝ち負けが裏づけています。</p>
     </div>
 
     <h3>今も残る「苦手領域」とその対処</h3>
@@ -562,65 +504,35 @@
     </ul>
   </section>
 
-  <!-- 既存深耕 -->
-  <section id="farming">
-    <h2><span class="num">5</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
-    <p class="lead">本プロジェクトが狙うSQL（既存顧客からの新規与件）創出に、最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
-
-    <div class="card">
-      <h4>与件は自然発生する。ただし土壌は作る（C-1）</h4>
-      <p>次の仕事は狙って作るというより、顧客側から自然に生まれてくる。ただしそのために、<strong>「困ったら、まずプリンシプルに訊こう」と思ってもらえる関係値</strong>と、普段から顧客の事業目的に即したコミュニケーション・先回りの回答で、<strong>与件が生まれる下地</strong>をつくっている。</p>
-    </div>
-
-    <div class="card">
-      <h4>先回りして「叩き台」を持ち込む（C-2）</h4>
-      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。同社は実質単一セグメントで決算書から事業計画を想像しやすかった、という条件もある。情報をもらうのを待つのではなく、作って持っていく。</p>
-    </div>
-
-    <div class="card">
-      <h4>深耕の判断は「ブリッジの場」から（C-3）</h4>
-      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。そこでやるべきことが明確になり、それが自社のケイパビリティと一致すれば、スムーズにクロスセルの与件になる。</p>
-    </div>
-
-    <div class="keymsg">
-      <div class="t">東芝の示唆 ── SQL創出の参考事例</div>
-      <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など外部環境の変化で「意味が乗っている瞬間」に取引が終わってしまう。早川さんは定例会の中にこの<strong>「事業背景の見合わせ」</strong>を織り込み、「自社より深く考えている」状態をつくって信頼と次の与件につなげている。</p>
-    </div>
-  </section>
-
-  <!-- ============ 第2部 ============ -->
+  <!-- ============ 実践編 ============ -->
   <div class="part-divider"><div class="line"></div></div>
 
-  <section id="manual">
-    <span class="part-label">第2部　再現マニュアル ── どう真似るか</span>
-    <h2><span class="num">6</span>再現の核心と、つまずきの正体</h2>
-    <p class="lead">早川さん自身が「他のメンバーに一番再現してほしい」と挙げたのは、ただ一つ。<strong>「顧客の課題を起点にした仮説構築」</strong>です。その前提として顧客情報のリサーチが必要になります。</p>
+  <section style="padding-bottom:0;">
+    <span class="part-label">実践編 ── 自分でやってみる</span>
+    <p class="lead" style="margin-bottom:18px;">ここからは「どうやるか」。早川さん本人いわく、これは<strong>才能ではなく「型」</strong>。むしろ新卒のほうが地頭は良く、適切な伴走があれば到達できる、とのことです。</p>
 
-    <div class="keymsg">
-      <div class="t">再現は可能か？（ご本人の見立て）</div>
-      <p>これは<strong>才能ではなく「型」と「マインドセット」</strong>の問題。むしろ新卒メンバーのほうが地頭は優秀で、<strong>適切なシニアの伴走があれば、できるようになる</strong>。早川さん自身もここを支援したいと明言している。</p>
+    <div class="insight" style="margin-top:0;">
+      <div class="t">始める前に ── 最大の障壁は「視野の罠」</div>
+      <p>つまずく原因は、スキルや知識ではなく<strong>マインドセット</strong>。広告チームに配属されると「広告のことしか見なくなる」。担当業務の外にある<strong>顧客のメインイシュー全体</strong>へ意識を向けることが、最初の一歩です。</p>
     </div>
 
-    <div class="insight">
-      <div class="t">最大の障壁は「視野の罠」</div>
-      <p>ジュニアがつまずく原因は、スキルや知識ではなく<strong>マインドセット</strong>。組織構造上、広告チームに配属されると<strong>「広告のことしか見なくなる」</strong>。顧客のメインイシュー全体を見る視点を、外から意識的に促す必要がある。</p>
-    </div>
-
-    <div class="keymsg try-box">
-      <div class="t">まず、これをやってみよう ── 明日からの3アクション</div>
-      <p>いきなり全部やらなくていい。担当顧客を1社えらび、次の3つだけ試してみる。これだけで「自分の顧客が、図Aのどこで詰まっているか」が見えます。</p>
-      <ol>
-        <li><strong>図Aで診断（5分）</strong>：その顧客は ①課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？</li>
-        <li><strong>言葉を1つ拾う（15分）</strong>：顧客のIRかプレスを1本読み、何度も出てくる「言葉」を1つ書き出す（サンリオでいう「夢中時間」）。</li>
-        <li><strong>一文で言ってみる</strong>：いま自分が追っているKPIを「これは顧客の“○○”という経営課題のためだ」と一文で言えるか？ 言えなければ、あなたの担当は ② 接続が切れている。</li>
-      </ol>
-      <p style="margin-top:14px;font-size:14px;">この3つが、次のStep1〜2の入り口です。完璧でなくていい。まず「自分の顧客の詰まりどころ」を1つ言葉にするところから。</p>
+    <div class="card" style="padding:18px 22px;margin-top:16px;">
+      <p style="font-size:13.5px;color:var(--text-secondary);margin-bottom:12px;">提案全体は次の6フェーズです。<strong style="color:var(--text-primary);">サンリオ・パナソニック・東芝・ビーウィズの4案件すべてで、1〜5は共通して行われていました（＝型がある）</strong>。その背骨＝<strong style="color:var(--brand-primary);">②仮説構築</strong>を、この後の6ステップに分解します。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="phase-pill">① 事業理解</span>
+        <span class="phase-pill on">② 仮説構築</span>
+        <span class="phase-pill">③ 体制</span>
+        <span class="phase-pill">④ 資料</span>
+        <span class="phase-pill">⑤ 商談</span>
+        <span class="phase-pill">⑥ 既存深耕</span>
+      </div>
     </div>
   </section>
 
-  <section style="padding-top:8px;">
-    <h2><span class="num">7</span>早川さんの思考を再現する6ステップ</h2>
-    <p class="lead">早川モデルの背骨（メインイシュー⇄KPI接続）を、誰でもたどれる手順に分解しました。各ステップに「早川さんの実例」と「ジュニアが陥りがちな罠」を添えています。</p>
+  <!-- 4. 6ステップ -->
+  <section id="steps" style="padding-top:28px;">
+    <h2><span class="num">4</span>手順：思考を再現する6ステップ</h2>
+    <p class="lead">背骨（②仮説構築）を、誰でもたどれる手順に分解しました。各ステップに「早川さんの実例」と「陥りがちな罠」を添えています。</p>
 
     <div class="step">
       <div class="step-head"><span class="sn">1</span><h4>顧客を調べ、「言葉」を拾う</h4></div>
@@ -746,8 +658,53 @@
     </div>
   </section>
 
-  <!-- 今後 -->
-  <section id="next" style="padding-top:8px;">
+  <!-- 5. 既存深耕 -->
+  <section id="farming" style="padding-top:8px;">
+    <h2><span class="num">5</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
+    <p class="lead">いま狙っているSQL（既存顧客からの新規与件）創出に、最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
+
+    <div class="card">
+      <h4>与件は自然発生する。ただし土壌は作る</h4>
+      <p>次の仕事は狙って作るというより、顧客側から自然に生まれてくる。ただしそのために、<strong>「困ったら、まずプリンシプルに訊こう」と思ってもらえる関係値</strong>と、普段から顧客の事業目的に即したコミュニケーション・先回りの回答で、<strong>与件が生まれる下地</strong>をつくっている。</p>
+    </div>
+
+    <div class="card">
+      <h4>先回りして「叩き台」を持ち込む</h4>
+      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。同社は実質単一セグメントで決算書から事業計画を想像しやすかった、という条件もある。情報をもらうのを待つのではなく、作って持っていく。</p>
+    </div>
+
+    <div class="card">
+      <h4>深耕の判断は「ブリッジの場」から</h4>
+      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。そこでやるべきことが明確になり、それが自社のケイパビリティと一致すれば、スムーズにクロスセルの与件になる。</p>
+    </div>
+
+    <div class="keymsg">
+      <div class="t">東芝の示唆 ── SQL創出の参考事例</div>
+      <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など外部環境の変化で「意味が乗っている瞬間」に取引が終わってしまう。早川さんは定例会の中にこの<strong>「事業背景の見合わせ」</strong>を織り込み、「自社より深く考えている」状態をつくって信頼と次の与件につなげている。</p>
+    </div>
+  </section>
+
+  <!-- 6. まず、やってみる -->
+  <section id="try" style="padding-top:8px;">
+    <h2><span class="num">6</span>まず、やってみる ── 明日からの3アクション</h2>
+    <p class="lead">ここまでの内容を、いきなり全部やる必要はありません。担当顧客を1社えらび、次の順で30分。<strong>「自分の顧客がどこで詰まっているか」を1つ言葉にできれば十分</strong>です。</p>
+
+    <div class="keymsg try-box">
+      <div class="t">明日からの3アクション（合計30分）</div>
+      <ol>
+        <li><strong>図Aで診断する（5分）</strong><br>その顧客は ①経営課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？ まず現在地を1つに決める。</li>
+        <li><strong>AIでざっと一望 → 一番効きそうな1本だけ自分で読む（25分）</strong><br>
+          ・まずAIに「この会社のIR・中期計画・プレスで繰り返し出てくる経営テーマ・キーワードは？」と聞き、全体像と"言葉"の候補を10個ほど出す（10分）。<br>
+          ・その中で一番重要そうな言葉が載っている元資料（IRや社長メッセージ）を、1本だけ自分の目で読む（15分）。<br>
+          <span style="color:#7a5a08;">※ AIの要約だけだと「顧客がその言葉にどれだけ本気か」の体感が湧かない。本物を1本読むと"温度"が分かる。</span></li>
+        <li><strong>KPIを一文で言ってみる（テスト）</strong><br>いま追っているKPIを「これは顧客の“○○”という経営課題のためだ」と一文で言えるか？ 言えれば接続できている。言えなければ、あなたは ② 接続が切れている。</li>
+      </ol>
+      <p style="margin-top:16px;font-size:14px;">完璧な仮説はいらない。まず「自分の顧客の詰まりどころ」を1つ言葉にできれば、Step2へ進めます。あとは6ステップを順にたどるだけ。</p>
+    </div>
+  </section>
+
+  <!-- 留保・今後 -->
+  <section style="padding-top:8px;">
     <div class="endnote">
       <h4>本資料の留保と、今後の進め方</h4>
       <p>本資料は早川さん単体のインタビューと行動分析に基づく<strong>「現時点版」</strong>です。マクレランド法（行動結果インタビュー）の考え方では、ここで挙げた行動が「早川さんならではの差別化要因」か、それとも「誰もがやっている最低要件」かは、平均的なメンバーとの比較で初めて確定します。</p>
