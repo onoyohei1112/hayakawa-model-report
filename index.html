@@ -195,6 +195,22 @@
   .dash { color: var(--text-muted); }
   .tbl-note { font-size: 13px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8; }
 
+  /* ===== FIGURES (SVG) ===== */
+  .figure { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; margin:24px 0; box-shadow:var(--shadow); }
+  .figure .fig-cap { display:inline-block; font-size:12px; font-weight:700; color:var(--brand-primary); background:var(--brand-pale); padding:4px 12px; border-radius:100px; margin-bottom:8px; }
+  .figure .fig-h { font-size:17px; font-weight:700; margin-bottom:6px; }
+  .figure .fig-d { font-size:14px; color:var(--text-secondary); margin-bottom:16px; line-height:1.8; }
+  .figure .fig-d strong { color:var(--brand-dark); }
+  .figure svg { width:100%; height:auto; display:block; }
+  .stitle { font-size:14px; font-weight:600; fill:var(--text-primary); }
+  .sbox { font-size:14px; font-weight:600; }
+  .scap { font-size:12.5px; fill:var(--text-secondary); }
+  .ssub { font-size:12px; fill:var(--text-muted); }
+  .slabel { font-size:12.5px; font-weight:600; fill:var(--brand-primary); }
+  .try-box ol { margin:12px 0 0 20px; }
+  .try-box ol li { font-size:14.5px; color:var(--text-primary); line-height:1.85; margin-bottom:9px; }
+  .try-box ol li strong { color:var(--brand-dark); }
+
   /* ===== STEPS ===== */
   .step {
     background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
@@ -320,6 +336,92 @@
     <div class="keymsg">
       <div class="t">モデルの核心（ご本人の言葉）</div>
       <p>顧客のRFP（提案依頼書）に書かれているのは、本当のメインイシューにぶら下がる<strong>「サブイシューのごく一部」</strong>にすぎない。顧客自身もメインイシューとの接続に気づいていないことが多い。<strong>そこに気づかせ、顧客が社内で上席に「雄弁に説明できる」状態（＝チャンピオン化）にする</strong>ことが、最も良い状態。</p>
+    </div>
+
+    <div class="figure">
+      <span class="fig-cap">図A</span>
+      <div class="fig-h">担当者の「3つのつまずき」── あなたの顧客はどれか？</div>
+      <p class="fig-d">「メインイシュー（経営課題）」と「追うべきKPI」が一本の線で繋がっているのが理想。多くの顧客担当者は、次の3つのどこかで詰まっています。<strong>どこで詰まっているかで、打ち手（ステップ）が変わります。</strong></p>
+      <svg viewBox="0 0 1180 560" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="aA" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#1E40AF" stroke-width="2"/></marker>
+          <marker id="aR" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#DC2626" stroke-width="2"/></marker>
+          <marker id="aT" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#0F766E" stroke-width="2"/></marker>
+        </defs>
+        <rect x="20" y="56" width="270" height="468" rx="14" fill="#F0FDFA" stroke="#0F766E" stroke-width="1.5"/>
+        <circle cx="48" cy="90" r="15" fill="#0F766E"/>
+        <path d="M41,90 l5,5 l9,-10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="72" y="95" class="stitle" fill="#0F766E">理想の状態</text>
+        <rect x="55" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="155" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（経営課題）</text>
+        <text x="155" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">事業のLTV最大化</text>
+        <line x1="155" y1="190" x2="155" y2="318" stroke="#0F766E" stroke-width="2.5" marker-end="url(#aT)"/>
+        <text x="166" y="258" fill="#0F766E" style="font-size:11.5px;font-weight:600;">繋がっている</text>
+        <rect x="55" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="155" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="155" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
+        <text x="40" y="424" class="scap">「この指標を、この経営課題の</text>
+        <text x="40" y="444" class="scap">ために追う」と言い切れる。</text>
+        <line x1="40" y1="464" x2="270" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="40" y="492" fill="#475569" style="font-size:11.5px;font-weight:600;">この状態に持っていくのが目標</text>
+
+        <rect x="310" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="338" cy="90" r="15" fill="#475569"/>
+        <text x="338" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">1</text>
+        <text x="362" y="95" class="stitle">経営課題が見えない</text>
+        <rect x="345" y="128" width="200" height="56" rx="9" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="445" y="152" text-anchor="middle" class="ssub" style="font-size:11px;">メインイシュー（経営課題）</text>
+        <text x="445" y="173" text-anchor="middle" fill="#94A3B8" style="font-size:20px;font-weight:700;">？</text>
+        <line x1="445" y1="190" x2="445" y2="318" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="5 4"/>
+        <rect x="345" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="445" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="445" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">CPA・CV数</text>
+        <text x="330" y="424" class="scap">目の前の数字は追えるが、</text>
+        <text x="330" y="444" class="scap">それが何のためかを知らない。</text>
+        <line x1="330" y1="464" x2="560" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="330" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="330" y="507" class="ssub" style="font-size:11.5px;">Step1–2：言葉を拾い経営課題まで登る</text>
+
+        <rect x="600" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="628" cy="90" r="15" fill="#475569"/>
+        <text x="628" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">2</text>
+        <text x="652" y="95" class="stitle">接続が切れている</text>
+        <rect x="635" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="735" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（経営課題）</text>
+        <text x="735" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">事業のLTV最大化</text>
+        <line x1="735" y1="190" x2="735" y2="238" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4"/>
+        <line x1="735" y1="272" x2="735" y2="318" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#aR)"/>
+        <line x1="723" y1="243" x2="747" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="747" y1="243" x2="723" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
+        <rect x="635" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="735" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="735" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
+        <text x="620" y="424" class="scap">課題もKPIも知っているのに</text>
+        <text x="620" y="444" class="scap">繋げない＝社内で説明できない。</text>
+        <line x1="620" y1="464" x2="850" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="620" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="620" y="507" class="ssub" style="font-size:11.5px;">Step4：ロジックツリーで一本に繋ぐ</text>
+
+        <rect x="890" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="918" cy="90" r="15" fill="#475569"/>
+        <text x="918" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">3</text>
+        <text x="942" y="95" class="stitle">追うKPIが定まらない</text>
+        <rect x="925" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="1025" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（経営課題）</text>
+        <text x="1025" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">事業のLTV最大化</text>
+        <line x1="1025" y1="190" x2="1025" y2="300" stroke="#1E40AF" stroke-width="2" marker-end="url(#aA)"/>
+        <rect x="918" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="951" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <rect x="992" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="1025" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <rect x="1066" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="1099" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <text x="910" y="424" class="scap">課題は分かるが、何を追えば</text>
+        <text x="910" y="444" class="scap">いいかが定まらない。</text>
+        <line x1="910" y1="464" x2="1140" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="910" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="910" y="507" class="ssub" style="font-size:11.5px;">Step2–4：候補を出し3軸で絞る</text>
+      </svg>
     </div>
 
     <div class="card">
@@ -503,6 +605,17 @@
       <div class="t">最大の障壁は「視野の罠」</div>
       <p>ジュニアがつまずく原因は、スキルや知識ではなく<strong>マインドセット</strong>。組織構造上、広告チームに配属されると<strong>「広告のことしか見なくなる」</strong>。顧客のメインイシュー全体を見る視点を、外から意識的に促す必要がある。</p>
     </div>
+
+    <div class="keymsg try-box">
+      <div class="t">まず、これをやってみよう ── 明日からの3アクション</div>
+      <p>いきなり全部やらなくていい。担当顧客を1社えらび、次の3つだけ試してみる。これだけで「自分の顧客が、図Aのどこで詰まっているか」が見えます。</p>
+      <ol>
+        <li><strong>図Aで診断（5分）</strong>：その顧客は ①課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？</li>
+        <li><strong>言葉を1つ拾う（15分）</strong>：顧客のIRかプレスを1本読み、何度も出てくる「言葉」を1つ書き出す（サンリオでいう「夢中時間」）。</li>
+        <li><strong>一文で言ってみる</strong>：いま自分が追っているKPIを「これは顧客の“○○”という経営課題のためだ」と一文で言えるか？ 言えなければ、あなたの担当は ② 接続が切れている。</li>
+      </ol>
+      <p style="margin-top:14px;font-size:14px;">この3つが、次のStep1〜2の入り口です。完璧でなくていい。まず「自分の顧客の詰まりどころ」を1つ言葉にするところから。</p>
+    </div>
   </section>
 
   <section style="padding-top:8px;">
@@ -513,7 +626,7 @@
       <div class="step-head"><span class="sn">1</span><h4>顧客を調べ、「言葉」を拾う</h4></div>
       <div class="step-body">
         <div class="row"><span class="lbl lbl-do">やること</span><p>IR・プレス・採用情報・RFPを読み込み、顧客が繰り返し使う言葉・掲げる概念を拾う。AIで広げ、自分が語れる粒度まで噛み砕く。</p></div>
-        <div class="row"><span class="lbl lbl-ex">実例</span><p>サンリオの「夢中時間」をピン留めした。</p></div>
+        <div class="row"><span class="lbl lbl-ex">実例</span><p>早川さんはサンリオのIR・プレスを読み込み、何度も登場する「夢中時間」という言葉に着目。これを提案全体の出発点に置いた。</p></div>
         <div class="row"><span class="lbl lbl-ng">陥りがちな罠</span><p>先に自社サービスの説明材料を探しに行ってしまう。順序が逆。まず顧客の言葉から。</p></div>
       </div>
     </div>
@@ -521,17 +634,50 @@
     <div class="step">
       <div class="step-head"><span class="sn">2</span><h4>メインイシューを特定する</h4></div>
       <div class="step-body">
-        <div class="row"><span class="lbl lbl-do">やること</span><p>RFPの要求の奥にある「本当の経営課題」を問い続ける。RFPは氷山の一角と心得る。</p></div>
-        <div class="row"><span class="lbl lbl-ex">実例</span><p>東芝で、間接部門のデジマが「何のためにあるのか」という意味そのものを本丸に据えた。</p></div>
+        <div class="row"><span class="lbl lbl-do">やること</span><p>RFPの要求に「それは何のため？」を繰り返し（目安3回）、売上・利益・LTVなどの経営課題まで登る（下の図B）。RFPは氷山の一角と心得る。</p></div>
+        <div class="row"><span class="lbl lbl-ex">実例</span><p>東芝（成果が見えにくい間接部門）では「このデジマは何のためにやるのか」を問い直し、"事業背景の整理"そのものをメインイシューに据えた。結果、先方に「自分たちより考えている」と言わせた。</p></div>
         <div class="row"><span class="lbl lbl-ng">陥りがちな罠</span><p>RFPに書かれたサブイシューにそのまま答えてしまい、小さく終わる。</p></div>
       </div>
+    </div>
+
+    <div class="figure">
+      <span class="fig-cap">図B</span>
+      <div class="fig-h">抽象度のはしご ── RFPから経営課題へ「登る」</div>
+      <p class="fig-d">Step2を、誰でも辿れる作業にしたのがこれ。RFPに書いてあるのは一番下の段だけ。<strong>「それは何のため？」を繰り返して上まで登り</strong>、経営課題に行き着いてから、上から線を引き直します。</p>
+      <svg viewBox="0 0 720 470" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="up" markerWidth="11" markerHeight="11" refX="5" refY="2" orient="auto"><path d="M1,9 L5,1 L9,9" fill="none" stroke="#1E40AF" stroke-width="2"/></marker>
+        </defs>
+        <line x1="60" y1="410" x2="60" y2="60" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#up)"/>
+        <text x="44" y="240" transform="rotate(-90 44 240)" text-anchor="middle" class="ssub" style="font-size:12px;">抽象度（高い ↑）</text>
+        <rect x="110" y="60" width="430" height="72" rx="10" fill="#1E40AF"/>
+        <text x="128" y="88" fill="#DBEAFE" style="font-size:11.5px;">メインイシュー（経営課題・KGI）</text>
+        <text x="128" y="113" fill="#fff" style="font-size:16px;font-weight:700;">事業のLTVを最大化したい</text>
+        <text x="560" y="92" class="ssub" style="font-size:11.5px;">経営が</text>
+        <text x="560" y="110" class="ssub" style="font-size:11.5px;">見ている所</text>
+        <line x1="325" y1="175" x2="325" y2="140" stroke="#1E40AF" stroke-width="2" marker-end="url(#up)"/>
+        <rect x="250" y="178" width="150" height="30" rx="15" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.2"/>
+        <text x="325" y="198" text-anchor="middle" class="slabel" style="font-size:12px;">それは何のため？</text>
+        <rect x="110" y="216" width="430" height="64" rx="10" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="128" y="240" fill="#1E3A8A" style="font-size:11.5px;">サブイシュー</text>
+        <text x="128" y="263" fill="#1E3A8A" style="font-size:15px;font-weight:600;">新規顧客の獲得効率を上げたい</text>
+        <line x1="325" y1="323" x2="325" y2="288" stroke="#1E40AF" stroke-width="2" marker-end="url(#up)"/>
+        <rect x="250" y="326" width="150" height="30" rx="15" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.2"/>
+        <text x="325" y="346" text-anchor="middle" class="slabel" style="font-size:12px;">それは何のため？</text>
+        <rect x="110" y="364" width="430" height="64" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+        <text x="128" y="388" fill="#64748B" style="font-size:11.5px;">RFPの要求（目の前の依頼）</text>
+        <text x="128" y="411" fill="#475569" style="font-size:15px;font-weight:600;">広告のCPAを下げてほしい</text>
+        <rect x="556" y="372" width="120" height="48" rx="8" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1.2"/>
+        <text x="616" y="392" text-anchor="middle" fill="#92660A" style="font-size:11px;font-weight:700;">ここしか</text>
+        <text x="616" y="409" text-anchor="middle" fill="#92660A" style="font-size:11px;font-weight:700;">書かれていない</text>
+      </svg>
     </div>
 
     <div class="step">
       <div class="step-head"><span class="sn">3</span><h4>「自分が担当者なら」で絞る</h4></div>
       <div class="step-body">
         <div class="row"><span class="lbl lbl-do">やること</span><p>切り口の候補が複数あるとき、「自分が先方担当者なら、どれに一番納得し、改善余地を感じるか」で絞る。</p></div>
-        <div class="row"><span class="lbl lbl-ex">実例</span><p>競合を「時間・体験の競合」と再定義（顧客が最も納得する接続を選んだ）。</p></div>
+        <div class="row"><span class="lbl lbl-ex">実例</span><p>サンリオでは「ディズニーと迷う人はいない＝直接競合はいない」と気づき、複数の切り口（既存／新規、ライト層…）の中から、"自分が担当者なら一番腹落ちする"「時間・体験の競合」を選んだ。</p></div>
         <div class="row"><span class="lbl lbl-ng">陥りがちな罠</span><p>自社が売りたいもの、または「分析的に正しいだけ」の切り口を選ぶ。判断軸は"納得性"。</p></div>
       </div>
     </div>
@@ -545,11 +691,46 @@
       </div>
     </div>
 
+    <div class="figure">
+      <span class="fig-cap">図C</span>
+      <div class="fig-h">実例：サンリオの「言葉 → KPI」の引き方（Step4を一枚に）</div>
+      <p class="fig-d">図Bで登った後、上から下ろして一本に繋いだ実例です。完成形だけでなく、<strong>どこで枝を分け、どこを"切り落とした"か</strong>（既存→CRMは今回対象外）まで見えるようにしています。</p>
+      <svg viewBox="0 0 720 500" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="dn" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto"><path d="M1,1 L5,9 L9,1" fill="none" stroke="#1E40AF" stroke-width="2"/></marker>
+        </defs>
+        <rect x="210" y="20" width="300" height="64" rx="10" fill="#1E40AF"/>
+        <text x="360" y="44" text-anchor="middle" fill="#DBEAFE" style="font-size:11.5px;">顧客が掲げる言葉（＝KGI）</text>
+        <text x="360" y="67" text-anchor="middle" fill="#fff" style="font-size:16px;font-weight:700;">「夢中時間」＝ LTVの最大化</text>
+        <line x1="360" y1="84" x2="360" y2="118" stroke="#1E40AF" stroke-width="2" marker-end="url(#dn)"/>
+        <rect x="195" y="120" width="330" height="58" rx="10" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="360" y="144" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">グループ全体の中での位置づけ</text>
+        <text x="360" y="165" text-anchor="middle" fill="#1E3A8A" style="font-size:14.5px;font-weight:600;">ピューロランド＝IP接点の一つ</text>
+        <line x1="360" y1="178" x2="360" y2="196" stroke="#1E40AF" stroke-width="2"/>
+        <line x1="200" y1="196" x2="520" y2="196" stroke="#1E40AF" stroke-width="2"/>
+        <line x1="200" y1="196" x2="200" y2="222" stroke="#1E40AF" stroke-width="2" marker-end="url(#dn)"/>
+        <line x1="520" y1="196" x2="520" y2="222" stroke="#94A3B8" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#dn)"/>
+        <rect x="70" y="224" width="260" height="60" rx="10" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="200" y="248" text-anchor="middle" fill="#1E3A8A" style="font-size:12px;font-weight:600;">新規顧客の獲得</text>
+        <text x="200" y="269" text-anchor="middle" fill="#475569" style="font-size:12.5px;">→ ここを「広告」が担う</text>
+        <rect x="390" y="224" width="260" height="60" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="520" y="248" text-anchor="middle" fill="#64748B" style="font-size:12px;font-weight:600;">既存顧客の再来場</text>
+        <text x="520" y="269" text-anchor="middle" fill="#94A3B8" style="font-size:12.5px;">→ CRMの役割（今回は対象外）</text>
+        <line x1="200" y1="284" x2="200" y2="338" stroke="#1E40AF" stroke-width="2" marker-end="url(#dn)"/>
+        <text x="214" y="316" fill="#1E40AF" style="font-size:11.5px;font-weight:600;">広告が担うKPIに絞る</text>
+        <rect x="150" y="340" width="420" height="70" rx="12" fill="#FEF3C7" stroke="#FCD34D" stroke-width="2"/>
+        <text x="360" y="368" text-anchor="middle" fill="#92660A" style="font-size:11.5px;font-weight:700;">今回 追うべきKPI</text>
+        <text x="360" y="393" text-anchor="middle" fill="#422006" style="font-size:17px;font-weight:700;">Sanrio+ 会員登録</text>
+        <text x="150" y="446" fill="#475569" style="font-size:12.5px;">ポイント：「言葉」から始め、役割を切り分け、</text>
+        <text x="150" y="466" fill="#475569" style="font-size:12.5px;">広告が担う一点（会員登録）まで絞り込む。点線は「今回は追わない」と切った枝。</text>
+      </svg>
+    </div>
+
     <div class="step">
       <div class="step-head"><span class="sn">5</span><h4>抽象度を上げ、提案を大きくする</h4></div>
       <div class="step-body">
         <div class="row"><span class="lbl lbl-do">やること</span><p>サブイシュー単発で終えず、上位課題に接続して打ち手の範囲を広げる。</p></div>
-        <div class="row"><span class="lbl lbl-ex">実例</span><p>「今は広告の話」から入っても、問いかけ続けることで「ならばSEOも必要だ」と必要なピースを引き出す。</p></div>
+        <div class="row"><span class="lbl lbl-ex">実例</span><p>パナソニックでは「広告の運用代行」ではなく「事業成長の伴走」と位置づけ続け、KPIの議論の中からタグマネ・解析の与件を自然に引き出した。広告で150が無理でも、他施策で合計300を狙う"ずらし"も同じ発想。</p></div>
         <div class="row"><span class="lbl lbl-ng">陥りがちな罠</span><p>目先の依頼（例：広告運用）に閉じてしまう。</p></div>
       </div>
     </div>
