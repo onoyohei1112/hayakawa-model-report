@@ -294,8 +294,9 @@
     <a href="#contrast">勝敗の分かれ目</a>
     <span class="seg">実践編</span>
     <a href="#steps">6ステップ</a>
-    <a href="#farming">既存深耕</a>
     <a href="#try">やってみる</a>
+    <span class="seg">応用編</span>
+    <a href="#farming">既存深耕</a>
   </div>
 </nav>
 
@@ -658,10 +659,61 @@
     </div>
   </section>
 
-  <!-- 5. 既存深耕 -->
+  <!-- 5. まず、やってみる -->
+  <section id="try" style="padding-top:8px;">
+    <h2><span class="num">5</span>まず、やってみる ── 明日からの3アクション</h2>
+    <p class="lead">ここまでの内容を、いきなり全部やる必要はありません。担当顧客を1社えらび、次の順で30分。<strong>「自分の顧客がどこで詰まっているか」を1つ言葉にできれば十分</strong>です。</p>
+
+    <div class="keymsg try-box">
+      <div class="t">明日からの3アクション（合計30分）</div>
+      <ol>
+        <li><strong>図Aで診断する（5分）</strong><br>その顧客は ①経営課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？ まず現在地を1つに決める。</li>
+        <li><strong>AIでざっと一望 → 一番効きそうな1本だけ自分で読む（25分）</strong><br>
+          ・まずAIに「この会社のIR・中期計画・プレスで繰り返し出てくる経営テーマ・キーワードは？」と聞き、全体像と"言葉"の候補を10個ほど出す（10分）。<br>
+          ・その中で一番重要そうな言葉が載っている元資料（IRや社長メッセージ）を、1本だけ自分の目で読む（15分）。<br>
+          <span style="color:#7a5a08;">※ AIの要約だけだと「顧客がその言葉にどれだけ本気か」の体感が湧かない。本物を1本読むと"温度"が分かる。</span></li>
+        <li><strong>書いて、人に説明してみる（仕上げ）</strong><br>下の「トレーニングシート」でメインイシューとKPIを書き、⑤の<strong>接続の一文</strong>を作る。それをノートかホワイトボードに書いて、声に出して<strong>人に説明してみる</strong>。聞き手は、できれば<strong>経営経験のある人・自分の事業を持つ人（最低でもマネジメント経験者）</strong>。「このメインイシューとKPIを、こう繋げました」と話し、相手が腹落ちするか。詰まる／相手がピンと来なければ、まだ接続が弱い。<br>
+          <span style="color:#7a5a08;">※ ちょうどいい相手がいない時は、先方の経営者・マーケ担当になりきって聞いてくれる<strong>AI練習相手（Gemini Gem）</strong>を使う（別途の手順書を参照）。将来は“AI上司”に説明する仕組みも用意します。</span></li>
+      </ol>
+      <p style="margin-top:16px;font-size:14px;">完璧な仮説はいらない。まず「自分の顧客の詰まりどころ」を1つ言葉にできれば、Step2へ進めます。あとは6ステップを順にたどるだけ。</p>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="background:var(--brand-dark);color:#fff;padding:14px 22px;font-weight:700;font-size:15px;">トレーニングシート ── 1案件を「5マス」で埋める</div>
+      <div style="padding:14px 22px 2px;font-size:13px;color:var(--text-secondary);">記入例（サンリオ）を見ながら、自分の担当顧客で同じ5マスを埋める。<strong style="color:var(--text-primary);">⑤の一文が言い切れれば、その案件の「線」は通っています。</strong></div>
+      <div style="padding:6px 22px 18px;">
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:0 0 132px;font-size:13px;font-weight:700;color:var(--brand-primary);">① 顧客の言葉<br><span style="font-weight:400;font-size:11.5px;color:var(--text-muted);">拾った経営テーマ</span></div>
+          <div style="flex:1;font-size:13.5px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>「夢中時間」<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:0 0 132px;font-size:13px;font-weight:700;color:var(--brand-primary);">② メインイシュー<br><span style="font-weight:400;font-size:11.5px;color:var(--text-muted);">経営課題</span></div>
+          <div style="flex:1;font-size:13.5px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>「夢中時間＝LTVの最大化」<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:0 0 132px;font-size:13px;font-weight:700;color:var(--brand-primary);">③ つなぎ<br><span style="font-weight:400;font-size:11.5px;color:var(--text-muted);">中間ロジック</span></div>
+          <div style="flex:1;font-size:13.5px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>ピューロランドはIP接点の一つ。新規来場は広告、再来場はCRM<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);">
+          <div style="flex:0 0 132px;font-size:13px;font-weight:700;color:var(--brand-primary);">④ 追うべきKPI</div>
+          <div style="flex:1;font-size:13.5px;color:var(--text-secondary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>「Sanrio+会員登録」<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;">
+          <div style="flex:0 0 132px;font-size:13px;font-weight:700;color:var(--brand-primary);">⑤ 接続の一文<br><span style="font-weight:400;font-size:11.5px;color:var(--text-muted);">人に説明する用</span></div>
+          <div style="flex:1;font-size:13.5px;color:var(--text-primary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>「『夢中時間＝LTV』を最大化するために、ピューロランドの新規来場を増やす。その入口指標として、広告でSanrio+会員登録を追う」<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 応用編 ============ -->
+  <div class="part-divider"><div class="line"></div></div>
+
+  <!-- 6. 既存深耕（応用編） -->
   <section id="farming" style="padding-top:8px;">
-    <h2><span class="num">5</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
-    <p class="lead">いま狙っているSQL（既存顧客からの新規与件）創出に、最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
+    <span class="part-label">応用編 ── 学んだ型を、事業の成長につなげる</span>
+    <h2><span class="num">6</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
+    <p class="lead">6ステップの型が身につくと、それは<strong>既存顧客から新しい仕事（SQL）を生む力</strong>になります。いま会社として狙っているSQL創出に最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
 
     <div class="card">
       <h4>与件は自然発生する。ただし土壌は作る</h4>
@@ -681,25 +733,6 @@
     <div class="keymsg">
       <div class="t">東芝の示唆 ── SQL創出の参考事例</div>
       <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など外部環境の変化で「意味が乗っている瞬間」に取引が終わってしまう。早川さんは定例会の中にこの<strong>「事業背景の見合わせ」</strong>を織り込み、「自社より深く考えている」状態をつくって信頼と次の与件につなげている。</p>
-    </div>
-  </section>
-
-  <!-- 6. まず、やってみる -->
-  <section id="try" style="padding-top:8px;">
-    <h2><span class="num">6</span>まず、やってみる ── 明日からの3アクション</h2>
-    <p class="lead">ここまでの内容を、いきなり全部やる必要はありません。担当顧客を1社えらび、次の順で30分。<strong>「自分の顧客がどこで詰まっているか」を1つ言葉にできれば十分</strong>です。</p>
-
-    <div class="keymsg try-box">
-      <div class="t">明日からの3アクション（合計30分）</div>
-      <ol>
-        <li><strong>図Aで診断する（5分）</strong><br>その顧客は ①経営課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？ まず現在地を1つに決める。</li>
-        <li><strong>AIでざっと一望 → 一番効きそうな1本だけ自分で読む（25分）</strong><br>
-          ・まずAIに「この会社のIR・中期計画・プレスで繰り返し出てくる経営テーマ・キーワードは？」と聞き、全体像と"言葉"の候補を10個ほど出す（10分）。<br>
-          ・その中で一番重要そうな言葉が載っている元資料（IRや社長メッセージ）を、1本だけ自分の目で読む（15分）。<br>
-          <span style="color:#7a5a08;">※ AIの要約だけだと「顧客がその言葉にどれだけ本気か」の体感が湧かない。本物を1本読むと"温度"が分かる。</span></li>
-        <li><strong>KPIを一文で言ってみる（テスト）</strong><br>いま追っているKPIを「これは顧客の“○○”という経営課題のためだ」と一文で言えるか？ 言えれば接続できている。言えなければ、あなたは ② 接続が切れている。</li>
-      </ol>
-      <p style="margin-top:16px;font-size:14px;">完璧な仮説はいらない。まず「自分の顧客の詰まりどころ」を1つ言葉にできれば、Step2へ進めます。あとは6ステップを順にたどるだけ。</p>
     </div>
   </section>
 
