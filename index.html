@@ -206,8 +206,9 @@
   /* ===== OUTPUTS (アウトプットと合格ライン) ===== */
   .ao-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:14px; overflow:hidden; }
   .ao-card.is-core { border:1.5px solid var(--brand-primary); }
-  .ao-head { display:flex; align-items:center; gap:10px; padding:13px 22px; background:var(--surface-alt); border-bottom:1px solid var(--border); flex-wrap:wrap; }
-  .ao-head h4 { font-size:16px; font-weight:700; }
+  .ao-head { display:flex; align-items:flex-start; gap:10px; padding:14px 22px; background:var(--surface-alt); border-bottom:1px solid var(--border); flex-wrap:wrap; }
+  .ao-head h4 { font-size:15.5px; font-weight:700; flex:1; min-width:220px; line-height:1.55; }
+  .q-no { flex-shrink:0; background:var(--brand-primary); color:#fff; font-family:'Inter',sans-serif; font-weight:700; font-size:12.5px; padding:3px 9px; border-radius:6px; margin-top:1px; }
   .ao-core { display:inline-block; font-size:10.5px; font-weight:700; color:#fff; background:var(--brand-primary); padding:2px 9px; border-radius:5px; }
   .ao-body { padding:16px 22px; }
   .ao-body p { font-size:14px; color:var(--text-secondary); line-height:1.85; }
@@ -305,12 +306,11 @@
     <a href="#core">核心</a>
     <a href="#principles">思考原則</a>
     <a href="#contrast">勝敗の分かれ目</a>
+    <a href="#farming">既存深耕</a>
     <span class="seg">実践編</span>
     <a href="#steps">6ステップ</a>
-    <a href="#outputs">アウトプット</a>
+    <a href="#outputs">答えるべき問い</a>
     <a href="#try">やってみる</a>
-    <span class="seg">応用編</span>
-    <a href="#farming">既存深耕</a>
   </div>
 </nav>
 
@@ -519,6 +519,32 @@
     </ul>
   </section>
 
+  <!-- 4. 既存深耕（概念編） -->
+  <section id="farming" style="padding-top:8px;">
+    <h2><span class="num">4</span>既存顧客の深耕 ── 早川さんの「次の与件」の生み方</h2>
+    <p class="lead">早川さんは既存顧客からも継続的に新しい仕事（SQL）を生んでいます。ここも「顧客の事業を理解し、課題に接続する」という同じ考え方の延長で、<strong>"与件が自然発生する土壌"を意図的につくっている</strong>のが要点です（会社として狙っているSQL創出に最も近い領域）。</p>
+
+    <div class="card">
+      <h4>与件は自然発生する。ただし土壌は作る</h4>
+      <p>次の仕事は狙って作るというより、顧客側から自然に生まれてくる。ただしそのために、<strong>「困ったら、まずプリンシプルに訊こう」と思ってもらえる関係値</strong>と、普段から顧客の事業目的に即したコミュニケーション・先回りの回答で、<strong>与件が生まれる下地</strong>をつくっている。</p>
+    </div>
+
+    <div class="card">
+      <h4>先回りして「叩き台」を持ち込む</h4>
+      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。同社は実質単一セグメントで決算書から事業計画を想像しやすかった、という条件もある。情報をもらうのを待つのではなく、作って持っていく。</p>
+    </div>
+
+    <div class="card">
+      <h4>深耕の判断は「ブリッジの場」から</h4>
+      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。そこでやるべきことが明確になり、それが自社のケイパビリティと一致すれば、スムーズにクロスセルの与件になる。</p>
+    </div>
+
+    <div class="keymsg">
+      <div class="t">東芝の示唆 ── SQL創出の参考事例</div>
+      <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など外部環境の変化で「意味が乗っている瞬間」に取引が終わってしまう。早川さんは定例会の中にこの<strong>「事業背景の見合わせ」</strong>を織り込み、「自社より深く考えている」状態をつくって信頼と次の与件につなげている。</p>
+    </div>
+  </section>
+
   <!-- ============ 実践編 ============ -->
   <div class="part-divider"><div class="line"></div></div>
 
@@ -546,7 +572,7 @@
 
   <!-- 4. 6ステップ -->
   <section id="steps" style="padding-top:28px;">
-    <h2><span class="num">4</span>手順：思考を再現する6ステップ</h2>
+    <h2><span class="num">5</span>手順：思考を再現する6ステップ</h2>
     <p class="lead">背骨（②仮説構築）を、誰でもたどれる手順に分解しました。各ステップに「早川さんの実例」と「陥りがちな罠」を添えています。</p>
 
     <div class="step">
@@ -673,94 +699,101 @@
     </div>
   </section>
 
-  <!-- 5. アウトプットと合格ライン -->
+  <!-- 6. 答えるべき問い -->
   <section id="outputs" style="padding-top:8px;">
-    <h2><span class="num">5</span>結局どんなアウトプットを出していたか ── 10の成果物と「合格ライン」</h2>
-    <p class="lead">6ステップで考え抜いた結果、フェーズ1・2では最終的に次の<strong>10個のアウトプット</strong>が出ます。早川さんが4案件で実際に出していたものを抽象化し、各アウトプットの<strong>「合格ライン（満たすべき品質）」</strong>を併記しました。<span style="color:var(--brand-primary);font-weight:600;">コア</span>の3つ（メインイシューの特定／KGI→KPIロジックツリー／追うべきKPIの確定）は、ここが形になっていないと提案全体が成立しない最重要項目です。</p>
+    <h2><span class="num">6</span>フェーズ1・2で答えられるべき「問い」</h2>
+    <p class="lead">早川さんがフェーズ1・2で最終的に出しているアウトプットは、提案書や商談での口頭説明に集約されます。それを突き詰めると、<strong>「次の問いに、自分の担当案件で答えられること」</strong>です。この問いに全部答えられる状態が、顧客理解と仮説構築が「できている」状態。まず押さえるべきは、次の<strong>核心の4問</strong>です。</p>
 
-    <h3>フェーズ1：顧客理解（5つ）</h3>
-    <div class="ao-card">
-      <div class="ao-head"><h4>① 事業・財務構造の解読シート</h4></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>一次情報（IR・中期経営計画）から、顧客のセグメント別の稼ぎ方と、全社KGIの中での「対象事業の位置づけ」を再構成した1枚。</p>
-        <p><span class="ao-lbl p">合格ライン</span>セグメント別売上が数値で示され、対象事業の規模・構成比が切り出されている。全社KGIが抽象語でなく中計の原文言・数値で引用され、「全体の中での位置づけ」が一文で言い切られている（「売上◯億・業界◯位」止まりは不可）。</p>
-      </div>
-    </div>
-    <div class="ao-card">
-      <div class="ao-head"><h4>② 市場・外部環境分析（PEST／市場構造マップ）</h4></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>対象市場の規模・成長・構造変化を出典付きで整理し、市場を製品カテゴリでなく「お金・時間・体験の経済圏」として捉え直したもの。</p>
-        <p><span class="ao-lbl p">合格ライン</span>市場規模が定量で示され、各マクロ要因に「対象事業にどう効くか」が紐づき、出典が論点ごとに付いている。同業の慣習的なくくり（テーマパーク同士 等）から出て、経済圏として捉え直せている。</p>
-      </div>
-    </div>
-    <div class="ao-card">
-      <div class="ao-head"><h4>③ 3C分析（社内深掘り版＋顧客提示版）＋競合の再定義</h4></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>「社内用の深い版」と「顧客提示用の版」の2層の3C。競合を同業でなく「ユーザーの時間・予算・体験・関心を奪う相手」へ再定義したもの。</p>
-        <p><span class="ao-lbl p">合格ライン</span>2版が目的別に作り分けられ、各Cで事実と示唆が分かれている。競合が同業リストでなく具体的な異カテゴリの相手として、複数候補から棄却理由付きで1つに絞られ、後段の役割分担に効いている。</p>
-      </div>
-    </div>
-    <div class="ao-card">
-      <div class="ao-head"><h4>④ ペルソナ＆カスタマージャーニー（行動レベル）</h4></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>エンドユーザーの動機と行動を、属性でなく「何を見て・何と比較し・どこで離れるか」まで描き、施策の効きどころを特定する土台。</p>
-        <p><span class="ao-lbl p">合格ライン</span>ペルソナが属性カードでなく動機・状況を持つ人物像になっている。ジャーニーが段階ラベルでなく各段の行動・障壁まで具体化され、施策（広告／CRM）の効きどころが特定の段にマッピングされている。</p>
-      </div>
-    </div>
-    <div class="ao-card">
-      <div class="ao-head"><h4>⑤ 顧客の自社語キーワード抽出（提案の起点）</h4></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>顧客自身がIR・プレスで実際に使っている、事業の核を表す言葉を原典付きで1語に絞ったもの。提案全体の起点。</p>
-        <p><span class="ao-lbl p">合格ライン</span>顧客の一次発信から原典付きで引用された言葉である（こちらの造語・一般語でない）。候補を2つ以上広げて採否理由付きで1語に絞り、その言葉が後段のKGI・提案に実際に接続している。</p>
-      </div>
+    <div class="keymsg">
+      <div class="t">核心の4問 ── まずここに答えられるか</div>
+      <p>① <strong>メインイシュー</strong>は何ですか？（顧客が本当に追うべき経営課題）<br>② <strong>サブイシュー</strong>は何ですか？（メインイシューにぶら下がる下位の課題）<br>③ 今回 <strong>追うべきKPI</strong>は何ですか？（提案で動かす1つの指標）<br>④ <strong>メインイシューと追うべきKPIの論理的な繋がり</strong>は何ですか？（KGIから一本の線で説明できるか）</p>
     </div>
 
-    <h3>フェーズ2：仮説構築（5つ）</h3>
-    <div class="ao-card is-core">
-      <div class="ao-head"><h4>⑥ メインイシューの特定</h4><span class="ao-core">コア・最重要</span></div>
+    <p class="lead" style="margin-top:8px;">この4問を含め、フェーズ1・2で答えられるべき問いは全部で10個。各問いに、<strong>「答えとして出すもの」</strong>と<strong>「答えられた状態（合格ライン）」</strong>を添えました。<span style="color:var(--brand-primary);font-weight:600;">コア</span>の3問（Q6・Q8・Q9）は、ここに答えられないと提案全体が成立しない背骨です。</p>
+
+    <h3>フェーズ1：顧客理解 ── 答えられるべき5つの問い</h3>
+    <div class="ao-card">
+      <div class="ao-head"><span class="q-no">Q1</span><h4>この顧客はどのセグメントでどれだけ稼ぎ、全社の経営目標（KGI）の中で「今回の対象事業」はどこに位置づきますか？</h4></div>
       <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>依頼の背後にある「本当に追うべき経営課題」を、施策より1段上の問いとして言語化したもの。早川モデルの核その1。</p>
-        <p><span class="ao-lbl p">合格ライン</span>起点が汎用語（DX推進等）でなく一次情報の引用語。施策単体でなく事業・全社KGIの文脈に接続され、「それは何のため？」で施策より明確に上の抽象度に登れている。その顧客固有の固有名詞・文脈を含み、他社にコピペ流用できない記述になっている。</p>
+        <p><span class="ao-lbl w">答えとして出すもの</span>一次情報から再構成した「事業・財務構造の解読シート」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>セグメント別売上を数値で言え、全社KGIを中計の言葉・数値で引用し、対象事業の位置づけを一文で言い切れる（「売上◯億・業界◯位」止まりは不可）。</p>
       </div>
     </div>
     <div class="ao-card">
-      <div class="ao-head"><h4>⑦ 課題の本質集約（症状→診断への変換）</h4></div>
+      <div class="ao-head"><span class="q-no">Q2</span><h4>この顧客が戦っている市場は、規模・成長・構造の点でどうなっていて、なぜ今この事業／施策が重要なのですか？</h4></div>
       <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>散らばる症状を「打ち手を打てる課題」へ変換し（症状→診断）、結節点に集約する過程そのもの。</p>
-        <p><span class="ao-lbl p">合格ライン</span>症状の列挙から診断への変換が一文で明示され、棄却した枝が理由付きで残っている。「解けば連動する」結節点に集約され、後段のKPI設計に繋がる粒度（メインイシューの言い換え再掲は不可）。</p>
-      </div>
-    </div>
-    <div class="ao-card is-core">
-      <div class="ao-head"><h4>⑧ KGI→KPIロジックツリー（ファネル数値化・役割分担を含む）</h4><span class="ao-core">コア・最重要</span></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>メインイシュー＝KGIを頂点にMECEに分解し、測定可能なKPIまで降ろした木。施策の効くノード、ファネル全段の数値化、役割分担（広告／CRM）まで含む。早川モデルの核その2。</p>
-        <p><span class="ao-lbl p">合格ライン</span>頂点がメインイシュー（KGI）と一致し、分解がMECEで親子が論理で繋がる。施策→KGIの貢献経路が1本の線で辿れ、ファネル全段が転換率／実数で埋まりボトルネックが特定され、各段に「どの施策で動かすか」（自社／CRM等の守備範囲）が割り当てられている（施策起点・接続切れ・数値なしは不可）。</p>
-      </div>
-    </div>
-    <div class="ao-card is-core">
-      <div class="ao-head"><h4>⑨ 追うべきKPIの確定（候補比較→1つへ収束）</h4><span class="ao-core">コア・最重要</span></div>
-      <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>ツリー上の指標候補を複数挙げ、明示した評価軸で比較し、今回追う1つに収束した結論と根拠。「論理で一本に繋ぐ」が最も濃く出る成果物。</p>
-        <p><span class="ao-lbl p">合格ライン</span>候補が3つ以上、評価軸（最低でもKGI直結性・計測可能性・改善余地の3軸）で比較され、各候補×各軸が追跡可能。棄却理由が残り、確定KPIが実際に今回の施策で動かせる指標になっている（決め打ち・1軸・測れない指標は不可）。</p>
+        <p><span class="ao-lbl w">答えとして出すもの</span>出典付きの「PEST／市場構造マップ」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>市場規模を定量で言え、各マクロ要因が対象事業にどう効くかを出典付きで言え、同業の慣習的なくくりでなく「お金・時間・体験の経済圏」として捉え直せている。</p>
       </div>
     </div>
     <div class="ao-card">
-      <div class="ao-head"><h4>⑩ 数値目標の逆算チェーン</h4></div>
+      <div class="ao-head"><span class="q-no">Q3</span><h4>顧客の顧客・競合・自社はそれぞれ何ですか？ そして「本当の競合」（ユーザーの時間・予算・体験を奪う相手）は誰ですか？</h4></div>
       <div class="ao-body">
-        <p><span class="ao-lbl w">何を出すか</span>確定KPIを、KGI（経営目標数値）から逆算して具体的な目標数値（必要リード・チャネル配分）まで落とした連鎖。</p>
-        <p><span class="ao-lbl p">合格ライン</span>起点がKGIの実数値で、各段の転換率に根拠（実績／業界水準／推定の前提）が併記され、施策が追う最終数まで切れずに到達。出た数値の妥当性が検証され、起点数値が非開示なら決算書自作等で先回りして自給できている。</p>
+        <p><span class="ao-lbl w">答えとして出すもの</span>社内深掘り版＋顧客提示版の「3C」と「競合の再定義」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>3視点を事実＋示唆で言え、競合を同業リストでなく具体的な相手として、複数候補から棄却理由付きで1つに再定義できている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><span class="q-no">Q4</span><h4>エンドユーザーは誰で、どんな動機・行動で意思決定に至り、どこで離脱しますか？ どの施策がどの行動に効きますか？</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>行動レベルの「ペルソナ＆カスタマージャーニー」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>属性でなく動機・行動でジャーニーを語れ、離脱点と、施策（広告／CRM）の効きどころを特定の段で言える。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><span class="q-no">Q5</span><h4>この顧客が事業の核として繰り返し使っている「言葉」は何ですか？（その原典は？）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>原典付きで1語に絞った「顧客の自社語キーワード」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>一次発信から原典付きで挙げられ（造語・一般語でない）、候補比較を経て1語に絞られ、それを提案の起点に使えている。</p>
+      </div>
+    </div>
+
+    <h3>フェーズ2：仮説構築 ── 答えられるべき5つの問い</h3>
+    <div class="ao-card is-core">
+      <div class="ao-head"><span class="q-no">Q6</span><h4>この顧客が本当に追うべき経営課題（メインイシュー）は何ですか？</h4><span class="ao-core">コア</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>施策より1段上の、経営課題としての「メインイシュー」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>汎用語（DX推進等）でなく顧客の言葉を起点に、事業・全社KGIの文脈に接続され、その顧客固有の固有名詞・文脈を含み、他社にコピペ流用できない記述で言える。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><span class="q-no">Q7</span><h4>メインイシューにぶら下がるサブイシューは何で、その中で「解けば連動する」本質はどれですか？（症状→診断）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>サブイシューの整理と、本質への集約（症状→診断の変換）。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>サブイシューを挙げ、症状から診断への変換を一文で示し、本質に絞った理由（棄却した枝）を言える。並列の課題羅列やメインイシューの言い換えは不可。</p>
+      </div>
+    </div>
+    <div class="ao-card is-core">
+      <div class="ao-head"><span class="q-no">Q8</span><h4>メインイシュー（KGI）から、今回動かせる指標（KPI）まで、どんな論理で一本に繋がりますか？ ファネルのどこを、どの施策（広告／CRM）で動かしますか？</h4><span class="ao-core">コア</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>「KGI→KPIロジックツリー」（ファネル数値化・役割分担を含む）。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>KGI→KPIを一本の線で説明でき、分解がMECE、ファネル全段を転換率／実数で語り、各段を「どの施策で動かすか」（自社／CRM等の守備範囲）で割り当てられている。</p>
+      </div>
+    </div>
+    <div class="ao-card is-core">
+      <div class="ao-head"><span class="q-no">Q9</span><h4>今回 追うべきKPIは何ですか？ なぜそれですか？（他の候補と比べて）</h4><span class="ao-core">コア</span></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>候補比較を経て1つに確定した「追うべきKPI」と、その根拠。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>候補を3つ以上、評価軸（最低でもKGI直結性・計測可能性・改善余地）で比較して1つに絞った理由を言え、それが実際に今回の施策で動かせる指標になっている。</p>
+      </div>
+    </div>
+    <div class="ao-card">
+      <div class="ao-head"><span class="q-no">Q10</span><h4>そのKPIを、経営目標から逆算すると、いくつ追うべきですか？（必要リード・チャネル配分）</h4></div>
+      <div class="ao-body">
+        <p><span class="ao-lbl w">答えとして出すもの</span>KGIからの「数値目標の逆算チェーン」。</p>
+        <p><span class="ao-lbl p">答えられた状態</span>KGIの実数から逆算し、各段の転換率に根拠（実績／業界水準／推定の前提）を付け、施策が追う最終数（リード数・チャネル別目標）まで数値で繋げられる。</p>
       </div>
     </div>
 
     <div class="insight">
-      <div class="t">この10個が、評価の対象になります</div>
-      <p>学習者は、自分の担当案件でこの10アウトプットを準備します。<strong>コア3つ（⑥⑧⑨）が形になっているか</strong>がまず問われ、続いて全体の網羅性と質で評価されます。各「合格ライン」が、その質のものさしです。</p>
+      <div class="t">これに全部答えられれば、顧客理解と仮説構築は「できている」</div>
+      <p>提案書や商談での説明は、この10問の答えを束ねて相手に合わせて見せたものにすぎません。<strong>まずコアの3問（Q6・Q8・Q9）に答えられるか</strong>が第一関門。次の「まず、やってみる」で、この問いに答える練習を始めます。</p>
     </div>
   </section>
 
-  <!-- 6. まず、やってみる -->
+  <!-- 7. まず、やってみる -->
   <section id="try" style="padding-top:8px;">
-    <h2><span class="num">6</span>まず、やってみる ── 明日からの3アクション</h2>
+    <h2><span class="num">7</span>まず、やってみる ── 明日からの3アクション</h2>
     <p class="lead">ここまでの内容を、いきなり全部やる必要はありません。担当顧客を1社えらび、次の順で30分。<strong>「自分の顧客がどこで詰まっているか」を1つ言葉にできれば十分</strong>です。</p>
 
     <div class="keymsg try-box">
@@ -802,36 +835,6 @@
           <div style="flex:1;font-size:13.5px;color:var(--text-primary);"><span style="color:var(--teal);font-weight:600;">記入例：</span>「『夢中時間＝LTV』を最大化するために、ピューロランドの新規来場を増やす。その入口指標として、広告でSanrio+会員登録を追う」<div style="margin-top:7px;color:var(--text-muted);border-top:1px dashed var(--border-strong);padding-top:7px;">あなたの担当顧客：</div></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ 応用編 ============ -->
-  <div class="part-divider"><div class="line"></div></div>
-
-  <!-- 7. 既存深耕（応用編） -->
-  <section id="farming" style="padding-top:8px;">
-    <span class="part-label">応用編 ── 学んだ型を、事業の成長につなげる</span>
-    <h2><span class="num">7</span>既存顧客の深耕 ── 「次の与件」の生み方</h2>
-    <p class="lead">6ステップの型が身につくと、それは<strong>既存顧客から新しい仕事（SQL）を生む力</strong>になります。いま会社として狙っているSQL創出に最も近い領域です。早川さんは「与件は自然発生する」と言いますが、その<strong>"自然発生する土壌"を意図的につくっている</strong>点が要点です。</p>
-
-    <div class="card">
-      <h4>与件は自然発生する。ただし土壌は作る</h4>
-      <p>次の仕事は狙って作るというより、顧客側から自然に生まれてくる。ただしそのために、<strong>「困ったら、まずプリンシプルに訊こう」と思ってもらえる関係値</strong>と、普段から顧客の事業目的に即したコミュニケーション・先回りの回答で、<strong>与件が生まれる下地</strong>をつくっている。</p>
-    </div>
-
-    <div class="card">
-      <h4>先回りして「叩き台」を持ち込む</h4>
-      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。同社は実質単一セグメントで決算書から事業計画を想像しやすかった、という条件もある。情報をもらうのを待つのではなく、作って持っていく。</p>
-    </div>
-
-    <div class="card">
-      <h4>深耕の判断は「ブリッジの場」から</h4>
-      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。そこでやるべきことが明確になり、それが自社のケイパビリティと一致すれば、スムーズにクロスセルの与件になる。</p>
-    </div>
-
-    <div class="keymsg">
-      <div class="t">東芝の示唆 ── SQL創出の参考事例</div>
-      <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など外部環境の変化で「意味が乗っている瞬間」に取引が終わってしまう。早川さんは定例会の中にこの<strong>「事業背景の見合わせ」</strong>を織り込み、「自社より深く考えている」状態をつくって信頼と次の与件につなげている。</p>
     </div>
   </section>
 
