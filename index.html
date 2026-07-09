@@ -80,8 +80,8 @@
 
   /* ===== NAV ===== */
   nav {
-    position: static; background: rgba(255,255,255,.92);
-    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
   }
   .nav-inner {
     max-width: 920px; margin: 0 auto; padding: 12px 24px;
@@ -285,25 +285,6 @@
     .nav-inner a { padding: 4px 7px; font-size: 11px; }
     .nav-inner .seg { display:none; }
   }
-  /* ===== 行動編（事実） ===== */
-  .beh-phase{display:flex;align-items:center;gap:12px;margin:34px 0 6px;}
-  .beh-phase .pc{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--brand-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;}
-  .beh-phase h3{font-size:18px;font-weight:700;color:var(--text-primary);border:none;margin:0;padding:0;}
-  .beh-sub{color:var(--text-secondary);font-size:14px;line-height:1.75;margin:0 0 14px 46px;}
-  .beh{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 18px;margin-bottom:10px;}
-  .beh h5{font-size:14.5px;font-weight:700;color:var(--text-primary);margin:0 0 7px;}
-  .beh .ctags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
-  .ctag{font-size:11px;font-weight:600;color:var(--brand-primary);background:#EFF6FF;border-radius:20px;padding:2px 10px;}
-  .ctag.all{background:var(--brand-primary);color:#fff;}
-  .beh p{font-size:13.5px;color:var(--text-secondary);line-height:1.75;margin:0;}
-  .bex{display:block;margin-top:8px;padding:10px 14px;background:var(--surface);border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;font-size:12.5px;color:var(--text-primary);line-height:1.7;}
-  .ovt{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 4px;}
-  .ovt th,.ovt td{border:1px solid var(--border);padding:8px 10px;text-align:center;}
-  .ovt th{background:var(--brand-dark);color:#fff;font-weight:600;}
-  .ovt td:first-child,.ovt th:first-child{text-align:left;}
-  .ovt .h{color:var(--brand-primary);font-weight:700;}
-  .ovt .m{color:#3B82F6;}
-  .ovt .n{color:var(--text-muted);}
 </style>
 </head>
 <body>
@@ -326,6 +307,7 @@
   <div class="nav-inner">
     <span class="brand">早川モデル</span>
     <span class="seg">概念編</span>
+    <a href="#facts">行動事実</a>
     <a href="#core">核心</a>
     <a href="#principles">思考原則</a>
     <a href="#contrast">勝敗の分かれ目</a>
@@ -339,25 +321,26 @@
 <div class="hero">
   <span class="hero-badge">PRINCIPLE INC. ／ HAYAKAWA MODEL</span>
   <h1>早川モデル</h1>
-  <p>本資料は、トップセールスでありトップコンサルタントでもある早川さんが、各案件で何をどう考え、何を見て判断しているのかを整理し、担当者が自身の案件で同様に実践できる水準を目指して作成されたマニュアルです。まず提案全体の6フェーズと、各フェーズで早川さんが実際に行っていること（行動編）を示したうえで、その核となる①事業理解と②仮説構築について、考え方（概念編）と進め方（実践編）を解説します。4案件の分析と、ご本人へのインタビュー（2026年6月）にもとづきます。</p>
+  <p>本資料は、トップセールスでありトップコンサルタントでもある早川さんが、各案件で何をどう考え、何を見て判断しているのかを整理し、担当者が自身の案件で同様に実践できる水準を目指して作成されたマニュアルです。まず提案全体の6フェーズと、各フェーズで実際に行われている行動（行動編）を示したうえで、起点となる①事業理解と②仮説構築について、考え方（概念編）と進め方（実践編）の順に解説します。4案件の分析と、ご本人へのインタビュー（2026年6月）にもとづきます。</p>
 </div>
 
 <div class="wrap">
 
   <!-- 目次 -->
-  <nav aria-label="目次" style="position:static;margin:38px 0 6px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;">
+  <nav aria-label="目次" style="margin:38px 0 6px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;">
     <div style="font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--brand-primary);margin-bottom:12px;">目次</div>
     <div style="display:flex;flex-direction:column;">
       <a href="#overview" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;"></span><span>はじめに（提案全体の6フェーズと、本資料の範囲）</span></a>
-      <a href="#behavior" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;"></span><span>行動編（事実・各フェーズで実際にやっていること）</span></a>
+      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">行動編（事実）</div>
+      <a href="#facts" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">1</span><span>早川さんが、実際に行っていること</span></a>
       <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">概念編（考え方）</div>
-      <a href="#core" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">1</span><span>事業課題とKPIを、一本の線でつなぐ</span></a>
-      <a href="#principles" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">2</span><span>早川さんの判断を支える6つの原則</span></a>
-      <a href="#contrast" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">3</span><span>勝った案件と、失注した案件の違い</span></a>
-      <a href="#farming" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">4</span><span>既存顧客への提案で、与件を出し切る</span></a>
+      <a href="#core" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">2</span><span>事業課題とKPIを、一本の線でつなぐ</span></a>
+      <a href="#principles" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">3</span><span>早川さんの判断を支える6つの原則</span></a>
+      <a href="#contrast" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">4</span><span>勝った案件と、失注した案件の違い</span></a>
+      <a href="#farming" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">5</span><span>既存顧客への提案で、与件を出し切る</span></a>
       <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">実践編（進め方）</div>
-      <a href="#steps" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">5</span><span>①②を、6つのステップに分けて進める</span></a>
-      <a href="#try" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">6</span><span>まず、自分の担当案件で試す</span></a>
+      <a href="#steps" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">6</span><span>①②を、6つのステップに分けて進める</span></a>
+      <a href="#try" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">7</span><span>まず、自分の担当案件で試す</span></a>
       <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">おわりに</div>
       <a href="#endnote" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;"></span><span>本資料の留保と、今後の進め方</span></a>
     </div>
@@ -396,150 +379,282 @@
     </div>
 
     <div class="keymsg" style="margin-top:22px;">
-      <div class="t">この資料の読み方（事実 → 考え方 → 実践）</div>
-      <p>6つのフェーズのうち、提案全体の質を左右するのは、起点となる<strong>①事業理解と②仮説構築</strong>です。ここで「顧客の本質的な事業課題」と「追うべきKPI」を特定できなければ、後続の資料作成も商談も土台を欠きます。<br>本資料では、まず<strong>各フェーズで早川さんが実際に行っていること（行動編・事実）</strong>を確認し、次にその核となる①②について<strong>考え方（概念編）</strong>と<strong>実際の進め方（実践編）</strong>を深掘りします。全体像 → 事実 → 考え方 → 実践、の順です。</p>
+      <div class="t">この資料で扱うのは、①と②です</div>
+      <p>6つのフェーズのうち、提案全体の質を左右するのは、起点となる<strong>①事業理解と②仮説構築</strong>です。ここで「顧客の本質的な事業課題」と「追うべきKPI」を特定できなければ、後続の資料作成も商談も土台を欠きます。逆に、この2つが定まっていれば、③以降は無理なく展開できます。<br>そこで本資料では、まず次章で①〜⑥の各フェーズで実際に行われている行動を事実として示し（行動編）、そのうえで①②に絞って<strong>考え方（概念編）</strong>と<strong>実際の進め方（実践編）</strong>を6つのステップに分けて解説します。③〜⑥の考え方・進め方は、本資料の対象外です。</p>
     </div>
   </section>
 
 
-  <!-- ============ 行動編（事実） ============ -->
+  <!-- ============ 行動編 ============ -->
   <div class="part-divider"><div class="line"></div></div>
 
-  <section id="behavior">
+  <section id="facts">
     <span class="part-label">行動編（事実）</span>
-    <h2 style="border-bottom:none;padding-bottom:0;"><span class="num" style="visibility:hidden;">0</span>各フェーズで、早川さんが実際にやっていること</h2>
-    <p class="lead">ここでは、考え方に入る前に「事実」を押さえます。4案件（サンリオ・パナソニック・東芝・ビーウィズ）の実際の行動と、ご本人へのインタビュー（2026年4月）から、6つのフェーズで早川さんが具体的に何をしているのかを整理しました。最大の特徴は、施策やサービスメニューからではなく、<strong>顧客の事業構造から入り、事業のKGIから逆算して提案を組み立てる</strong>ことです。</p>
+    <h2><span class="num">1</span>早川さんが、実際に行っていること</h2>
+    <p class="lead">考え方に入る前に、まず事実を示します。本章は、サンリオ・パナソニック・東芝・ビーウィズの4案件（14ソース）と、ご本人へのインタビュー（2026年4月・6月）から抽出した行動の記録です。①〜⑥の各フェーズで、早川さんが実際に何をしていたのかを、案件の具体とともに整理しています。この事実の背後にある考え方を概念編で、①②の進め方を実践編で扱います。</p>
 
-    <div style="overflow-x:auto;">
-    <table class="ovt">
-      <thead><tr><th>フェーズ</th><th>サンリオ</th><th>パナソニック</th><th>東芝</th><th>ビーウィズ</th></tr></thead>
-      <tbody>
-        <tr><td>1. 事業・顧客理解</td><td><span class="h">●</span></td><td><span class="m">○</span></td><td><span class="h">●</span></td><td><span class="m">○</span></td></tr>
-        <tr><td>2. 仮説構築</td><td><span class="h">●</span></td><td><span class="m">○</span></td><td><span class="n">—</span></td><td><span class="h">●</span></td></tr>
-        <tr><td>3. 提案体制づくり</td><td><span class="h">●</span></td><td><span class="n">—</span></td><td><span class="n">—</span></td><td><span class="m">○</span></td></tr>
-        <tr><td>4. 提案資料づくり</td><td><span class="h">●</span></td><td><span class="n">—</span></td><td><span class="h">●</span></td><td><span class="h">●</span></td></tr>
-        <tr><td>5. 商談</td><td><span class="h">●</span></td><td><span class="n">—</span></td><td><span class="n">—</span></td><td><span class="n">—</span></td></tr>
-        <tr><td>6. 既存顧客の深耕</td><td><span class="n">—</span></td><td><span class="h">●</span></td><td><span class="m">○</span></td><td><span class="m">○</span></td></tr>
-      </tbody>
-    </table>
+    <div class="card" style="padding:22px 24px;">
+      <p style="font-size:13px;font-weight:700;color:var(--brand-primary);margin-bottom:10px;">4案件での確認状況</p>
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+        <tr style="background:var(--brand-pale);">
+          <th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">フェーズ</th>
+          <th style="padding:9px 8px;border:1px solid var(--border);font-weight:700;">サンリオ</th>
+          <th style="padding:9px 8px;border:1px solid var(--border);font-weight:700;">パナソニック</th>
+          <th style="padding:9px 8px;border:1px solid var(--border);font-weight:700;">東芝</th>
+          <th style="padding:9px 8px;border:1px solid var(--border);font-weight:700;">ビーウィズ</th>
+        </tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">① 事業理解</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">② 仮説構築</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">③ 提案体制</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">④ 提案資料</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">⑤ 商談</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid var(--border);">⑥ 既存顧客の深耕</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td></tr>
+      </table>
+      </div>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--text-muted);">● 詳細に確認　○ 一部確認　— 資料上は未確認。なお6月のインタビューで、4案件とも基本的に①〜⑤は実施していたことをご本人に確認済みです（表は一次資料で確認できた範囲）。</p>
     </div>
-    <p style="font-size:12.5px;color:var(--text-muted);margin-top:6px;"><span class="h">●</span> 詳細に確認　<span class="m">○</span> 一部確認　<span class="n">—</span> 未確認（資料が未共有なだけで、実際は行われている工程も含む）</p>
-
-    <!-- フェーズ1 -->
-    <div class="beh-phase"><span class="pc">1</span><h3>事業・顧客理解</h3></div>
-    <p class="beh-sub">顧客の事業構造を経営レベルで把握し、顧客の顧客・競合環境・自社の立ち位置を構造的に理解する。「顧客のビジネスを顧客以上に理解する」ための基盤づくり。</p>
-    <div class="keymsg"><div class="t">早川さんの言葉（2026年4月 インタビューより）</div>
-      <p>「基本的には広いところからだんだん下げていく。全社の業績はどうで、全社的に見ると事業課題は何か、を一旦見た上で、今回の対象事業がどういう位置づけにあるのかを把握する。」</p>
-      <p>「お客さんの立ち位置を3Cで整理し、誰が顧客で、その顧客がカスタマージャーニー的にどう動くかを整理して、マーケティングとして4Pで何をやっていそうかを考える。1〜4を踏まえて、どんな支援だとフィット感がありそうかを考える。」</p>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">①</span>事業理解</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">顧客の事業構造を全社レベルで把握し、顧客の顧客・競合環境・自社の立ち位置を構造的に理解する。「顧客のビジネスを顧客以上に理解する」ための基盤づくり。</p>
+    <div class="keymsg">
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー）</div>
+      <p>基本的には広いところからだんだん下げていく。全社の業績はどうで、全社的な視点で見ると<strong>事業課題は何か</strong>、というところを一旦見たうえで、今回の対象事業がどういう位置づけにあるのかを把握する。お客さんの立ち位置を3C分析などで整理し、誰がお客様で、そのお客様はカスタマージャーニー的にどう動くのかを整理して、そこに対してマーケティングのアプローチとして4Pを整理するとどんなことをやっていそうか。ここまでを踏まえると、どんな支援をするとフィット感がありそうかを考える。</p>
     </div>
-    <div class="beh"><h5>1-1　IR資料・財務データの調査</h5><div class="ctags"><span class="ctag">サンリオ</span><span class="ctag">ビーウィズ</span></div><p>顧客企業のIR資料（決算説明会資料、半期報告書、中期経営計画など）を読み込み、全社業績・事業セグメント・成長戦略を把握する。<span class="bex">サンリオ：Q3累計の決算説明会資料から全社業績とピューロランド単体売上を把握。ビーウィズ：半期報告書・中計数値・セグメント構成を把握。</span></p></div>
-    <div class="beh"><h5>1-2　市場構造の把握</h5><div class="ctags"><span class="ctag all">全4案件</span></div><p>顧客が戦っている市場の規模・構造・トレンドを調査する。<span class="bex">サンリオ：IP経済圏と推し活市場（4.1兆円）の構造を把握。パナソニック：ベトナム空調市場のPEST分析（10以上の外部ソースURL明記）。東芝：ディスクリート半導体市場の3極構造。ビーウィズ：BPO市場（1兆1,000億円超）と生成AIの影響。</span></p></div>
-    <div class="beh"><h5>1-3　3C分析</h5><div class="ctags"><span class="ctag all">全4案件</span></div><p>Customer（顧客の顧客）・Competitor（競合）・Company（顧客企業自身）の3視点で市場を整理する。全案件で実施しており、早川さんの「標準装備」。<span class="bex">サンリオ：社内用の「深い版」と顧客提示用の「提案版」の2種類を作成。競合を同業だけでなく「時間・予算・体験の競合」まで広げて認識。</span></p></div>
-    <div class="beh"><h5>1-4　ペルソナ設計</h5><div class="ctags"><span class="ctag all">全4案件</span></div><p>顧客の顧客や意思決定者の具体的な人物像を設計する。案件によって詳しさを変えている。<span class="bex">東芝：最も詳細。「深夜にデータシートを漁る半導体エンジニア」「EOLリスクを極端に嫌う購買担当者」と行動レベルまで描写。パナソニック：ターゲット属性レベル。目的に応じて深さを調整。</span></p></div>
-    <div class="beh"><h5>1-5　カスタマージャーニー設計</h5><div class="ctags"><span class="ctag">東芝</span></div><p>顧客の顧客が認知から購入に至るまでの行動ステップを設計する。<span class="bex">情報収集 → 技術探索 → 技術検証 → 試作 → 評価 → 見積 → 発注の7ステップ。各ステップに「リアル」と「デジタル」のタッチポイントを配置。</span></p></div>
-    <div class="beh"><h5>1-6　AIを使った段階的リサーチとセカンドオピニオン</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>AIに一度に全部聞くのではなく、段階的に深掘りする。さらに外部専門家のフィードバックも取得して精度を高める。<span class="bex">Geminiで全社業績→事業部→市場定義→3C→戦略仮説→ペルソナ→KPIと15ターンで段階深掘り。AIの3C分析に「競合はテーマパークではない」と自分の仮説を3回ぶつけて修正。さらに外部コンサルから3,000字のFBを取得し統合。</span></p></div>
-    <div class="keymsg"><div class="t">早川さんのAI活用の考え方</div>
-      <p>「AIもゴリゴリ使うが、ポイントはAIが吐き出したことを、ちゃんと自分の言葉で喋れるように咀嚼するところがすごく重要。」</p>
-      <p>「一気に答えを出させることもできるが、1個1個一問一答でやった方がいい。出てきたものに『それってどういうこと？』と壁打ちする中で、内容を全部咀嚼していける。」</p>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-1</span><strong>IR資料・財務データの調査</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">決算説明会資料・半期報告書・中期経営計画を読み込み、全社業績・事業セグメント・成長戦略を把握する。</p>
+        <div class="ex"><strong>サンリオ</strong>: Q3累計の決算説明会資料から全社業績とピューロランド単体売上を把握（単体売上はフェルミ推定で補完）。<strong>ビーウィズ</strong>: 半期報告書・中計数値・セグメント構成を把握。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-2</span><strong>市場構造の把握</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">全4案件</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客が戦っている市場の規模・構造・トレンドを調査する。</p>
+        <div class="ex"><strong>サンリオ</strong>: IP経済圏と推し活市場（4.1兆円）。<strong>パナソニック</strong>: ベトナム空調市場のPEST分析（10以上の外部ソースURLを明記）。<strong>東芝</strong>: ディスクリート半導体市場の3極構造。<strong>ビーウィズ</strong>: BPO市場（1兆1,000億円超）と生成AIの影響。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-3</span><strong>3C分析</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">全4案件</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">Customer（顧客の顧客）・Competitor（競合）・Company（顧客企業自身）の3視点で市場を整理する。全案件で実施している、早川さんの標準装備。</p>
+        <div class="ex"><strong>サンリオ</strong>: 社内用の「深い版」と顧客提示用の「提案版」の2種類を作成。競合はテーマパーク同士に限定せず、時間・予算・体験という3つの切り口で整理。切り口は「自分が先方担当者ならどれに一番納得するか」を基準に選定（6月インタビューで確認）。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-4</span><strong>ペルソナ設計</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">全4案件</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の顧客や意思決定者の具体的な人物像を設計する。案件の目的に応じて深さを調整している。</p>
+        <div class="ex"><strong>東芝</strong>: 最も詳細。「深夜にデータシートを漁る半導体エンジニア」「EOLリスクを極端に嫌う購買担当者」と行動レベルまで描写。<strong>パナソニック</strong>: ターゲット属性レベルにとどめる。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-5</span><strong>カスタマージャーニー設計</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">東芝</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の顧客が認知から購入に至るまでの行動ステップを設計する。</p>
+        <div class="ex">情報収集 → 技術探索 → 技術検証 → 試作 → 評価 → 見積 → 発注の7ステップ。各ステップに「リアル」と「デジタル」両方のタッチポイントを配置。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">1-6</span><strong>AIを使った段階的リサーチとセカンドオピニオン</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">AIに一度に全部を聞くのではなく、段階的に深掘りする。さらに外部専門家からのフィードバックも取得し、分析の精度を高める。</p>
+        <div class="ex">Geminiで全社業績 → 事業部 → 市場定義 → 3C → 戦略仮説 → ペルソナ → KPIと15ターンかけて段階的に深掘り。AIの3C分析に対して自分の仮説を3回ぶつけて修正。さらに外部コンサルタントから3,000字のフィードバックを取得して統合。</div>
+      </div>
+</div>
+    <div class="keymsg">
+      <div class="t">AI活用についての早川さんの言葉（2026年4月インタビュー）</div>
+      <p>AIもゴリゴリ使うが、ポイントは<strong>AIが吐き出したことを、自分の言葉で喋れるように咀嚼する</strong>ところ。一気に答えを出させることもできるが、一問一答形式で進めるほうがいい。アウトプットに対して「それはどういうこと？」と壁打ちする中で、内容を全部咀嚼していける。</p>
     </div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>全4案件で「事業構造の上位理解 → 3C分析」を実施。施策レベルから入っていない。</li>
-      <li>新規コンペ（サンリオ）ではIR＋AI＋専門家FBまで動員。既存案件では深さを調整。</li>
-      <li>AIを「答えを出す道具」ではなく「壁打ち相手」として使い、自分の仮説をぶつけて深化させている。</li>
-      <li>3C分析は全案件共通。ペルソナ・CJは案件特性に応じて深さを変えている。</li>
-    </ul></div>
-
-    <!-- フェーズ2 -->
-    <div class="beh-phase"><span class="pc">2</span><h3>仮説構築</h3></div>
-    <p class="beh-sub">フェーズ1の分析を踏まえ、「何を提案すべきか」「何をKPIとすべきか」の仮説を組み立てる。早川さんが「上から下に下ろしてくる」と表現する、提案準備の核心。</p>
-    <div class="keymsg"><div class="t">早川さんの言葉（2026年4月 インタビューより）</div>
-      <p>「仮説の精度は高いに越したことはないが、より本質的には、仮に精度が高くなく外れていても、そこまで一生懸命自分たちを理解しようとしてくれたという態度・姿勢が伝わるはず。」</p>
-      <p>「AIが出す仮説は感覚的に少し遠いことが多い。そこはそうじゃなくこっちだ、と壁打ちした上で、自分の中での腹落ち感・精度感を高めていく。」</p>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>全4案件で「事業構造の上位理解」から「3C分析」へと進んでおり、<strong>施策レベルから入っていない</strong></li><li>新規コンペ（サンリオ）ではIR・AI・専門家FBまで動員し、既存案件では深さを調整している</li><li>AIを「答えを出す道具」ではなく<strong>「壁打ち相手」</strong>として使い、自分の仮説をぶつけて深めている</li><li>3C分析は全案件共通。ペルソナ・カスタマージャーニーは案件特性に応じて深さを変えている</li></ul>
     </div>
-    <div class="beh"><h5>2-1　事業KGIから広告KPIまでの一気通貫導出</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>顧客の事業目標（KGI）を起点に、施策のKPIまでを一本の線で繋ぐ。途中でサービスメニューに引き寄せない。<span class="bex">「KGI＝夢中時間の最大化＝LTVの最大化」→「ピューロランド＝体験接点のひとつ」→「広告のKPI＝Sanrio+会員登録」。事業構造から広告KPIまでを論理のチェーンで直線的に導出。</span></p></div>
-    <div class="beh"><h5>2-2　KPI候補の比較評価</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>KPI候補を複数出し、評価軸を設けて構造的に比較する。<span class="bex">候補4つ：Sanrio+会員登録／来場パスポート購入／予約時売上／LTV。評価軸3つ：事業KGIとの直結性／計測可能性／最大化余地。結論「Sanrio+会員登録」が最適。</span></p></div>
-    <div class="beh"><h5>2-3　事業KPIとWeb KPIの紐づけ</h5><div class="ctags"><span class="ctag">パナソニック</span></div><p>売上に至るファネル（見込み客が顧客になるまで）を全段数値化し、「プリンシプルが改善できるのはどこか」を特定する。<span class="bex">訪問者→問合せ→チャット→送客→受注→単価→金額の各段を数値化。「広告で直接動かせるのはここ」「CRMで改善できるのはここ」とレバーをファネル上にマッピング。</span></p></div>
-    <div class="beh"><h5>2-4　顧客の課題を起点にした仮説構築</h5><div class="ctags"><span class="ctag">ビーウィズ</span></div><p>顧客から聞いた課題を分析し、その原因と解決策の仮説を立てる。<span class="bex">顧客の声「デジマ経由の受注単価・ROIが低い」→ 仮説：比較検討段階の見込み客へアプローチし、検討プロセスの早期から営業が介入 → 受注単価の向上。</span></p></div>
-    <div class="beh"><h5>2-5　事業計画からの定量目標逆算</h5><div class="ctags"><span class="ctag">ビーウィズ</span></div><p>顧客の事業計画の数値を出発点に、達成に必要なリード数やチャネル配分を逆算する。<span class="bex">財務構造（中計数値）→ SQL目標 → 商談化率 → 受注率 → リード目標 → チャネル別目標と、事業目標から施策の数値目標までを逆算チェーンで設計。</span></p></div>
-    <div class="beh"><h5>2-6　仮説の数値検証（推定と事実の分離）</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>仮説に含まれる数値について、「これは推定」「これは要確認」を明確に区別する。<span class="bex">「セグメント利益率20%は要検証」「来場者数180万人も要確認」と、推定値にフラグを立てて事実確認を実施。</span></p></div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>全ての仮説が「事業構造の上位」から下ろされている。施策アイデアから入っていない。</li>
-      <li>KPI選定は候補比較型。「なんとなく」ではなく評価軸を設けて選んでいる。</li>
-      <li>推定と事実を明確に分離し、推定のまま提案に載せない。</li>
-      <li>仮説の精度だけでなく「理解しようとする姿勢」が本質的に重要（早川さん談）。</li>
-    </ul></div>
-
-    <!-- フェーズ3 -->
-    <div class="beh-phase"><span class="pc">3</span><h3>提案体制づくり</h3></div>
-    <p class="beh-sub">チームを編成し、提案準備を推進する。スケジュール設計、アジェンダ設計、作業分担、情報の流れの管理。</p>
-    <div class="beh"><h5>3-1　案件受領即日のスケジュール設計</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>案件を受けたその日のうちに、提案までのスケジュールを設計してチームに共有。<span class="bex">受領当日（4/23 11:55）に7ステップの仮スケジュールをSlack投稿。12:02（7分後）には翌日の社内MTGを自らセット。</span></p></div>
-    <div class="beh"><h5>3-2　MTGアジェンダの構造化</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>MTGの前に、ゴール・アジェンダ・時間配分・協議論点を事前に構造化して共有する。<span class="bex">45分構成で5項目に時間配分。協議論点を3つに絞り事前提示：a.ビジネス理解　b.伴走支援の示し方　c.短期施策の具体案。</span></p></div>
-    <div class="beh"><h5>3-3　分担確定後の自担当即日完了</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>分担を決めた後、まず自分が当日中に担当パートを仕上げる。<span class="bex">MTG直後（15:37）に7パートの分担をテキストで確定。当日中にフォルダ作成・骨子格納・自担当パートを完了。</span></p></div>
-    <div class="beh"><h5>3-4　方針協議の段階的実施</h5><div class="ctags"><span class="ctag">ビーウィズ</span></div><p>方針の協議を1回で済ませず、複数回に分けて段階的に深化させる。<span class="bex">3/31と4/13の2回にわたり方針協議。1回目で仮説提示 → 2回目で分析深化・戦略具体化。</span></p></div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>サンリオでは案件受領から2日以内に全体制が整っている。</li>
-      <li>MTGは「ゴール・論点・時間配分」を事前構造化。会議を走らせず設計している。</li>
-      <li>分担後に「まず自分がやって見せる」行動がある。</li>
-    </ul></div>
-
-    <!-- フェーズ4 -->
-    <div class="beh-phase"><span class="pc">4</span><h3>提案資料づくり</h3></div>
-    <p class="beh-sub">フェーズ1〜2の分析・仮説を、顧客に提示する提案書に落とし込む。</p>
-    <div class="beh"><h5>4-1　提案資料の構造設計</h5><div class="ctags"><span class="ctag">サンリオ</span><span class="ctag">東芝</span></div><p>提案資料の全体構成を、案件の特性に合わせて設計する。<span class="bex">サンリオ：与件整理 → 事業概況 → 提案概要（4段階STEP） → 見積 → スケジュール → 体制。東芝：3C → ペルソナ → CJ → 施策（広告/SEO/解析） → 見積 → 体制。</span></p></div>
-    <div class="beh"><h5>4-2　顧客課題の本質整理</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>複数の課題を少数の本質に集約する。個別の問題をバラバラに並べず、構造化して提示する。<span class="bex">複数の課題を「2つの判断のしづらさ」に集約：1.事業貢献の不透明さ（広告が事業にどう効いているか見えない）／2.運用のブラックボックス（何をやっているのか把握できない）。</span></p></div>
-    <div class="beh"><h5>4-3　メディアプランニング・コンテンツ戦略の具体化</h5><div class="ctags"><span class="ctag">東芝</span><span class="ctag">ビーウィズ</span></div><p>「方向性」ではなく「実行計画」レベルまで具体的な施策案を提示する。<span class="bex">東芝：LP×KW×ターゲティングの11パターンマッピング表。3プラン（250/400/650万円）で数値試算。ビーウィズ：15本のコンテンツ企画案を認知/興味関心/比較検討の3段階で設計。</span></p></div>
-    <div class="beh"><h5>4-4　見積設計</h5><div class="ctags"><span class="ctag">サンリオ</span><span class="ctag">東芝</span><span class="ctag">ビーウィズ</span></div><p>「いくらか」だけでなく「どう使うか」まで設計する。<span class="bex">東芝：6項目で通期1.1億円の見積。ビーウィズ：自身の工数（25h＋協議15h）まで含めた設計。「金額」と「投下リソース」の両面で提案。</span></p></div>
-    <div class="keymsg"><div class="t">早川さんの見積に対する考え方</div>
-      <p>「初回提案では見積も作るが、予算感はあまり重要でないことの方が多い。予算1000万ですと言われたら、プランとしては2000万・1000万・500万のレンジで出す。」</p>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">②</span>仮説構築</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">①の分析を踏まえ、「何を提案すべきか」「何をKPIとすべきか」の仮説を組み立てる。早川さんが「上から下に下ろしてくる」と表現する、提案準備の核心部分。</p>
+    <div class="keymsg">
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー）</div>
+      <p>仮説の精度は高いに越したことはないが、より本質的には、<strong>仮に外れていたとしても、そこまで一生懸命自分たちのことを理解しようとしてくれたという態度や姿勢が伝わるはず</strong>。AIが出してくる仮説は感覚的に少し遠いことが多いので、壁打ちしたうえで自分の中での腹落ち感・精度感を高めていく。</p>
     </div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>提案資料の起点は常に「事業構造の理解」と「仮説」。サービスメニューの紹介から始まっていない。</li>
-      <li>ビーウィズのコンテンツ戦略は15本という具体性。「方向性」ではなく「実行計画」。</li>
-      <li>見積は複数プランで提示し、予算ありきではなく価値ありきで設計。</li>
-    </ul></div>
-
-    <!-- フェーズ5 -->
-    <div class="beh-phase"><span class="pc">5</span><h3>商談</h3></div>
-    <p class="beh-sub">直前の準備、商談の進行、商談後のアクション。</p>
-    <div class="keymsg"><div class="t">早川さんの商談に対する考え方</div>
-      <p>「ポイントは、聞く場ではなく『こう考えてきたが、それで合っているか』を確認する場という立ち位置にすること。」</p>
-      <p>「プレゼンの場自体はほぼ儀式。プロセスとしてやっているだけで、担当者とのすり合わせの時点で結論が見えているようにしておく。」</p>
-      <p>「アイスブレイクのネタは、できれば企業の事業に関わるところから。リアルタイム性が重要で、開始前30分・5分でも見つけに行ける。」</p>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-1</span><strong>事業KGIから広告KPIまでの一気通貫導出</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の事業目標（KGI）を起点に、マーケティング施策のKPIまでを一本の線でつなぐ。途中で自社のサービスメニューに引き寄せない。</p>
+        <div class="ex">「サンリオのKGI＝夢中時間の最大化＝LTV最大化」→「ピューロランド＝体験接点のひとつ」→「広告KPI＝Sanrio+会員登録」。事業構造から広告KPIまでを論理のチェーンで直線的に導出。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-2</span><strong>KPI候補の比較評価</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">KPIの候補を複数出し、評価軸を設けて構造的に比較する。</p>
+        <div class="ex">KPI候補4つ（Sanrio+会員登録／来場パスポート購入／予約時売上／LTV）× 評価軸3つ（事業KGIとの直結性／計測可能性／最大化余地）で比較し、「Sanrio+会員登録」を選定。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-3</span><strong>事業KPIとWeb KPIの紐づけ</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">パナソニック</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の売上に至るファネルを全段数値化し、「プリンシプルが改善できるのはどこか」を特定する。</p>
+        <div class="ex">訪問者 → 問合せ → チャット → 送客 → 受注 → 単価 → 金額の各段を数値化。「広告で直接動かせるのはここ」「CRMで改善できるのはここ」と、改善レバーをファネル上にマッピング。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-4</span><strong>顧客の課題を起点にした仮説構築</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客から聞いた課題を分析し、その原因と解決策の仮説を立てる。</p>
+        <div class="ex">顧客の声「デジマ経由の受注単価・ROIが低い」→ 仮説「ミドルファネル層（比較検討段階の見込み客）へのアプローチで、検討プロセスの早期から営業が介入すれば、受注単価が向上する」。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-5</span><strong>事業計画からの定量目標逆算</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の事業計画の数値を出発点に、達成に必要なリード数やチャネル配分を逆算する。</p>
+        <div class="ex">財務構造（中計数値） → SQL目標 → 商談化率 → 受注率 → リード目標 → チャネル別目標と、事業目標から施策の数値目標までを逆算チェーンで設計。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">2-6</span><strong>推定値と事実の区別</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">仮説に含まれる数値について、「これは推定」「これは要確認」を区別して扱う。</p>
+        <div class="ex">「セグメント利益率20%は要検証」「来場者数180万人も要確認」と推定値にフラグを立てて事実確認を実施。なお6月のインタビューでは、フェルミ推定の数値を提案に載せること自体はあるとの補足があり、載せてよい数値の厳密な線引きルールがあるわけではない。</div>
+      </div>
+</div>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>すべての仮説が<strong>事業構造の上位から下ろされている</strong>。施策アイデアから入っていない</li><li>KPI選定は候補比較型。「なんとなく」ではなく評価軸を設けて選んでいる</li><li>推定値にはフラグを立てて扱う（提案に載せない、という厳密なルールではない）</li><li>仮説の精度だけでなく「理解しようとする姿勢」が本質的に重要（本人談）</li></ul>
     </div>
-    <div class="beh"><h5>5-1　移動中の再考察と直前更新</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>準備が完了した後も、ギリギリまで最適化を続ける。<span class="bex">訪問に向かう移動中に「広告効果の可視化がキー」と判断し、該当スライドを直前更新。</span></p></div>
-    <div class="beh"><h5>5-2　アイスブレイクの仕込み</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>商談の冒頭で、個人的な接点を示すスライドを用意。<span class="bex">提案資料の冒頭に、家族でピューロランドを訪問した写真のスライドを追加。「この仕事に個人的にも関心がある」ことを自然に伝える。</span></p></div>
-    <div class="beh"><h5>5-3　商談を「仮説検証の場」として進行</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>一方的なプレゼンではなく、仮説を提示して先方の反応で検証する対話型の場にしている。<span class="bex">与件・リサーチ内容について先方との認識ギャップを確認。質疑応答を「仮説の検証」として活用。</span></p></div>
-    <div class="beh"><h5>5-4　商談後の即日行動</h5><div class="ctags"><span class="ctag">サンリオ</span></div><p>商談が終わったらその日のうちに次のアクションを起こす。<span class="bex">商談後に担当者と電話。スケジュール変更情報を即日社内共有。次回面談に向けた社内相談を依頼。</span></p></div>
-    <div class="keymsg"><div class="t">早川さんが考える「勝ちパターンの起点」</div>
-      <p>「行けたなとなるのは、初手として、お客さんがどういう状況にあるかを外から見えるところで把握し、一定精度の高い仮説を持っていくこと。それによって初回で、少なくともその担当者自体をこちらの仲間にする。」</p>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">③</span>提案体制</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">チームを編成し、提案準備を推進する。スケジュール設計、アジェンダ設計、作業分担、情報の流れの管理。</p>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">3-1</span><strong>案件受領即日のスケジュール設計</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">案件を受けたその日のうちに、提案までのスケジュールを設計してチームに共有する。</p>
+        <div class="ex">案件受領当日の11:55に7ステップの仮スケジュールをSlackへ投稿。12:02（7分後）には翌日の社内MTGを自らセット。先方からのスケジュール変更にも当日中に対応。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">3-2</span><strong>MTGアジェンダの構造化</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">MTGの前に、ゴール・アジェンダ・時間配分・協議論点を構造化して共有する。</p>
+        <div class="ex">45分を5項目に時間配分。協議論点を3つ（a. ビジネス理解　b. 伴走支援の示し方　c. 短期施策の具体案）に絞り込んで事前提示。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">3-3</span><strong>分担確定後の自担当即日完了</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">分担を決めた後、まず自分が当日中に担当パートを仕上げる。</p>
+        <div class="ex">MTG直後の15:37に7パートの分担をテキストで確定。当日中にフォルダ作成・骨子格納・自担当パートを完了。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">3-4</span><strong>方針協議の段階的実施</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">方針の協議を1回で済ませず、複数回に分けて段階的に深める。</p>
+        <div class="ex">3/31と4/13の2回にわたり方針協議を実施。1回目で仮説を提示し、2回目で分析の深化と戦略の具体化を行う。</div>
+      </div>
+</div>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>サンリオでは<strong>案件受領から2日以内に全体制が整っている</strong></li><li>MTGは「ゴール・論点・時間配分」を事前に構造化しており、会議を走らせるのではなく設計している</li><li>分担後に「まず自分がやって見せる」行動がある</li></ul>
     </div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>「移動中に再考察 → 直前更新」。準備完了後もギリギリまで最適化。</li>
-      <li>提案を「仮説」と位置づけ、商談を「仮説検証の場」にしている。</li>
-      <li>プレゼンは「儀式」。勝負は事前の担当者とのすり合わせで決まる（早川さん談）。</li>
-      <li>商談後のアクション（電話・社内共有・次回準備）が全て即日。</li>
-    </ul></div>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">④</span>提案資料</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">①②の分析・仮説を、顧客に提示する提案書に落とし込む。</p>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">4-1</span><strong>提案資料の構造設計</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">東芝</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">提案資料の全体構成を、案件の特性に合わせて設計する。</p>
+        <div class="ex"><strong>サンリオ</strong>: 与件整理 → 事業概況 → 提案概要（4段階STEP） → 見積 → スケジュール → 体制。<strong>東芝</strong>: 3C → ペルソナ → カスタマージャーニー → 施策（広告／SEO／解析） → 見積 → 体制。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">4-2</span><strong>顧客課題の本質整理</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">複数の課題を少数の本質に集約する。個別の問題をバラバラに並べず、構造化して提示する。</p>
+        <div class="ex">複数の課題を「2つの判断のしづらさ」に集約。1. 事業貢献の不透明さ（広告が事業にどう効いているかが見えない）　2. 運用のブラックボックス（何をやっているのか把握できない）。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">4-3</span><strong>施策の実行計画レベルまでの具体化</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">東芝</span><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">「方向性」ではなく「実行計画」レベルまで具体的な施策案を提示する。</p>
+        <div class="ex"><strong>東芝</strong>: LP×キーワード×ターゲティングの11パターンのマッピング表。3プラン（250万／400万／650万円）で数値試算。<strong>ビーウィズ</strong>: 15本のコンテンツ企画案を認知／興味関心／比較検討の3段階で設計。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">4-4</span><strong>見積設計</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">東芝</span><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">「いくらか」だけでなく「どう使うか」まで設計する。</p>
+        <div class="ex"><strong>東芝</strong>: 6項目で通期1.1億円の見積。<strong>ビーウィズ</strong>: 自身の工数（25時間＋協議15時間）まで含めて設計し、金額と投下リソースの両面で提案。</div>
+      </div>
+</div>
+    <div class="keymsg">
+      <div class="t">見積についての早川さんの言葉（2026年4月インタビュー）</div>
+      <p>初回提案の場合は、いずれにせよ見積もりを複数作る。<strong>予算感はあまり重要でないことのほうが多い</strong>。予算1,000万円と言われたら、プランとしては2,000万・1,000万・500万のようなレンジで出す。</p>
+    </div>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>提案資料の起点は常に「事業構造の理解」と「仮説」。<strong>サービスメニューの紹介から始まっていない</strong></li><li>ビーウィズのコンテンツ戦略は15本という具体性。「方向性」ではなく「実行計画」を出している</li><li>見積は複数プランで提示し、予算ありきではなく価値ありきで設計している</li></ul>
+    </div>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">⑤</span>商談</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">直前の準備、商談の進行、商談後のアクション。</p>
+    <div class="keymsg">
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー）</div>
+      <p>ポイントは、ヒアリング（聞く場）ではなく、<strong>「こう考えてきたが、それで合っているか」を確認する場</strong>という立ち位置にすること。プレゼンの場自体はほぼ儀式のようなもので、担当者とのすり合わせの時点で結論が見えている状態にしておく。アイスブレイクのネタは、できれば先方の事業に関わるもの。リアルタイム性が重要で、商談開始前の30分や5分で見つけに行ける。</p>
+    </div>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">5-1</span><strong>移動中の再考察と直前更新</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">準備が完了した後も、直前まで最適化を続ける。</p>
+        <div class="ex">訪問に向かう移動中に「広告効果の可視化がキー」と判断し、該当スライドを直前に更新。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">5-2</span><strong>アイスブレイクの仕込みと関心の演出</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">商談の冒頭で、個人的な接点を示す仕込みを用意する。先方の事業への興味・関心は、事実を土台に意図的に膨らませて伝えている。</p>
+        <div class="ex">提案資料の冒頭に、家族でピューロランドを訪問した写真のスライドを追加。「この仕事に個人的にも関心がある」ことを自然に伝える。6月のインタビューでは、事実として存在するエピソードをしっかり膨らませて伝える「キャラ作り」を意図的に行っているとの補足があった。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">5-3</span><strong>商談を「仮説検証の場」として進行</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">一方的なプレゼンではなく、仮説を提示して先方の反応で検証する対話型の場にする。</p>
+        <div class="ex">与件・リサーチ内容について先方との認識ギャップを確認。質疑応答を「仮説の検証」として活用。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">5-4</span><strong>商談後の即日行動</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">サンリオ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">商談が終わったらその日のうちに次のアクションを起こす。</p>
+        <div class="ex">商談後に担当者と電話。スケジュール変更情報を即日社内共有。次回面談に向けた社内相談を依頼。</div>
+      </div>
+</div>
+    <div class="keymsg">
+      <div class="t">「勝ちパターンの起点」についての早川さんの言葉（2026年4月インタビュー）</div>
+      <p>まずお客さんがどういう状況にあるのかを、外から見えるところでしっかり把握し、一定程度精度の高い仮説を持っていくことによって、<strong>初回の時点で、少なくとも担当者をこちらの仲間にする</strong>。</p>
+    </div>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>「移動中に再考察 → 直前更新」と、準備完了後も直前まで最適化を続けている</li><li>提案を「仮説」として位置づけ、商談を「仮説検証の場」にしている</li><li>プレゼンは「儀式」であり、勝負は事前の担当者とのすり合わせで決まる（本人談）</li><li>商談後のアクション（電話・社内共有・次回準備）がすべて即日</li></ul>
+    </div>
+    <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">⑥</span>既存顧客の深耕</h3>
+    <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">日常の伴走支援の中から、次の提案機会を生み出す行動。3社の既存案件から抽出。</p>
+<div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">6-1</span><strong>「伴走支援」ポジショニングの継続的伝達</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">パナソニック</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">「プリンシプルは広告の運用代行ではなく、事業成長に向けた伴走支援をしている」というポジショニングを、日常のやり取りの中で折に触れて伝え続ける。</p>
+        
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">6-2</span><strong>定期タイミングでの分析更新</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">パナソニック</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">年度替わりなどのタイミングで、PEST・3Cの読み合わせを定期的に実施する。提案時に一度やって終わりにしない。</p>
+        
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">6-3</span><strong>KPI紐づけから次の仕事を生む</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">パナソニック</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">事業KPIとWeb KPIの紐づけを協議する中で、自然に次の仕事が生まれる。</p>
+        <div class="ex">KPI紐づけの方針協議 → その議論の流れでタグマネジメント・解析が「やるべきこと」として浮上 → 新たな案件として受注。</div>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">6-4</span><strong>年間伴走提案としての包括分析</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">東芝</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">単発の施策提案ではなく、3C・ペルソナ・カスタマージャーニーを含めた年間の伴走支援提案を実施する。</p>
+        
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p style="display:flex;align-items:baseline;flex-wrap:wrap;gap:2px;"><span style="flex:0 0 auto;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:#fff;background:var(--brand-primary);padding:2px 9px;border-radius:6px;margin-right:10px;">6-5</span><strong>事業計画からの逆算目標を「叩き台」として提示</strong><span style="margin-left:auto;"><span style="display:inline-block;font-size:11px;font-weight:700;color:var(--brand-primary);background:var(--brand-pale);padding:2px 10px;border-radius:100px;margin-left:6px;white-space:nowrap;">ビーウィズ</span></span></p>
+        <p style="margin-top:8px;font-size:14px;">顧客の事業計画から逆算した目標値を「叩き台」として提示する。顧客が自社では作れない価値を提供する行動。</p>
+        <div class="ex">事業計画の予測数値からデジタルマーケティングの目標値を逆算試算し、叩き台としてクライアントに提示して目線合わせを行う。</div>
+      </div>
+</div>
+    <div class="insight">
+      <div class="t">このフェーズの注目ポイント</div>
+      <ul class="clean" style="margin-top:4px;"><li>パナソニックの「KPI協議 → 新規案件化」は、深耕の具体的な成功パターン</li><li>既存顧客でも3C・PESTを<strong>定期的に更新</strong>しており、一度やって終わりにしない</li><li>「事業計画から逆算した数値」を叩き台として出すことは、顧客が自力では作れない付加価値になっている</li></ul>
+    </div>
+    <h3 style="margin-top:44px;">フェーズ間のつながり</h3>
+    <div class="card" style="padding:10px 24px;">
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p><strong>① → ②　事業理解から仮説まで一気通貫</strong></p>
+        <p style="margin-top:6px;font-size:14px;">サンリオでは、事業構造の理解（①）から広告KPIの仮説（②）まで、全社 → 事業 → マーケティング → 施策の一本道でつながっている。途中でプリンシプルのサービスメニューに引き寄せる動きがない。</p>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p><strong>①　分析の深さを案件に合わせて調整</strong></p>
+        <p style="margin-top:6px;font-size:14px;">3C分析は全案件で行うが、ペルソナは「属性レベル」から「行動レベル」まで深さが異なり、カスタマージャーニー設計は東芝のみ。「全部やる」ではなく「必要な深さでやる」という判断がある。</p>
+      </div>
+      <div class="row" style="padding:16px 0;border-bottom:1px solid var(--border);">
+        <p><strong>③　案件受領から2日以内に体制構築</strong></p>
+        <p style="margin-top:6px;font-size:14px;">サンリオでは、スケジュール設計 → MTG設定 → チーム指示 → アジェンダ設計 → 分担確定 → 自担当完了が、2日以内に完了している。</p>
+      </div>
+      <div class="row" style="padding:16px 0;">
+        <p><strong>⑥ → ②　日常の伴走から仮説構築を経て次の仕事へ</strong></p>
+        <p style="margin-top:6px;font-size:14px;">パナソニックの「定期的なPEST・3C読み合わせ → KPI紐づけ → 新規案件化」は、日常の深耕（⑥）が仮説構築（②）を経由して新たな仕事につながるパターン。この考え方は概念編の「既存顧客への提案で、与件を出し切る」で詳しく扱います。</p>
+      </div>
+    </div>
 
-    <!-- フェーズ6 -->
-    <div class="beh-phase"><span class="pc">6</span><h3>既存顧客の深耕</h3></div>
-    <p class="beh-sub">日常の伴走支援の中から、次の提案機会を生み出す行動。3社の既存案件から抽出。</p>
-    <div class="beh"><h5>6-1　「伴走支援」ポジショニングの継続的伝達</h5><div class="ctags"><span class="ctag">パナソニック</span></div><p>「プリンシプルは広告の運用代行ではなく、事業成長に向けた伴走支援をしている」というポジショニングを、日常のやり取りの中で折に触れて伝え続ける。</p></div>
-    <div class="beh"><h5>6-2　定期タイミングでの分析更新</h5><div class="ctags"><span class="ctag">パナソニック</span></div><p>年度替わりなどのタイミングで、PEST/3Cの読み合わせを定期的に実施する。提案時に一度やって終わりにしない。</p></div>
-    <div class="beh"><h5>6-3　KPI紐づけから次の仕事を生む</h5><div class="ctags"><span class="ctag">パナソニック</span></div><p>事業KPIとWeb KPIの紐づけを協議する中で、自然に次の仕事が生まれる。<span class="bex">KPI紐づけの方針協議 → その議論の流れでタグマネ・解析が「やるべきこと」として浮上 → 新たな案件として受注。</span></p></div>
-    <div class="beh"><h5>6-4　年間伴走提案としての包括分析</h5><div class="ctags"><span class="ctag">東芝</span></div><p>単発の施策提案ではなく、3C/ペルソナ/CJを含めた年間の伴走支援提案を実施。</p></div>
-    <div class="beh"><h5>6-5　事業計画からの逆算目標を「叩き」として提示</h5><div class="ctags"><span class="ctag">ビーウィズ</span></div><p>顧客の事業計画から逆算した目標値を「叩き台」として提示する。顧客が自社では作れない価値を提供する行動。<span class="bex">事業計画の予測数値からデジタルマーケティングの目標値を逆算試算し、「叩き」として提示して目線合わせ。</span></p></div>
-    <div class="insight"><div class="t">このフェーズの注目ポイント</div><ul class="clean">
-      <li>パナソニックの「KPI協議 → 新規案件化」は深耕の具体的成功パターン。</li>
-      <li>既存顧客でも3C/PESTを「定期的に更新」。一度やって終わりにしない。</li>
-      <li>「事業計画から逆算した数値」を叩きとして出すのは、顧客が自力では作れない付加価値。</li>
-    </ul></div>
-
-    <!-- フェーズ間の繋がり -->
-    <h3>フェーズ間の繋がり</h3>
-    <div class="card"><h4>フェーズ1 → 2：事業理解から仮説まで一気通貫</h4><p>サンリオでは、事業構造の理解（フェーズ1）から広告KPIの仮説（フェーズ2）まで、「経営 → 事業 → マーケ → 施策」の一本道で繋がっている。途中でサービスメニューに引き寄せる動きがない。</p></div>
-    <div class="card"><h4>フェーズ1：分析の深さを案件に合わせて調整</h4><p>3C分析は全案件で行うが、ペルソナは「属性レベル」から「行動レベル」まで深さが異なる。CJ設計は東芝のみ。「全部やる」ではなく「必要な深さでやる」判断がある。</p></div>
-    <div class="card"><h4>フェーズ3：案件受領から2日以内に体制構築</h4><p>サンリオでは、スケジュール設計 → MTG設定 → チーム指示 → アジェンダ設計 → 分担確定 → 自担当完了が2日以内に完了している。</p></div>
-    <div class="card"><h4>フェーズ6 → 2：日常の伴走から仮説構築を経て次の仕事へ</h4><p>パナソニックの「定期PEST/3C読み合わせ → KPI紐づけ → 新規案件化」は、フェーズ6（日常の深耕）がフェーズ2（仮説構築）を経由して新たな仕事に繋がるパターン。</p></div>
+    <div class="insight" style="margin-top:26px;">
+      <div class="t">次章からの読み方</div>
+      <p>ここまでが「早川さんが実際に行っていること」の記録です。続く概念編では、これらの行動の背後にある考え方（なぜそうするのか）を、実践編では①②を自分の案件で再現するための進め方を扱います。</p>
+    </div>
   </section>
 
   <!-- ============ 概念編 ============ -->
@@ -548,7 +663,7 @@
   <!-- 1. 核心 -->
   <section id="core">
     <span class="part-label">概念編（考え方）</span>
-    <h2><span class="num">1</span>事業課題とKPIを、一本の線でつなぐ</h2>
+    <h2><span class="num">2</span>事業課題とKPIを、一本の線でつなぐ</h2>
     <p class="lead">早川さんの仕事の核心は、<strong>顧客が本当に追うべき事業課題（メインイシュー）と、今回動かすべき指標（KPI）を特定し、その2つを論理でつなぐ</strong>ことにあります。両者が一本の線で結ばれているのが理想の状態ですが、それ以前に、「事業課題は何か」「追うべきKPIは何か」を自ら見極める力こそが、最も難しく、最も差がつくところです。新規の案件でも、既存顧客への提案でも、この構造は変わりません。</p>
 
     <div class="keymsg">
@@ -650,7 +765,7 @@
 
   <!-- 2. 思考原則 -->
   <section id="principles">
-    <h2><span class="num">2</span>早川さんの判断を支える6つの原則</h2>
+    <h2><span class="num">3</span>早川さんの判断を支える6つの原則</h2>
     <p class="lead">早川さんの判断を貫いている原則を6つに整理しました。同じリサーチや資料作成であっても、この6つが働いているかどうかで、提案の質は大きく変わります。</p>
 
     <div class="principle">
@@ -708,7 +823,7 @@
 
   <!-- 3. 勝敗の分かれ目 -->
   <section id="contrast">
-    <h2><span class="num">3</span>勝った案件と、失注した案件の違い</h2>
+    <h2><span class="num">4</span>勝った案件と、失注した案件の違い</h2>
     <p class="lead">この「事業課題とKPIの接続」が、実際に勝敗を分けているのか。早川さん自身の<strong>受注した案件と失注した案件を対比する</strong>と、その差がはっきりと表れます。</p>
 
     <div class="fail">
@@ -733,7 +848,7 @@
 
   <!-- 4. 既存深耕（概念編） -->
   <section id="farming" style="padding-top:8px;">
-    <h2><span class="num">4</span>既存顧客への提案で、与件を出し切る</h2>
+    <h2><span class="num">5</span>既存顧客への提案で、与件を出し切る</h2>
     <p class="lead">早川さんは、既存顧客の"深耕"を「後から新しい与件を生む」こととは捉えていません。<strong>初期提案の段階で、その時点に存在する与件をすべて洗い出し、"複合提案"として出し切る</strong>のが基本です。だから、後から与件や次のSQLが出てくるのは、<strong>①新規提案の時点で課題を特定しきれなかった</strong>か、<strong>②状況が変化して新たに発生した</strong>かのどちらか、と捉える方が有効です。ここでも効くのは、前半で述べた<strong>「メインイシューとKPIを特定しきる力」</strong>です。</p>
 
     <div class="card">
@@ -773,7 +888,7 @@
 
   <!-- 4. 6ステップ -->
   <section id="steps" style="padding-top:28px;">
-    <h2><span class="num">5</span>①②を、6つのステップに分けて進める</h2>
+    <h2><span class="num">6</span>①②を、6つのステップに分けて進める</h2>
     <p class="lead">①事業理解と②仮説構築を、6つの工程に分解しました。各ステップには、<strong>そこで答えるべき「問い」</strong>と<strong>提出する「アウトプット」</strong>を紐づけています（全10問・10アウトプット）。最終的な到達点は、次の<strong>4つの問い</strong>に、自身の担当案件で答えられるようになることです。</p>
 
     <div class="keymsg">
@@ -924,7 +1039,7 @@
 
   <!-- 7. まず、やってみる -->
   <section id="try" style="padding-top:8px;">
-    <h2><span class="num">6</span>まず、自分の担当案件で試す</h2>
+    <h2><span class="num">7</span>まず、自分の担当案件で試す</h2>
     <p class="lead">ここまでの内容を、一度にすべて実践する必要はありません。担当顧客を1社選び、次の手順に沿って30分。まずは<strong>「その顧客がどこでつまずいているか」を1つ言語化できれば十分</strong>です。</p>
 
     <div class="keymsg try-box">
