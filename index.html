@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>早川モデル｜事業課題とKPIの組み立て方</title>
+<title>早川モデル｜事業課題とKPIの組み立て方（現時点版）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
 
   /* ===== NAV ===== */
   nav {
-    position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92);
+    background: rgba(255,255,255,.92);
     backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
   }
   .nav-inner {
@@ -285,6 +285,22 @@
     .nav-inner a { padding: 4px 7px; font-size: 11px; }
     .nav-inner .seg { display:none; }
   }
+
+  .tabbar { display:flex; gap:10px; margin:34px 0 6px; }
+  .tabbtn { flex:1; padding:14px 10px; text-align:center; font-weight:700; font-size:15.5px;
+    font-family:'Noto Sans JP',sans-serif; color:var(--brand-primary); background:#fff;
+    border:1.5px solid var(--border); border-radius:12px; cursor:pointer; transition:all .15s; }
+  .tabbtn .sub { display:block; font-size:11.5px; font-weight:500; margin-top:3px; opacity:.75; }
+  .tabbtn.active { background:var(--brand-primary); color:#fff; border-color:var(--brand-primary); }
+  .tabbtn:not(.active):hover { border-color:var(--brand-primary); }
+  .doc { display:none; }
+  .doc.active { display:block; }
+
+  .part-head { display:flex; align-items:center; gap:22px; margin:76px 0 4px; }
+  .part-head .line { flex:1; height:1.5px; background:var(--brand-light); opacity:.45; }
+  .part-head .pl { font-size:21px; font-weight:700; color:#fff; background:var(--brand-primary);
+    letter-spacing:.2em; padding:11px 38px; border-radius:100px; font-family:'Noto Sans JP',sans-serif; }
+  @media (max-width:640px){ .part-head .pl { font-size:17px; padding:9px 26px; } }
 </style>
 </head>
 <body>
@@ -303,53 +319,44 @@
 <!-- ===== CONTENT ===== -->
 <div id="content">
 
-<nav>
-  <div class="nav-inner">
-    <span class="brand">早川モデル</span>
-    <span class="seg">概念編</span>
-    <a href="#facts">行動事実</a>
-    <a href="#core">核心</a>
-    <a href="#principles">思考原則</a>
-    <a href="#contrast">勝敗の分かれ目</a>
-    <a href="#farming">既存深耕</a>
-    <span class="seg">実践編</span>
-    <a href="#steps">6ステップ×問い</a>
-    <a href="#try">やってみる</a>
-  </div>
-</nav>
+
 
 <div class="hero">
   <span class="hero-badge">PRINCIPLE INC. ／ HAYAKAWA MODEL</span>
-  <h1>早川モデル</h1>
-  <p>本資料は、トップセールスでありトップコンサルタントでもある早川さんが、各案件で何をどう考え、何を見て判断しているのかを整理し、担当者が自身の案件で同様に実践できる水準を目指して作成されたマニュアルです。まず提案全体の6フェーズと、各フェーズで実際に行われている行動（行動編）を示したうえで、起点となる①事業理解と②仮説構築について、考え方（概念編）と進め方（実践編）の順に解説します。4案件の分析と、ご本人へのインタビュー（2026年6月）にもとづきます。</p>
+  <h1 style="font-size:clamp(26px,4.6vw,40px);">早川モデル｜事業課題とKPIの組み立て方<span style="display:block;font-size:.5em;font-weight:600;opacity:.8;margin-top:8px;">現時点版</span></h1>
+  <p>本ページは、トップセールスでありトップコンサルタントでもある早川さんの提案の進め方を、担当者が自身の案件で実践できる水準まで整理した2部構成のドキュメント。<strong>実践マニュアル</strong>は、考え方（概念編）と進め方（実践編）。<strong>背景と検証</strong>は、モデルの成り立ち・分析方法・ミドル層2名との比較検証・確からしさの評価。4案件の行動分析、本人インタビュー（2026年4月・6月）、ミドル層2名との比較検証、R8アカデミーでの本人共有（2026年7月）にもとづく。</p>
 </div>
 
 <div class="wrap">
 
   <!-- 目次 -->
-  <nav aria-label="目次" style="margin:38px 0 6px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;">
-    <div style="font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--brand-primary);margin-bottom:12px;">目次</div>
-    <div style="display:flex;flex-direction:column;">
-      <a href="#overview" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;"></span><span>はじめに（提案全体の6フェーズと、本資料の範囲）</span></a>
-      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">行動編（事実）</div>
-      <a href="#facts" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">1</span><span>早川さんが、実際に行っていること</span></a>
-      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">概念編（考え方）</div>
-      <a href="#core" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">2</span><span>事業課題とKPIを、一本の線でつなぐ</span></a>
-      <a href="#principles" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">3</span><span>早川さんの判断を支える6つの原則</span></a>
-      <a href="#contrast" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">4</span><span>勝った案件と、失注した案件の違い</span></a>
-      <a href="#farming" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">5</span><span>既存顧客への提案で、与件を出し切る</span></a>
-      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">実践編（進め方）</div>
-      <a href="#steps" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">6</span><span>①②を、6つのステップに分けて進める</span></a>
-      <a href="#try" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">7</span><span>まず、自分の担当案件で試す</span></a>
-      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">おわりに</div>
-      <a href="#endnote" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;"></span><span>本資料の留保と、今後の進め方</span></a>
+  
+    <div class="tabbar" role="tablist">
+      <button id="tab-manual" class="tabbtn active" onclick="showDoc('manual')">実践マニュアル<span class="sub">考え方と進め方。日々の提案で使う</span></button>
+      <button id="tab-record" class="tabbtn" onclick="showDoc('record')">背景と検証<span class="sub">モデルの成り立ち・検証結果・確からしさ</span></button>
     </div>
-  </nav>
+
+    <div id="doc-manual" class="doc active">
+<nav aria-label="目次" style="margin:38px 0 6px;padding:24px 28px;background:var(--brand-pale);border-radius:14px;">
+      <p style="font-size:13px;font-weight:700;color:var(--brand-primary);letter-spacing:.06em;margin-bottom:10px;">目次（実践マニュアル）</p>
+      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">概念編</div>
+      <a href="#overview" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">1</span><span>提案の全体像</span></a>
+      <a href="#core" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">2</span><span>事業課題とKPIをつなぐ、一本の線</span></a>
+      <a href="#principles" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">3</span><span>判断を支える6つの原則</span></a>
+      <a href="#contrast" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">4</span><span>勝ち案件と失注案件の違い</span></a>
+      <a href="#farming" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">5</span><span>既存顧客の深耕と、与件の出し切り</span></a>
+      <a href="#facts" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">6</span><span>早川さんの実際の行動</span></a>
+      <div style="margin-top:16px;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--text-muted);letter-spacing:.04em;">実践編</div>
+      <a href="#steps" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">7</span><span>実践の6ステップ</span></a>
+    </nav>
+
+
+  <div class="part-head"><div class="line"></div><span class="pl">概念編</span><div class="line"></div></div>
 
   <!-- 全体像：6フェーズ -->
   <section id="overview" style="padding-top:44px;padding-bottom:4px;">
-    <h2 style="border-bottom:none;padding-bottom:0;"><span class="num" style="visibility:hidden;">0</span>早川さんの提案は、6つのフェーズで進む</h2>
-    <p class="lead">早川さんの提案は、次の6つのフェーズで進みます。サンリオ・パナソニック・東芝・ビーウィズの4案件を分析したところ、①〜⑤はいずれの案件でも共通して行われていました。</p>
+    <h2><span class="num">1</span>提案の全体像</h2>
+    <p class="lead">早川さんの提案は、次の6つのフェーズで進む。サンリオ・パナソニック・東芝・ビーウィズの4案件を分析したところ、①〜⑤はいずれの案件でも共通して行われていた。</p>
 
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
       <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-radius:12px;background:#EFF6FF;border:1.5px solid var(--brand-primary);">
@@ -379,19 +386,247 @@
     </div>
 
     <div class="keymsg" style="margin-top:22px;">
-      <div class="t">この資料で扱うのは、①と②です</div>
-      <p>6つのフェーズのうち、提案全体の質を左右するのは、起点となる<strong>①事業理解と②仮説構築</strong>です。ここで「顧客の本質的な事業課題」と「追うべきKPI」を特定できなければ、後続の資料作成も商談も土台を欠きます。逆に、この2つが定まっていれば、③以降は無理なく展開できます。<br>そこで本資料では、まず次章で①〜⑥の各フェーズで実際に行われている行動を事実として示し（行動編）、そのうえで①②に絞って<strong>考え方（概念編）</strong>と<strong>実際の進め方（実践編）</strong>を6つのステップに分けて解説します。③〜⑥の考え方・進め方は、本資料の対象外です。</p>
+      <div class="t">このマニュアルで扱うのは、①と②だ</div>
+      <p>6つのフェーズのうち、提案全体の質を左右するのは、起点となる<strong>①事業理解と②仮説構築</strong>だ。ここで「顧客の本質的な事業課題」と「追うべきKPI」を特定できなければ、後続の資料作成も商談も土台を欠く。逆に、この2つが定まっていれば、③以降は無理なく展開できる。<br>そこで本マニュアルは①②に絞り、その<strong>考え方（概念編）</strong>と<strong>進め方（実践編）</strong>を解説する。①〜⑥の各フェーズで実際に行われている行動は、概念編の最後に一覧として収録した。③〜⑥の考え方・進め方は対象外とする。</p>
+    </div>
+  
+    <div class="keymsg">
+      <div class="t">いつやるか（R8アカデミー、2026年7月）</div>
+      <p>①②に取り組むタイミングは、<strong>新規なら初回商談の前、既存顧客なら具体的な提案活動に入る前</strong>だ。つまり、このマニュアルを読み終えた瞬間から始められる作業だ。①②を置いたまま③以降のプロセスを進めても、勝率を上げていくことは難しい。提案の確度を上げるには、①と②を最初にじっくり考えることが必須になる。</p>
     </div>
   </section>
 
+  <!-- 1. 核心 -->
+  <section id="core">
+    <h2><span class="num">2</span>事業課題とKPIをつなぐ、一本の線</h2>
+    <p class="lead">早川さんの仕事の核心は、<strong>顧客が本当に追うべき事業課題（メインイシュー）と、今回動かすべき指標（KPI）を特定し、その2つを論理でつなぐ</strong>ことにある。両者が一本の線で結ばれているのが理想の状態だが、それ以前に、「事業課題は何か」「追うべきKPIは何か」を自ら見極める力こそが、最も難しく、最も差がつくところだ。新規の案件でも、既存顧客への提案でも、この構造は変わらない。</p>
 
-  <!-- ============ 行動編 ============ -->
-  <div class="part-divider"><div class="line"></div></div>
+    <div class="keymsg">
+      <div class="t">「仮説」の定義（R8アカデミー、2026年7月）</div>
+      <p>ここで言う仮説とは、<strong>「プリンシプルから何を提案したら、顧客の課題を解決できるのか」を、1つの文章、長くても2〜3分で語れる形にまとめたもの</strong>だ。優先度の高い事業課題は何か、それに対してどんな打ち手が考えられるか、という2つの要素をセットで含む。課題が分かるだけでは顧客は動けないため、解決策と必ずセットにする。初回商談は、この仮の説が合っているかを確認する場として使う。</p>
+    </div>
+
+    <div class="keymsg">
+      <div class="t">早川さん本人の言葉</div>
+      <p>顧客のRFP（提案依頼書）に書かれているのは、本当のメインイシューにぶら下がる<strong>「サブイシューのごく一部」</strong>にすぎない。顧客自身もメインイシューとの接続に気づいていないことが多い。<strong>そこに気づかせ、顧客が社内で上席に「雄弁に説明できる」状態（＝チャンピオン化）にする</strong>ことが、最も良い状態。</p>
+    </div>
+
+    <div class="figure">
+      <span class="fig-cap">図A</span>
+      <div class="fig-h">顧客担当者がつまずく3つのパターン</div>
+      <p class="fig-d">「メインイシュー（事業課題）」と「追うべきKPI」が一本の線で繋がっているのが理想。多くの顧客担当者は、次の3つのどこかで詰まっている。<strong>どこで詰まっているかで、打ち手（ステップ）が変わる。</strong></p>
+      <svg viewBox="0 0 1180 560" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="aA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#1E40AF"/></marker>
+          <marker id="aR" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#DC2626"/></marker>
+          <marker id="aT" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#0F766E"/></marker>
+        </defs>
+        <rect x="20" y="56" width="270" height="468" rx="14" fill="#F0FDFA" stroke="#0F766E" stroke-width="1.5"/>
+        <circle cx="48" cy="90" r="15" fill="#0F766E"/>
+        <path d="M41,90 l5,5 l9,-10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="72" y="95" class="stitle" fill="#0F766E">理想の状態</text>
+        <rect x="55" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="155" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
+        <text x="155" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
+        <line x1="155" y1="190" x2="155" y2="318" stroke="#0F766E" stroke-width="2.5" marker-end="url(#aT)"/>
+        <text x="166" y="258" fill="#0F766E" style="font-size:11.5px;font-weight:600;">繋がっている</text>
+        <rect x="55" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="155" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="155" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
+        <text x="40" y="424" class="scap">「この指標を、この事業課題の</text>
+        <text x="40" y="444" class="scap">ために追う」と言い切れる。</text>
+        <line x1="40" y1="464" x2="270" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="40" y="492" fill="#475569" style="font-size:11.5px;font-weight:600;">この状態に持っていくのが目標</text>
+
+        <rect x="310" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="338" cy="90" r="15" fill="#475569"/>
+        <text x="338" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">1</text>
+        <text x="362" y="95" class="stitle">事業課題が見えない</text>
+        <rect x="345" y="128" width="200" height="56" rx="9" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="445" y="152" text-anchor="middle" class="ssub" style="font-size:11px;">メインイシュー（事業課題）</text>
+        <text x="445" y="173" text-anchor="middle" fill="#94A3B8" style="font-size:20px;font-weight:700;">？</text>
+        <line x1="445" y1="190" x2="445" y2="318" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="5 4"/>
+        <rect x="345" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="445" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="445" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">CPA・CV数</text>
+        <text x="330" y="424" class="scap">目の前の数字は追えるが、</text>
+        <text x="330" y="444" class="scap">それが何のためかを知らない。</text>
+        <line x1="330" y1="464" x2="560" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="330" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="330" y="507" class="ssub" style="font-size:11.5px;">Step1–4：言葉を拾い、事業課題まで登る</text>
+
+        <rect x="600" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="628" cy="90" r="15" fill="#475569"/>
+        <text x="628" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">2</text>
+        <text x="652" y="95" class="stitle">接続が切れている</text>
+        <rect x="635" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="735" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
+        <text x="735" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
+        <line x1="735" y1="190" x2="735" y2="238" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4"/>
+        <line x1="735" y1="272" x2="735" y2="318" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#aR)"/>
+        <line x1="723" y1="243" x2="747" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="747" y1="243" x2="723" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
+        <rect x="635" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="735" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
+        <text x="735" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
+        <text x="620" y="424" class="scap">課題もKPIも知っているのに</text>
+        <text x="620" y="444" class="scap">繋げない＝社内で説明できない。</text>
+        <line x1="620" y1="464" x2="850" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="620" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="620" y="507" class="ssub" style="font-size:11.5px;">Step5：ロジックツリーで一本に繋ぐ</text>
+
+        <rect x="890" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
+        <circle cx="918" cy="90" r="15" fill="#475569"/>
+        <text x="918" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">3</text>
+        <text x="942" y="95" class="stitle">追うKPIが定まらない</text>
+        <rect x="925" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
+        <text x="1025" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
+        <text x="1025" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
+        <line x1="1025" y1="190" x2="1025" y2="300" stroke="#1E40AF" stroke-width="2" marker-end="url(#aA)"/>
+        <rect x="918" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="951" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <rect x="992" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="1025" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <rect x="1066" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
+        <text x="1099" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
+        <text x="910" y="424" class="scap">課題は分かるが、何を追えば</text>
+        <text x="910" y="444" class="scap">いいかが定まらない。</text>
+        <line x1="910" y1="464" x2="1140" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="910" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
+        <text x="910" y="507" class="ssub" style="font-size:11.5px;">Step6：候補を出し3軸で絞る</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <h4>「上から下ろす」一本の線（サンリオの例）</h4>
+      <p>顧客が掲げる言葉「夢中時間」（＝LTVの最大化）を出発点に、ピューロランドをグループ全体のIP接点の一つと位置づけ、そこから広告が担うべき役割を逆算。最終的に追うべきKPIを「Sanrio+会員登録」に接続した。施策（KPI）の話から入るのではなく、<strong>事業課題から下ろしてくる</strong>のが特徴だ。（この引き方は、実践編の図Cで一枚にしている。）</p>
+    </div>
+  
+    <div class="insight">
+      <div class="t">ミドル層2名との比較でわかった、差がつく3点</div>
+      <p>事業の調査や競合分析は、ミドル層のメンバーも行っている。差が出たのは、<strong>①メインイシューの特定　②メインイシューとKPIの接続　③KPI候補の比較評価</strong>の3点に集中していた。勝敗を分けるのは関係構築の量ではなく、この構造をつくる力。検証の詳細は<a href="#verify" onclick="showDoc('record');return false;" style="color:var(--brand-primary);font-weight:700;">背景と検証タブ</a>を参照。</p>
+    </div>
+</section>
+
+  <!-- 2. 思考原則 -->
+  <section id="principles">
+    <h2><span class="num">3</span>判断を支える6つの原則</h2>
+    <p class="lead">早川さんの判断を貫いている原則を6つに整理した。同じリサーチや資料作成であっても、この6つが働いているかどうかで、提案の質は大きく変わる。この6つは、2026年7月のR8アカデミーで早川さん本人が全社向けに直接解説した内容と一致している。</p>
+
+    <div class="principle">
+      <div class="pn">1</div>
+      <div>
+        <h4>顧客が言った言葉を起点に組む</h4>
+        <p>自社サービスの説明から入らない。顧客がIR・プレス・RFPで繰り返し使う「言葉」を拾い、そこからすべての提案を組み立てる。逆に、自社側の用語（CPA・CPC・ROAS・GTMなど）は、顧客が日常的に使っていない限り極力使わない。使った瞬間に相手との間に壁ができ、その解消は難しいため。</p>
+        <div class="ex"><strong>実例：</strong>サンリオの「夢中時間」をピン留めし、そこからKPIまで論理を通した。</div>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="pn">2</div>
+      <div>
+        <h4>メインイシューに「気づかせる」</h4>
+        <p>RFPは氷山の一角。その奥にある本当の事業課題を特定し、顧客自身が気づいていない接続を見せることで、顧客が社内で説明できる状態をつくる。</p>
+        <div class="ex"><strong>実例：</strong>東芝で「東芝さん以上に東芝さんの事業背景を考える」ことで、「自分たちより考えている」と刺さった。</div>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="pn">3</div>
+      <div>
+        <h4>「自分が先方担当者なら」で絞る</h4>
+        <p>競合の切り方も、課題の絞り込みも、判断基準は一貫してこれ。「自分がその担当者だったら、どれに一番納得し、改善の余地を感じるか」。</p>
+        <div class="ex"><strong>実例：</strong>課題を「2つの判断のしづらさ」に集約するなど、複数の切り口から"自分が担当者なら一番納得するもの"を選んだ。</div>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="pn">4</div>
+      <div>
+        <h4>抽象度を上げて、提案を大きくする</h4>
+        <p>目先のサブイシューに留まると提案は小さく終わる。上位の課題（メインイシュー）に接続するほど、打ち手の範囲と提案金額が大きくなる。</p>
+        <div class="ex"><strong>実例：</strong>「CPAを改善したい」「SEO流入が減ったので対策したい」のような具体の依頼にも、聞かれたことに答えたうえで「それは何のためか」を1段上げて考える。より本質的な課題と別の解決策が見え、提案の幅が広がる。これがクロスセルの起点にもなる。</div>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="pn">5</div>
+      <div>
+        <h4>オタク的な関心と、意図的なキャラ作り</h4>
+        <p>顧客とその事業に本気で興味を持つ。さらにその関心を商談の場で<em>意図的に演出</em>し、信頼を獲得する。</p>
+        <div class="ex"><strong>実例：</strong>「子供とサンリオ」のエピソード（事実）を膨らませて、興味のあるキャラクターを演じた。</div>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="pn">6</div>
+      <div>
+        <h4>AIで広げ、自分で噛み砕く</h4>
+        <p>AIで大量に情報・仮説を出した後、<strong>自分が人に語れる粒度まで噛み砕いて</strong>落とし込む。出力しただけでは使えない、という前提に立つ。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 勝敗の分かれ目 -->
+  <section id="contrast">
+    <h2><span class="num">4</span>勝ち案件と失注案件の違い</h2>
+    <p class="lead">この「事業課題とKPIの接続」が、実際に勝敗を分けているのか。早川さん自身の<strong>受注した案件と失注した案件を対比する</strong>と、その差がはっきりと表れる。</p>
+
+    <div class="fail">
+      <span class="tag">失注事例</span>
+      <h4>KEEN（サンダルメーカー）の案件</h4>
+      <p>当時は、いまのようにメインイシューを作り込み、現場のKPIに接続する、ということを深くやっていなかった。<strong>会社のケイパビリティやサービスの特徴を説明しただけ</strong>の薄い提案に終わった。</p>
+      <p>顧客の質問には答えられたが、<strong>こちらから積極的にメインイシューへ接続する話をしなかった</strong>。振り返ると「分かれ目」のような瞬間はなく、<strong>全体が"ふわっと"始まり、"ふわっと"終わった</strong>。</p>
+    </div>
+
+    <div class="insight">
+      <div class="t">この対比からわかること</div>
+      <p>受注した案件にあり、失注した案件になかったのは、<strong>メインイシューの深掘りと、KPIへの接続</strong>そのものだった。ここまで述べてきた考え方の有無が、そのまま勝敗として表れている。</p>
+    </div>
+
+    <h3>早川さんの戦い方</h3>
+    <ul class="clean">
+      <li><strong>広告運用の"巧拙"だけでは戦わない。</strong>「100を150にする」運用改善型の勝負より、「なぜこの100が必要か（意義）」を事業課題に接続して示す案件で強い。</li>
+      <li><strong>「ずらし」で対応する。</strong>広告運用で150を出せなくても、他施策と組み合わせて合計300以上の価値を提案する。土俵を運用単体からずらす。</li>
+      <li><strong>構造的な難所：</strong>広告担当者レベルから来た案件は、上位の意思決定者に話を上げにくい。意思決定者へ接近する「エンタープライズ・セールス」を、早川さんは意図せず自然にやっていた可能性がある（＝再現対象として要注目）。</li>
+    </ul>
+  
+    <div class="keymsg">
+      <div class="t">早川さん本人の言葉（R8アカデミー、2026年7月）</div>
+      <p>「昔はここまで見られておらず、目の前に来た与件にのみ直接答えて提案していた。すると、そのままふわっと流れて、返事が来ない・失注になるということがあった。勝てている案件と失注した案件の違いは、<strong>このプロセスをちゃんとやれているかどうかが一番大きい</strong>。」</p>
+    </div>
+  </section>
+
+  <!-- 4. 既存深耕（概念編） -->
+  <section id="farming" style="padding-top:8px;">
+    <h2><span class="num">5</span>既存顧客の深耕と、与件の出し切り</h2>
+    <p class="lead">早川さんは、既存顧客の"深耕"を「後から新しい与件を生む」こととは捉えていない。<strong>初期提案の段階で、その時点に存在する与件をすべて洗い出し、"複合提案"として出し切る</strong>のが基本だ。だから、後から与件や次のSQLが出てくるのは、<strong>①新規提案の時点で課題を特定しきれなかった</strong>か、<strong>②状況が変化して新たに発生した</strong>かのどちらか、と捉える方が有効だ。ここでも効くのは、前半で述べた<strong>「メインイシューとKPIを特定しきる力」</strong>だ。</p>
+
+    <div class="card">
+      <h4>初期提案の段階で、その時点の与件を出し切る</h4>
+      <p>顧客の事業を深く理解し、その時点に存在する課題を洗い出して、必要な打ち手を<strong>束（複合）で提案する</strong>。単発の施策売りにせず、事業課題に対する一式で出し切るからこそ、取りこぼしが減る。</p>
+    </div>
+
+    <div class="card">
+      <h4>先回りして「叩き台」を持ち込む</h4>
+      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。情報をもらうのを待たず、課題を可視化する材料を自分でつくって持っていく。</p>
+    </div>
+
+    <div class="card">
+      <h4>状況変化を捉え直す「ブリッジの場」（②を拾う仕組み）</h4>
+      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。ここで、状況変化で新たに生じた課題（②）を早期に捉え直す。やるべきことが自社のケイパビリティと一致すれば、自然にクロスセルの与件になる。</p>
+      <p style="margin-top:10px;">この「場」には型がある。<strong>年間プレゼンテーション（ネプレ）</strong>、<strong>クォーターレビュー（四半期の振り返り）</strong>、そして<strong>経営層の来訪に合わせた挨拶の場</strong>（「社長が来ているのでご挨拶に」と設定した場のアジェンダに、事業課題と普段の業務をつなぐ話を組み込む）などだ。定例の延長を待つのではなく、こうした場を意図的に作りにいくこと自体が、R8アカデミーで早川さんが勧めた具体的な打ち手だ。</p>
+    </div>
+
+    <div class="keymsg">
+      <div class="t">東芝の例</div>
+      <p>東芝は間接部門であるがゆえに、デジタルマーケティングの成果が見えにくかった。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など状況変化で「意味が乗っている瞬間」に取引が終わる。早川さんは定例会にこの<strong>「事業背景の見合わせ」</strong>を織り込み、<strong>状況変化を早期に課題として特定</strong>して次につなげている。</p>
+    </div>
+  </section>
 
   <section id="facts">
-    <span class="part-label">行動編（事実）</span>
-    <h2><span class="num">1</span>早川さんが、実際に行っていること</h2>
-    <p class="lead">考え方に入る前に、まず事実を示します。本章は、サンリオ・パナソニック・東芝・ビーウィズの4案件（14ソース）と、ご本人へのインタビュー（2026年4月・6月）から抽出した行動の記録です。①〜⑥の各フェーズで、早川さんが実際に何をしていたのかを、案件の具体とともに整理しています。この事実の背後にある考え方を概念編で、①②の進め方を実践編で扱います。</p>
+    <h2><span class="num">6</span>早川さんの実際の行動</h2>
+    <p class="lead">ここまでの考え方が、実際の案件でどのような行動として現れているか。サンリオ・パナソニック・東芝・ビーウィズの4案件（14ソース）と本人インタビュー（2026年4月・6月）から抽出した、29の行動の一覧。参考資料として、必要なフェーズから拾い読みしてよい。①②の具体的な進め方は、次の実践編で扱う。</p>
 
     <div class="card" style="padding:22px 24px;">
       <p style="font-size:13px;font-weight:700;color:var(--brand-primary);margin-bottom:10px;">4案件での確認状況</p>
@@ -412,7 +647,7 @@
         <tr><td style="padding:8px 12px;border:1px solid var(--border);">⑥ 既存顧客の深耕</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">—</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">●</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-light);">○</td></tr>
       </table>
       </div>
-      <p style="margin-top:10px;font-size:12.5px;color:var(--text-muted);">● 詳細に確認　○ 一部確認　— 資料上は未確認。なお6月のインタビューで、4案件とも基本的に①〜⑤は実施していたことをご本人に確認済みです（表は一次資料で確認できた範囲）。</p>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--text-muted);">● 詳細に確認　○ 一部確認　— 資料上は未確認。なお6月のインタビューで、4案件とも基本的に①〜⑤は実施していたことをご本人に確認済みだ（表は一次資料で確認できた範囲）。</p>
     </div>
     <h3 style="display:flex;align-items:center;gap:10px;margin-top:44px;font-size:19px;"><span style="flex:0 0 34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:var(--brand-pale);color:var(--brand-primary);border-radius:9px;font-size:17px;font-weight:700;">①</span>事業理解</h3>
     <p style="font-size:14.5px;color:var(--text-secondary);margin:6px 0 14px;">顧客の事業構造を全社レベルで把握し、顧客の顧客・競合環境・自社の立ち位置を構造的に理解する。「顧客のビジネスを顧客以上に理解する」ための基盤づくり。</p>
@@ -453,7 +688,7 @@
       </div>
 </div>
     <div class="keymsg">
-      <div class="t">AI活用についての早川さんの言葉（2026年4月インタビュー）</div>
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー、AI活用について）</div>
       <p>AIもゴリゴリ使うが、ポイントは<strong>AIが吐き出したことを、自分の言葉で喋れるように咀嚼する</strong>ところ。一気に答えを出させることもできるが、一問一答形式で進めるほうがいい。アウトプットに対して「それはどういうこと？」と壁打ちする中で、内容を全部咀嚼していける。</p>
     </div>
     <div class="insight">
@@ -555,7 +790,7 @@
       </div>
 </div>
     <div class="keymsg">
-      <div class="t">見積についての早川さんの言葉（2026年4月インタビュー）</div>
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー、見積について）</div>
       <p>初回提案の場合は、いずれにせよ見積もりを複数作る。<strong>予算感はあまり重要でないことのほうが多い</strong>。予算1,000万円と言われたら、プランとしては2,000万・1,000万・500万のようなレンジで出す。</p>
     </div>
     <div class="insight">
@@ -591,7 +826,7 @@
       </div>
 </div>
     <div class="keymsg">
-      <div class="t">「勝ちパターンの起点」についての早川さんの言葉（2026年4月インタビュー）</div>
+      <div class="t">早川さん本人の言葉（2026年4月インタビュー、勝ちパターンの起点）</div>
       <p>まずお客さんがどういう状況にあるのかを、外から見えるところでしっかり把握し、一定程度精度の高い仮説を持っていくことによって、<strong>初回の時点で、少なくとも担当者をこちらの仲間にする</strong>。</p>
     </div>
     <div class="insight">
@@ -647,259 +882,71 @@
       </div>
       <div class="row" style="padding:16px 0;">
         <p><strong>⑥ → ②　日常の伴走から仮説構築を経て次の仕事へ</strong></p>
-        <p style="margin-top:6px;font-size:14px;">パナソニックの「定期的なPEST・3C読み合わせ → KPI紐づけ → 新規案件化」は、日常の深耕（⑥）が仮説構築（②）を経由して新たな仕事につながるパターン。この考え方は概念編の「既存顧客への提案で、与件を出し切る」で詳しく扱います。</p>
+        <p style="margin-top:6px;font-size:14px;">パナソニックの「定期的なPEST・3C読み合わせ → KPI紐づけ → 新規案件化」は、日常の深耕（⑥）が仮説構築（②）を経由して新たな仕事につながるパターン。この考え方は概念編の「既存顧客の深耕と、与件の出し切り」の章で詳しく扱う。</p>
       </div>
     </div>
 
     <div class="insight" style="margin-top:26px;">
-      <div class="t">次章からの読み方</div>
-      <p>ここまでが「早川さんが実際に行っていること」の記録です。続く概念編では、これらの行動の背後にある考え方（なぜそうするのか）を、実践編では①②を自分の案件で再現するための進め方を扱います。</p>
+      <div class="t">実践編への橋渡し</div>
+      <p>ここまでが概念編。考え方と、それが行動として現れた事実を確認した。次の実践編では、①②を自分の担当案件で再現するための手順を扱う。</p>
     </div>
   </section>
 
-  <!-- ============ 概念編 ============ -->
-  <div class="part-divider"><div class="line"></div></div>
 
-  <!-- 1. 核心 -->
-  <section id="core">
-    <span class="part-label">概念編（考え方）</span>
-    <h2><span class="num">2</span>事業課題とKPIを、一本の線でつなぐ</h2>
-    <p class="lead">早川さんの仕事の核心は、<strong>顧客が本当に追うべき事業課題（メインイシュー）と、今回動かすべき指標（KPI）を特定し、その2つを論理でつなぐ</strong>ことにあります。両者が一本の線で結ばれているのが理想の状態ですが、それ以前に、「事業課題は何か」「追うべきKPIは何か」を自ら見極める力こそが、最も難しく、最も差がつくところです。新規の案件でも、既存顧客への提案でも、この構造は変わりません。</p>
-
-    <div class="keymsg">
-      <div class="t">早川さん本人の言葉</div>
-      <p>顧客のRFP（提案依頼書）に書かれているのは、本当のメインイシューにぶら下がる<strong>「サブイシューのごく一部」</strong>にすぎない。顧客自身もメインイシューとの接続に気づいていないことが多い。<strong>そこに気づかせ、顧客が社内で上席に「雄弁に説明できる」状態（＝チャンピオン化）にする</strong>ことが、最も良い状態。</p>
-    </div>
-
-    <div class="figure">
-      <span class="fig-cap">図A</span>
-      <div class="fig-h">顧客担当者がつまずく3つのパターン</div>
-      <p class="fig-d">「メインイシュー（事業課題）」と「追うべきKPI」が一本の線で繋がっているのが理想。多くの顧客担当者は、次の3つのどこかで詰まっています。<strong>どこで詰まっているかで、打ち手（ステップ）が変わります。</strong></p>
-      <svg viewBox="0 0 1180 560" role="img" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="aA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#1E40AF"/></marker>
-          <marker id="aR" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#DC2626"/></marker>
-          <marker id="aT" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#0F766E"/></marker>
-        </defs>
-        <rect x="20" y="56" width="270" height="468" rx="14" fill="#F0FDFA" stroke="#0F766E" stroke-width="1.5"/>
-        <circle cx="48" cy="90" r="15" fill="#0F766E"/>
-        <path d="M41,90 l5,5 l9,-10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="72" y="95" class="stitle" fill="#0F766E">理想の状態</text>
-        <rect x="55" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="155" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
-        <text x="155" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
-        <line x1="155" y1="190" x2="155" y2="318" stroke="#0F766E" stroke-width="2.5" marker-end="url(#aT)"/>
-        <text x="166" y="258" fill="#0F766E" style="font-size:11.5px;font-weight:600;">繋がっている</text>
-        <rect x="55" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="155" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
-        <text x="155" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
-        <text x="40" y="424" class="scap">「この指標を、この事業課題の</text>
-        <text x="40" y="444" class="scap">ために追う」と言い切れる。</text>
-        <line x1="40" y1="464" x2="270" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="40" y="492" fill="#475569" style="font-size:11.5px;font-weight:600;">この状態に持っていくのが目標</text>
-
-        <rect x="310" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
-        <circle cx="338" cy="90" r="15" fill="#475569"/>
-        <text x="338" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">1</text>
-        <text x="362" y="95" class="stitle">事業課題が見えない</text>
-        <rect x="345" y="128" width="200" height="56" rx="9" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 4"/>
-        <text x="445" y="152" text-anchor="middle" class="ssub" style="font-size:11px;">メインイシュー（事業課題）</text>
-        <text x="445" y="173" text-anchor="middle" fill="#94A3B8" style="font-size:20px;font-weight:700;">？</text>
-        <line x1="445" y1="190" x2="445" y2="318" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="5 4"/>
-        <rect x="345" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="445" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
-        <text x="445" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">CPA・CV数</text>
-        <text x="330" y="424" class="scap">目の前の数字は追えるが、</text>
-        <text x="330" y="444" class="scap">それが何のためかを知らない。</text>
-        <line x1="330" y1="464" x2="560" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="330" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
-        <text x="330" y="507" class="ssub" style="font-size:11.5px;">Step1–4：言葉を拾い、事業課題まで登る</text>
-
-        <rect x="600" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
-        <circle cx="628" cy="90" r="15" fill="#475569"/>
-        <text x="628" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">2</text>
-        <text x="652" y="95" class="stitle">接続が切れている</text>
-        <rect x="635" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="735" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
-        <text x="735" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
-        <line x1="735" y1="190" x2="735" y2="238" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4"/>
-        <line x1="735" y1="272" x2="735" y2="318" stroke="#DC2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#aR)"/>
-        <line x1="723" y1="243" x2="747" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
-        <line x1="747" y1="243" x2="723" y2="267" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/>
-        <rect x="635" y="326" width="200" height="56" rx="9" fill="#fff" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="735" y="350" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">追うべきKPI</text>
-        <text x="735" y="369" text-anchor="middle" class="sbox" fill="#1E3A8A">会員登録数</text>
-        <text x="620" y="424" class="scap">課題もKPIも知っているのに</text>
-        <text x="620" y="444" class="scap">繋げない＝社内で説明できない。</text>
-        <line x1="620" y1="464" x2="850" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="620" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
-        <text x="620" y="507" class="ssub" style="font-size:11.5px;">Step5：ロジックツリーで一本に繋ぐ</text>
-
-        <rect x="890" y="56" width="270" height="468" rx="14" fill="#fff" stroke="#E2E8F0" stroke-width="1.5"/>
-        <circle cx="918" cy="90" r="15" fill="#475569"/>
-        <text x="918" y="95" text-anchor="middle" fill="#fff" style="font-size:14px;font-weight:700;">3</text>
-        <text x="942" y="95" class="stitle">追うKPIが定まらない</text>
-        <rect x="925" y="128" width="200" height="56" rx="9" fill="#EFF6FF" stroke="#1E40AF" stroke-width="1.5"/>
-        <text x="1025" y="152" text-anchor="middle" fill="#1E3A8A" style="font-size:11px;">メインイシュー（事業課題）</text>
-        <text x="1025" y="171" text-anchor="middle" class="sbox" fill="#1E3A8A">LTV最大化</text>
-        <line x1="1025" y1="190" x2="1025" y2="300" stroke="#1E40AF" stroke-width="2" marker-end="url(#aA)"/>
-        <rect x="918" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
-        <text x="951" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
-        <rect x="992" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
-        <text x="1025" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
-        <rect x="1066" y="310" width="66" height="44" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.3" stroke-dasharray="4 3"/>
-        <text x="1099" y="338" text-anchor="middle" fill="#94A3B8" style="font-size:16px;font-weight:700;">？</text>
-        <text x="910" y="424" class="scap">課題は分かるが、何を追えば</text>
-        <text x="910" y="444" class="scap">いいかが定まらない。</text>
-        <line x1="910" y1="464" x2="1140" y2="464" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="3 3"/>
-        <text x="910" y="488" class="slabel" style="font-size:11.5px;">打ち手</text>
-        <text x="910" y="507" class="ssub" style="font-size:11.5px;">Step6：候補を出し3軸で絞る</text>
-      </svg>
-    </div>
-
-    <div class="card">
-      <h4>「上から下ろす」一本の線（サンリオの例）</h4>
-      <p>顧客が掲げる言葉「夢中時間」（＝LTVの最大化）を出発点に、ピューロランドをグループ全体のIP接点の一つと位置づけ、そこから広告が担うべき役割を逆算。最終的に追うべきKPIを「Sanrio+会員登録」に接続しました。施策（KPI）の話から入るのではなく、<strong>事業課題から下ろしてくる</strong>のが特徴です。（この引き方は、実践編の図Cで一枚にしています。）</p>
-    </div>
-  </section>
-
-  <!-- 2. 思考原則 -->
-  <section id="principles">
-    <h2><span class="num">3</span>早川さんの判断を支える6つの原則</h2>
-    <p class="lead">早川さんの判断を貫いている原則を6つに整理しました。同じリサーチや資料作成であっても、この6つが働いているかどうかで、提案の質は大きく変わります。</p>
-
-    <div class="principle">
-      <div class="pn">1</div>
-      <div>
-        <h4>顧客が言った言葉を起点に組む</h4>
-        <p>自社サービスの説明から入らない。顧客がIR・プレス・RFPで繰り返し使う「言葉」を拾い、そこからすべての提案を組み立てる。</p>
-        <div class="ex"><strong>実例：</strong>サンリオの「夢中時間」をピン留めし、そこからKPIまで論理を通した。</div>
-      </div>
-    </div>
-
-    <div class="principle">
-      <div class="pn">2</div>
-      <div>
-        <h4>メインイシューに「気づかせる」</h4>
-        <p>RFPは氷山の一角。その奥にある本当の事業課題を特定し、顧客自身が気づいていない接続を見せることで、顧客が社内で説明できる状態をつくる。</p>
-        <div class="ex"><strong>実例：</strong>東芝で「東芝さん以上に東芝さんの事業背景を考える」ことで、「自分たちより考えている」と刺さった。</div>
-      </div>
-    </div>
-
-    <div class="principle">
-      <div class="pn">3</div>
-      <div>
-        <h4>「自分が先方担当者なら」で絞る</h4>
-        <p>競合の切り方も、課題の絞り込みも、判断基準は一貫してこれ。「自分がその担当者だったら、どれに一番納得し、改善の余地を感じるか」。</p>
-        <div class="ex"><strong>実例：</strong>課題を「2つの判断のしづらさ」に集約するなど、複数の切り口から"自分が担当者なら一番納得するもの"を選んだ。</div>
-      </div>
-    </div>
-
-    <div class="principle">
-      <div class="pn">4</div>
-      <div>
-        <h4>抽象度を上げて、提案を大きくする</h4>
-        <p>目先のサブイシューに留まると提案は小さく終わる。上位の課題（メインイシュー）に接続するほど、打ち手の範囲と提案金額が大きくなる。</p>
-      </div>
-    </div>
-
-    <div class="principle">
-      <div class="pn">5</div>
-      <div>
-        <h4>オタク的な関心と、意図的なキャラ作り</h4>
-        <p>顧客とその事業に本気で興味を持つ。さらにその関心を商談の場で<em>意図的に演出</em>し、信頼を獲得する。</p>
-        <div class="ex"><strong>実例：</strong>「子供とサンリオ」のエピソード（事実）を膨らませて、興味のあるキャラクターを演じた。</div>
-      </div>
-    </div>
-
-    <div class="principle">
-      <div class="pn">6</div>
-      <div>
-        <h4>AIで広げ、自分で噛み砕く</h4>
-        <p>AIで大量に情報・仮説を出した後、<strong>自分が人に語れる粒度まで噛み砕いて</strong>落とし込む。出力しただけでは使えない、という前提に立つ。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. 勝敗の分かれ目 -->
-  <section id="contrast">
-    <h2><span class="num">4</span>勝った案件と、失注した案件の違い</h2>
-    <p class="lead">この「事業課題とKPIの接続」が、実際に勝敗を分けているのか。早川さん自身の<strong>受注した案件と失注した案件を対比する</strong>と、その差がはっきりと表れます。</p>
-
-    <div class="fail">
-      <span class="tag">失注事例</span>
-      <h4>KEEN（サンダルメーカー）の案件</h4>
-      <p>当時は、いまのようにメインイシューを作り込み、現場のKPIに接続する、ということを深くやっていなかった。<strong>会社のケイパビリティやサービスの特徴を説明しただけ</strong>の薄い提案に終わった。</p>
-      <p>顧客の質問には答えられたが、<strong>こちらから積極的にメインイシューへ接続する話をしなかった</strong>。振り返ると「分かれ目」のような瞬間はなく、<strong>全体が"ふわっと"始まり、"ふわっと"終わった</strong>。</p>
-    </div>
-
-    <div class="insight">
-      <div class="t">この対比からわかること</div>
-      <p>受注した案件にあり、失注した案件になかったのは、<strong>メインイシューの深掘りと、KPIへの接続</strong>そのものでした。ここまで述べてきた考え方の有無が、そのまま勝敗として表れています。</p>
-    </div>
-
-    <h3>早川さんの戦い方</h3>
-    <ul class="clean">
-      <li><strong>広告運用の"巧拙"だけでは戦わない。</strong>「100を150にする」運用改善型の勝負より、「なぜこの100が必要か（意義）」を事業課題に接続して示す案件で強い。</li>
-      <li><strong>「ずらし」で対応する。</strong>広告運用で150を出せなくても、他施策と組み合わせて合計300以上の価値を提案する。土俵を運用単体からずらす。</li>
-      <li><strong>構造的な難所：</strong>広告担当者レベルから来た案件は、上位の意思決定者に話を上げにくい。意思決定者へ接近する「エンタープライズ・セールス」を、早川さんは意図せず自然にやっていた可能性がある（＝再現対象として要注目）。</li>
-    </ul>
-  </section>
-
-  <!-- 4. 既存深耕（概念編） -->
-  <section id="farming" style="padding-top:8px;">
-    <h2><span class="num">5</span>既存顧客への提案で、与件を出し切る</h2>
-    <p class="lead">早川さんは、既存顧客の"深耕"を「後から新しい与件を生む」こととは捉えていません。<strong>初期提案の段階で、その時点に存在する与件をすべて洗い出し、"複合提案"として出し切る</strong>のが基本です。だから、後から与件や次のSQLが出てくるのは、<strong>①新規提案の時点で課題を特定しきれなかった</strong>か、<strong>②状況が変化して新たに発生した</strong>かのどちらか、と捉える方が有効です。ここでも効くのは、前半で述べた<strong>「メインイシューとKPIを特定しきる力」</strong>です。</p>
-
-    <div class="card">
-      <h4>初期提案の段階で、その時点の与件を出し切る</h4>
-      <p>顧客の事業を深く理解し、その時点に存在する課題を洗い出して、必要な打ち手を<strong>束（複合）で提案する</strong>。単発の施策売りにせず、事業課題に対する一式で出し切るからこそ、取りこぼしが減る。</p>
-    </div>
-
-    <div class="card">
-      <h4>先回りして「叩き台」を持ち込む</h4>
-      <p>ビーウィズでは、共有されにくいはずの事業計画の数値を、<strong>決算書から自分で作って</strong>提案前のすり合わせに自主的に持ち込んだ。情報をもらうのを待たず、課題を可視化する材料を自分でつくって持っていく。</p>
-    </div>
-
-    <div class="card">
-      <h4>状況変化を捉え直す「ブリッジの場」（②を拾う仕組み）</h4>
-      <p>折に触れて<strong>「事業KGIと通常業務をブリッジする協議の場」</strong>を設ける。ここで、状況変化で新たに生じた課題（②）を早期に捉え直す。やるべきことが自社のケイパビリティと一致すれば、自然にクロスセルの与件になる。</p>
-    </div>
-
-    <div class="keymsg">
-      <div class="t">東芝の例</div>
-      <p>東芝は間接部門で、デジタルマーケティングの成果が見えにくい。だからこそ<strong>「何のためにこれをやっているのか」の意味を整備し続ける</strong>ことが効く。これを怠ると、担当部長の交代など状況変化で「意味が乗っている瞬間」に取引が終わる。早川さんは定例会にこの<strong>「事業背景の見合わせ」</strong>を織り込み、<strong>状況変化を早期に課題として特定</strong>して次につなげている。</p>
-    </div>
-  </section>
-
-  <!-- ============ 実践編 ============ -->
-  <div class="part-divider"><div class="line"></div></div>
+  <div class="part-head"><div class="line"></div><span class="pl">実践編</span><div class="line"></div></div>
 
   <section style="padding-bottom:0;">
-    <span class="part-label">実践編（進め方）</span>
-    <p class="lead" style="margin-bottom:18px;">ここからは、①②を実際にどう進めるかを解説します。早川さん本人は、これは<strong>才能ではなく「型」</strong>だと述べています。手順どおりに進めれば、習得できるものです。</p>
+    <p class="lead" style="margin-bottom:18px;">ここからは、①②を実際にどう進めるかを解説する。早川さん本人は、これは<strong>才能ではなく「型」</strong>だと述べている。手順どおりに進めれば、習得できるものだ。</p>
 
     <div class="insight" style="margin-top:0;">
       <div class="t">つまずきの原因は、多くの場合「視野の狭さ」</div>
-      <p>つまずく原因は、スキルや知識ではなく<strong>マインドセット</strong>。特定の施策・チームの担当になると、その担当領域だけに視野が狭まりがちです。担当業務の外にある<strong>顧客のメインイシュー全体</strong>へ意識を向けることが、最初の一歩です。</p>
+      <p>つまずく原因は、スキルや知識ではなく<strong>マインドセット</strong>。特定の施策・チームの担当になると、その担当領域だけに視野が狭まりがちだ。担当業務の外にある<strong>顧客のメインイシュー全体</strong>へ意識を向けることが、最初の一歩だ。</p>
     </div>
 
   </section>
 
   <!-- 4. 6ステップ -->
   <section id="steps" style="padding-top:28px;">
-    <h2><span class="num">6</span>①②を、6つのステップに分けて進める</h2>
-    <p class="lead">①事業理解と②仮説構築を、6つの工程に分解しました。各ステップには、<strong>そこで答えるべき「問い」</strong>と<strong>提出する「アウトプット」</strong>を紐づけています（全10問・10アウトプット）。最終的な到達点は、次の<strong>4つの問い</strong>に、自身の担当案件で答えられるようになることです。</p>
+    <h2><span class="num">7</span>実践の6ステップ</h2>
+    <p class="lead">①事業理解と②仮説構築を、6つの工程に分解した。各ステップには、<strong>そこで答えるべき「問い」</strong>と<strong>提出する「アウトプット」</strong>を紐づけている（全10問・10アウトプット）。最終的な到達点は、次の<strong>4つの問い</strong>に、自身の担当案件で答えられるようになることだ。</p>
 
     <div class="keymsg">
       <div class="t">最後に、この4つに答えられるか</div>
-      <p>① <strong>メインイシュー</strong>は何ですか？（顧客が本当に追うべき事業課題）<br>② <strong>サブイシュー</strong>は何ですか？（メインイシューにぶら下がる下位の課題）<br>③ 今回 <strong>追うべきKPI</strong>は何ですか？（提案で動かす1つの指標）<br>④ <strong>メインイシューと追うべきKPIの論理的な繋がり</strong>は何ですか？（KGIから一本の線で説明できるか）</p>
+      <p>① <strong>メインイシュー</strong>は何か？（顧客が本当に追うべき事業課題）<br>② <strong>サブイシュー</strong>は何か？（メインイシューにぶら下がる下位の課題）<br>③ 今回 <strong>追うべきKPI</strong>は何か？（提案で動かす1つの指標）<br>④ <strong>メインイシューと追うべきKPIの論理的な繋がり</strong>は何か？（KGIから一本の線で説明できるか）</p>
+    </div>
+
+    <div class="card" style="padding:22px 24px;margin-top:18px;">
+      <p style="font-size:13px;font-weight:700;color:var(--brand-primary);margin-bottom:10px;">目標ラインと時間の目安（2026年7月 R8アカデミー）</p>
+      <p style="font-size:14px;"><strong>目標ライン。</strong>①事業理解のゴールは、「顧客の担当者に代わって、顧客の事業を社内のメンバーにプレゼンできるレベル」だ。「顧客よりも顧客に詳しくなる」の手前にある、乗り越えやすい現実的なハードルとして、まずここを目指す。顧客のことをよく知らない相手（同僚・上司、なんなら家族）に、自分の言葉で噛み砕いて説明できる状態が目安だ。</p>
+      <p style="font-size:14px;margin-top:10px;"><strong>時間の目安。</strong>①は30分〜長くても1時間で一定の水準までできる。前半30分で❶〜❺をざっと調べ、後半30分で調べた内容を自分の言葉に噛み砕く配分だ。AIには一括で出させず、1問1答で各プロセス2〜3往復の壁打ちをする。慣れないうちは1〜2時間かかるが、慣れると30分程度まで縮む。まずは10分でライトに始めてよい。毎朝、ニュースで見かけた企業のIRを1社見る、という日々のトレーニングも有効だ。</p>
+      <p style="font-size:14px;margin-top:10px;"><strong>情報が少ない企業（未上場など）の場合。</strong>AIへの質問とフェルミ推定で、事業規模の概算はつかめる。それでも足りなければ、同じビジネスモデルの企業群に共通する課題を軸に、仮説を組み立てる（R8アカデミー質疑より）。</p>
+    </div>
+
+    
+    <div class="step">
+      <div class="step-head"><span class="sn">0</span><h4>まず、担当1社で30分</h4><span class="ph-tag">準備運動</span></div>
+      <div class="step-body">
+        <p style="margin-bottom:14px;">本格的に各ステップへ入る前に、担当顧客を1社選び、次の軽量版を一周する。<strong>「その顧客がどこでつまずいているか」を1つ言語化できれば十分</strong>。詰まりどころを言葉にできたら、Step 1から順にたどる。</p>
+<div class="keymsg try-box">
+      <div class="t">担当顧客を1社選び、30分で試す</div>
+      <ol>
+        <li><strong>図Aで診断する（5分）</strong><br>その顧客は ①事業課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？ まず現在地を1つに決める。</li>
+        <li><strong>AIでざっと一望 → 一番効きそうな1本だけ自分で読む（25分）</strong><br>
+          ・まずAIに「この会社のIR・中期計画・プレスで繰り返し出てくる経営テーマ・キーワードは？」と聞き、全体像と"言葉"の候補を10個ほど出す（10分）。<br>
+          ・その中で一番重要そうな言葉が載っている元資料（IRや社長メッセージ）を、1本だけ自分の目で読む（15分）。<br>
+          <span style="color:#7a5a08;">※ AIの要約だけだと「顧客がその言葉にどれだけ本気か」の体感が湧かない。本物を1本読むと"温度"が分かる。</span></li>
+        <li><strong>書いて、人に説明してみる（仕上げ）</strong><br>メインイシューとKPI、そして⑤の<strong>接続の一文</strong>を、ノートかホワイトボードに書き出す。それを声に出して<strong>人に説明してみる</strong>。聞き手は、できれば<strong>経営経験のある人・自分の事業を持つ人（最低でもマネジメント経験者）</strong>。「このメインイシューとKPIを、こう繋げました」と話し、相手が腹落ちするか。詰まる／相手がピンと来なければ、まだ接続が弱い。<br>
+          <span style="color:#7a5a08;">※ ちょうどいい相手がいない時は、先方の経営者・マーケ担当になりきって聞いてくれる<strong>AI練習相手（Gemini Gem）</strong>を使う（別途の手順書を参照）。将来は“AI上司”に説明する仕組みも用意する。</span></li>
+      </ol>
+      <p style="margin-top:16px;font-size:14px;">完璧な仮説はいらない。まず「自分の顧客の詰まりどころ」を1つ言葉にできれば、Step 4（メインイシューの特定）へ進める。あとは6ステップを順にたどるだけ。</p>
+    </div>
+      </div>
     </div>
 
     <div class="step">
       <div class="step-head"><span class="sn">1</span><h4>事業と市場を、一次情報で掴む</h4><span class="ph-tag">フェーズ1</span></div>
       <div class="step-body">
-        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q1</strong> この顧客はどのセグメントでどれだけ稼ぎ、全社KGIの中で対象事業はどこに位置づくか？　<strong>Q2</strong> 市場は規模・成長・構造の点でどうなっていて、なぜ今この施策が重要か？</p></div>
+        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q1</strong> この顧客はどのセグメントでどれだけ稼ぎ、全社KGIの中で対象事業はどこに位置づくか？<br><strong>Q2</strong> 市場は規模・成長・構造の点でどうなっていて、なぜ今この施策が重要か？</p></div>
         <div class="row"><span class="lbl lbl-do">やること</span><p>IR・決算説明・中期経営計画を読み、セグメント構造と全社KGIを数値で掴む。市場は同業のくくりでなく「お金・時間・体験の経済圏」として捉え直す。AIで広げ、自分が語れる粒度まで噛み砕く。</p></div>
         <div class="row"><span class="lbl lbl-out">アウトプット</span><p><strong>❶ 事業・財務構造の解読シート</strong>（セグメント別数値＋対象事業の位置づけを一文で）／<strong>❷ 市場・外部環境マップ</strong>（定量＋出典付き）</p></div>
         <div class="row"><span class="lbl lbl-ex">実例</span><p>サンリオ：IRからピューロランド単体売上を切り出し「グループのIP接点の一つ」と位置づけ。推し活市場4.1兆円を出典付きで整理。</p></div>
@@ -910,7 +957,7 @@
     <div class="step">
       <div class="step-head"><span class="sn">2</span><h4>顧客事業の解像度を上げる</h4><span class="ph-tag">フェーズ1</span></div>
       <div class="step-body">
-        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q3</strong> 顧客事業は、どういった事業環境で、誰を顧客として、どのような事業（企業）と競合しているか？　<strong>Q4</strong> 顧客事業の顧客とは、どのタッチポイントで、どのようにコミュニケーションを行うのが適切か？</p></div>
+        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q3</strong> 顧客事業は、どういった事業環境で、誰を顧客として、どのような事業（企業）と競合しているか？<br><strong>Q4</strong> 顧客事業の顧客とは、どのタッチポイントで、どのようにコミュニケーションを行うのが適切か？</p></div>
         <div class="row"><span class="lbl lbl-do">やること</span><p>3Cを「社内深掘り版」と「顧客提示版」の2層で作り、顧客の事業環境・顧客・競合を正しく認識する（明らかな競合を取りこぼさない。サンリオのように直接競合がない場合もある）。顧客とのタッチポイントとコミュニケーションを行動レベルまで落とす。</p></div>
         <div class="row"><span class="lbl lbl-out">アウトプット</span><p><strong>❸ 3C（2版・顧客事業の事業環境と競合の把握）</strong>／<strong>❹ ペルソナ＆カスタマージャーニー</strong>（行動レベル・施策の効きどころ付き）</p></div>
         <div class="row"><span class="lbl lbl-ex">実例</span><p>サンリオ：「ディズニーと迷う人はいない＝直接競合はいない」と正しく認識し、その上でポジションを設計。東芝：CJを行動レベルまで作り込み。</p></div>
@@ -932,7 +979,7 @@
     <div class="step">
       <div class="step-head"><span class="sn">4</span><h4>メインイシューを特定する</h4><span class="ph-tag">フェーズ2 ★コア</span></div>
       <div class="step-body">
-        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q6★</strong> 本当に追うべき事業課題（メインイシュー）は何か？　<strong>Q7</strong> サブイシューは何で、「解けば連動する」本質はどれか？</p></div>
+        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q6★</strong> 本当に追うべき事業課題（メインイシュー）は何か？<br><strong>Q7</strong> サブイシューは何で、「解けば連動する」本質はどれか？</p></div>
         <div class="row"><span class="lbl lbl-do">やること</span><p>拾った言葉に「それは何のため？」を繰り返し、事業課題まで登る（下の図B）。散らばる症状を「打ち手を打てる課題」へ診断し直し、絞るときの判断軸は「自分が先方担当者なら、どれに一番納得するか」。</p></div>
         <div class="row"><span class="lbl lbl-out">アウトプット</span><p><strong>❻ メインイシュー</strong>（顧客の事業課題を一文で言語化。抽象度を上げた結果、一般的な言葉になってよい）／<strong>❼ サブイシューの整理と本質集約</strong>（メインイシューにぶら下がるサブイシューへ接続。棄却した枝の理由付き）</p></div>
         <div class="row"><span class="lbl lbl-ex">実例</span><p>東芝：「このデジマは何のため？」を問い直し"意味の不明瞭さ"を本丸に据え、先方に「自分たちより考えている」と言わせた。サンリオ：課題を「2つの判断のしづらさ」に集約。</p></div>
@@ -943,7 +990,7 @@
     <div class="figure">
       <span class="fig-cap">図B</span>
       <div class="fig-h">抽象度を上げて、事業課題まで登る</div>
-      <p class="fig-d">Step4を、誰でも辿れる作業にしたのがこれ。依頼（RFP）に書いてあるのは一番下の段だけ。<strong>「それは何のため？」を繰り返して上まで登り</strong>、事業課題に行き着いてから、上から線を引き直します。</p>
+      <p class="fig-d">Step4を、誰でも辿れる作業にしたのがこれ。依頼（RFP）に書いてあるのは一番下の段だけ。<strong>「それは何のため？」を繰り返して上まで登り</strong>、事業課題に行き着いてから、上から線を引き直する。</p>
       <svg viewBox="0 0 720 470" role="img" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="up" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#1E40AF"/></marker>
@@ -987,7 +1034,7 @@
     <div class="figure">
       <span class="fig-cap">図C</span>
       <div class="fig-h">実例：サンリオの「言葉 → KPI」の引き方（Step5を一枚に）</div>
-      <p class="fig-d">図Bで登った後、上から下ろして一本に繋いだ実例です。完成形だけでなく、<strong>どこで枝を分け、どこを"切り落とした"か</strong>（既存→CRMは今回対象外）まで見えるようにしています。</p>
+      <p class="fig-d">図Bで登った後、上から下ろして一本に繋いだ実例だ。完成形だけでなく、<strong>どこで枝を分け、どこを"切り落とした"か</strong>（既存→CRMは今回対象外）まで見えるようにしている。</p>
       <svg viewBox="0 0 720 500" role="img" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="dn" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="#1E40AF"/></marker>
@@ -1023,7 +1070,7 @@
     <div class="step">
       <div class="step-head"><span class="sn">6</span><h4>追うべきKPIを確定し、数値まで落とす</h4><span class="ph-tag">フェーズ2 ★コア</span></div>
       <div class="step-body">
-        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q9★</strong> 追うべきKPIは何で、なぜそれか（他候補と比べて）？　<strong>Q10</strong> 経営目標から逆算すると、いくつ追うべきか？</p></div>
+        <div class="row"><span class="lbl lbl-q">答える問い</span><p><strong>Q9★</strong> 追うべきKPIは何で、なぜそれか（他候補と比べて）？<br><strong>Q10</strong> 経営目標から逆算すると、いくつ追うべきか？</p></div>
         <div class="row"><span class="lbl lbl-do">やること</span><p>候補を3つ以上並べ、KGI直結性・計測可能性・改善余地の3軸で比較して1つに確定。KGIの実数から転換率で逆算し、施策が追う目標数まで落とす。最後は、担当者が上席に「雄弁に説明できる」形（チャンピオン化）に整えて渡す。</p></div>
         <div class="row"><span class="lbl lbl-out">アウトプット</span><p><strong>❾ 追うべきKPIの確定</strong>（候補比較表＋選定根拠）／<strong>❿ 数値目標の逆算チェーン</strong>（根拠付きの転換率で、施策の目標数まで）</p></div>
         <div class="row"><span class="lbl lbl-ex">実例</span><p>サンリオ：4候補を3軸で比較し「Sanrio+会員登録」に確定。ビーウィズ：中計数値→SQL→商談化率→受注率→リード目標へ逆算。</p></div>
@@ -1033,50 +1080,178 @@
 
     <div class="insight">
       <div class="t">10の問いに全部答えられれば、顧客理解と仮説構築は「できている」</div>
-      <p>提案書や商談での説明は、この<strong>10の問いの答え（＝10のアウトプット）を束ねて、相手に合わせて見せたもの</strong>にすぎません。まず<strong>コアの3問（Q6・Q8・Q9）</strong>＝核心の4問に答えられるかが第一関門です。</p>
+      <p>提案書や商談での説明は、この<strong>10の問いの答え（＝10のアウトプット）を束ねて、相手に合わせて見せたもの</strong>にすぎない。まず<strong>コアの3問（Q6・Q8・Q9）</strong>＝核心の4問に答えられるかが第一関門だ。</p>
     </div>
   </section>
 
-  <!-- 7. まず、やってみる -->
-  <section id="try" style="padding-top:8px;">
-    <h2><span class="num">7</span>まず、自分の担当案件で試す</h2>
-    <p class="lead">ここまでの内容を、一度にすべて実践する必要はありません。担当顧客を1社選び、次の手順に沿って30分。まずは<strong>「その顧客がどこでつまずいているか」を1つ言語化できれば十分</strong>です。</p>
 
-    <div class="keymsg try-box">
-      <div class="t">担当顧客を1社選び、30分で試す</div>
-      <ol>
-        <li><strong>図Aで診断する（5分）</strong><br>その顧客は ①事業課題が見えない ／ ②接続が切れている ／ ③KPIが定まらない の、どれ？ まず現在地を1つに決める。</li>
-        <li><strong>AIでざっと一望 → 一番効きそうな1本だけ自分で読む（25分）</strong><br>
-          ・まずAIに「この会社のIR・中期計画・プレスで繰り返し出てくる経営テーマ・キーワードは？」と聞き、全体像と"言葉"の候補を10個ほど出す（10分）。<br>
-          ・その中で一番重要そうな言葉が載っている元資料（IRや社長メッセージ）を、1本だけ自分の目で読む（15分）。<br>
-          <span style="color:#7a5a08;">※ AIの要約だけだと「顧客がその言葉にどれだけ本気か」の体感が湧かない。本物を1本読むと"温度"が分かる。</span></li>
-        <li><strong>書いて、人に説明してみる（仕上げ）</strong><br>メインイシューとKPI、そして⑤の<strong>接続の一文</strong>を、ノートかホワイトボードに書き出す。それを声に出して<strong>人に説明してみる</strong>。聞き手は、できれば<strong>経営経験のある人・自分の事業を持つ人（最低でもマネジメント経験者）</strong>。「このメインイシューとKPIを、こう繋げました」と話し、相手が腹落ちするか。詰まる／相手がピンと来なければ、まだ接続が弱い。<br>
-          <span style="color:#7a5a08;">※ ちょうどいい相手がいない時は、先方の経営者・マーケ担当になりきって聞いてくれる<strong>AI練習相手（Gemini Gem）</strong>を使う（別途の手順書を参照）。将来は“AI上司”に説明する仕組みも用意します。</span></li>
-      </ol>
-      <p style="margin-top:16px;font-size:14px;">完璧な仮説はいらない。まず「自分の顧客の詰まりどころ」を1つ言葉にできれば、Step4（メインイシューの特定）へ進めます。あとは6ステップを順にたどるだけ。</p>
-    </div>
-
-  </section>
-
-  <!-- 留保・今後 -->
-  <section id="endnote" style="padding-top:8px;">
+  <section style="padding-top:8px;">
     <div class="endnote">
-      <h4>本資料の留保と、今後の進め方</h4>
-      <p>本資料は早川さん単体のインタビューと行動分析に基づく<strong>「現時点版」</strong>です。マクレランド法（行動結果インタビュー）の考え方では、ここで挙げた行動が「早川さんならではの差別化要因」か、それとも「誰もがやっている最低要件」かは、平均的なメンバーとの比較で初めて確定します。</p>
-      <ol>
-        <li>同じ枠組みで、平均層メンバー2名にインタビューを実施</li>
-        <li>早川さんとの差分を抽出し、「差別化行動」を確定（仮説 → 有望 → 要検証）</li>
-        <li>確定した差別化行動を、ロールプレイによる反復実践で移転</li>
-      </ol>
+      <h4>本マニュアルの根拠</h4>
+      <p>本マニュアルの成り立ち・分析方法・ミドル層2名との比較検証・差別化行動の確からしさは、<a href="#r-purpose" onclick="showDoc('record');return false;" style="color:var(--brand-primary);font-weight:700;">背景と検証タブ</a>にまとめている。内容は検証の進捗に応じて更新される。</p>
     </div>
   </section>
 
+    </div>
+
+    <div id="doc-record" class="doc">
+    <nav aria-label="背景と検証 目次" style="margin:38px 0 6px;padding:24px 28px;background:var(--brand-pale);border-radius:14px;">
+      <p style="font-size:13px;font-weight:700;color:var(--brand-primary);letter-spacing:.06em;margin-bottom:10px;">目次（背景と検証）</p>
+      <a href="#r-purpose" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">1</span><span>目的と背景</span></a>
+      <a href="#r-method" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">2</span><span>分析の方法</span></a>
+      <a href="#r-data" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">3</span><span>データと経緯</span></a>
+      <a href="#verify" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">4</span><span>ミドル層2名との比較検証</span></a>
+      <a href="#r-confidence" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">5</span><span>差別化行動の確からしさ</span></a>
+      <a href="#r-next" style="display:flex;align-items:baseline;padding:9px 4px;font-size:14.5px;color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border);line-height:1.6;"><span style="display:inline-block;width:26px;flex:0 0 26px;font-weight:700;color:var(--brand-primary);">6</span><span>今後の進め方</span></a>
+    </nav>
+  <section id="r-purpose" style="padding-top:44px;">
+    <h2><span class="num">1</span>目的と背景</h2>
+    <p class="lead">本タブは、実践マニュアルの背景情報だ。マニュアルが「何をどうやるか」を扱うのに対し、ここでは「このモデルがどう作られ、何を根拠にし、どこまで確からしいのか」を記録する。</p>
+    <p>本プロジェクトの目的は、トップセールスでありトップコンサルタントでもある早川さんの暗黙知を抽出し、一定の経験を積んだメンバーが自分の担当案件で再現できる形へ移転することだ。背景には、既存顧客からのSQL創出という全社テーマがある。既存顧客の成約率は新規を大きく上回っており、クロスセルは最大の収益エンジンだ。早川さんの提案プロセスは、その中核となる打ち手に位置づく。</p>
+    <p style="margin-top:10px;">最終的に目指すのは2つだ。1つは学習マニュアル（実践マニュアルタブ）、もう1つは実践して採点を受けられるAI練習環境だ。</p>
+    </section>
+
+  <section id="r-method" style="padding-top:8px;">
+    <h2><span class="num">2</span>分析の方法</h2>
+    <p class="lead">採用したのは、コンピテンシー研究で用いられるマクレランド法（行動結果インタビュー、BEI）だ。商談の録画やCRMの行動データが十分に無い環境のため、具体的な案件を時系列で語ってもらい、実際の行動を掘り起こす手法を選んでいる。</p>
+    <p>比較の構造は、スター（早川さん。新規案件の成約率がきわめて高い）と、対照群（一定の経験を積んだミドル層メンバー2名。本記録ではミドル層A・ミドル層Bと表記）だ。対照群には本モデルを事前に見せず（ブラインド）、「提案の進め方を教えてほしい」という中立の枠組みで、誘導を避けて実施した。</p>
+    <p style="margin-top:10px;">設計上、重視した点は5つだ。</p>
+    <div class="card" style="padding:10px 24px;margin-top:12px;">
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>1　対比が主役</strong>　対照群も同じようにやっている行動は、差別化要因から外す。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>2　成功と失敗の人内対比</strong>　同じ人の勝ち案件と負け案件を比べ、勝ちにだけ現れる行動を探す。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>3　自己申告の裏取り</strong>　語りは提案書・Slackログなどの現物と突き合わせる（早川さんは4案件14ソースで裏取り済み。ミドル層2名は裏取り継続中）。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>4　成果物は仮説と位置づける</strong>　サンプルが小さいため、断定せず「仮説 → 有望 → 要検証」の段階で管理する。</p></div>
+      <div class="row" style="padding:13px 0;"><p><strong>5　事例数で補う</strong>　サンリオ・パナソニック・東芝・ビーウィズの4案件＋失注1件（KEEN）で、1人あたりの観察数を確保する。</p></div>
+    </div>
+  </section>
+
+  <section id="r-data" style="padding-top:8px;">
+    <h2><span class="num">3</span>データと経緯</h2>
+    <p class="lead">本モデルの根拠となるデータと、分析の経緯を時系列で記録する。</p>
+    <div style="overflow-x:auto;margin-top:8px;">
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+      <tr style="background:var(--brand-pale);"><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;white-space:nowrap;">時期</th><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">出来事</th><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">得られたもの</th></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年4月</td><td style="padding:9px 12px;border:1px solid var(--border);">早川さんインタビュー（第1回）</td><td style="padding:9px 12px;border:1px solid var(--border);">提案プロセス全体像と考え方の言語化</td></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年6月中旬</td><td style="padding:9px 12px;border:1px solid var(--border);">4案件14ソースの行動事実抽出</td><td style="padding:9px 12px;border:1px solid var(--border);">29の行動事実（実践マニュアル・行動編の元データ）</td></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年6月24日</td><td style="padding:9px 12px;border:1px solid var(--border);">早川さんBEI（行動結果インタビュー）</td><td style="padding:9px 12px;border:1px solid var(--border);">判断基準・勝敗の分岐・用語の確定（経営課題 → 事業課題への統一など）</td></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年7月3日</td><td style="padding:9px 12px;border:1px solid var(--border);">ミドル層Aインタビュー（対照群1例目）</td><td style="padding:9px 12px;border:1px solid var(--border);">勝ち案件・負け案件のBEI。12項目での行動比較</td></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年7月7日</td><td style="padding:9px 12px;border:1px solid var(--border);">ミドル層Bインタビュー（対照群2例目）</td><td style="padding:9px 12px;border:1px solid var(--border);">同上。差別化要因の候補が2例目でも支持される</td></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">2026年7月7日</td><td style="padding:9px 12px;border:1px solid var(--border);">R8アカデミーで本人が全社共有</td><td style="padding:9px 12px;border:1px solid var(--border);">本人の言葉での再確認、実践上の目安（時間・目標ライン）、クロスセルの持ち込み方などの追加要素</td></tr>
+    </table>
+    </div>
+    <div class="keymsg">
+      <div class="t">R8アカデミーの記録（2026年7月7日）</div>
+      <p>早川さん本人が、本モデルの概念編にあたる内容を全社向けに直接解説した。冒頭で語られた到達イメージは次の通りだ。「顧客よりも顧客のビジネスに詳しい」状態になると仕事そのものが楽しくなり、実際に複数の顧客から「我々よりも、うちの会社について詳しいですよね」という言葉をもらっている。その結果、相談が次々と持ち込まれ、<strong>「息をするようにSQLを創出している」</strong>状態にある。この状態記述を、モデルの到達イメージとして記録する。</p>
+      <p style="margin-top:8px;">また本人は、自身の過去について「昔は目の前に来た与件にのみ直接答えて提案し、ふわっと流れて失注することがあった」と述べており、失注案件（KEEN）の分析結果と整合している。</p>
+    </div>
+  </section>
+
+  <section id="verify">
+    <h2><span class="num">4</span>ミドル層2名との比較検証</h2>
+    <p class="lead">ここまでの内容が「早川さんならではの差別化要因」なのか、それとも「誰もがやっている最低要件」なのかは、他のメンバーとの比較で初めて確定する。2026年7月、一定の経験を積んだミドル層メンバー2名（本記録ではミドル層A・ミドル層Bと表記する）に、早川さんと同じ枠組みのインタビューを実施し、差分を取った。本章はその検証結果だ。</p>
+
+    <div class="card" style="padding:22px 24px;">
+      <p style="font-size:13px;font-weight:700;color:var(--brand-primary);margin-bottom:8px;">検証の方法</p>
+      <p style="font-size:14px;">2名それぞれに、直近で手応えのあった提案案件と、うまくいかなかった案件を1つずつ選んでもらい、時系列で「何をしたか」を具体的に語ってもらった。本マニュアルの内容は事前に見せず、「メインイシューは特定しましたか」のような誘導も行わず、行動が自然に出てくるかだけを観察している。結果は、下の12項目で比較し、◎○△×の4段階で評価した（◎自然に深く出た／○出た／△断片的／×出なかった）。なお、現時点では口頭での証言にもとづくため、結果は仮説として扱う。</p>
+    </div>
+
+    <h3 style="margin-top:40px;">12項目の比較マトリクス</h3>
+    <div style="overflow-x:auto;margin-top:14px;">
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+      <tr style="background:var(--brand-pale);">
+        <th style="text-align:left;padding:8px 10px;border:1px solid var(--border);font-weight:700;">比較項目（早川モデル）</th>
+        <th style="text-align:center;border:1px solid var(--border);font-weight:700;padding:9px 6px;">早川さん</th>
+        <th style="text-align:center;border:1px solid var(--border);font-weight:700;padding:9px 6px;">ミドル層A</th>
+        <th style="text-align:center;border:1px solid var(--border);font-weight:700;padding:9px 6px;">ミドル層B</th>
+        <th style="text-align:left;padding:8px 10px;border:1px solid var(--border);font-weight:700;">判定</th>
+      </tr>
+      <tr><td style="padding:8px 10px;border:1px solid var(--border);">1　顧客の「言葉」を起点にする</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">×</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">2　事業構造・全社KGIの把握</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">最低要件（深さに差）</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">3　市場・競合の捉え直し</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">最低要件（選定基準に差）</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">4　ペルソナ・行動レベルの理解</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">5　メインイシューの特定（依頼の奥へ登る）<span style="color:var(--accent);font-weight:700;">★</span></td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補（質的差）</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">6　課題の本質集約（症状→診断）</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">○</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">7　メインイシュー⇄KPIの接続<span style="color:var(--accent);font-weight:700;">★</span></td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">×</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">×</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化要因（最有力）</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">8　追うべきKPIの候補比較→確定<span style="color:var(--accent);font-weight:700;">★</span></td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化要因</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">9　数値目標の逆算</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-muted);">×</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化要因</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">10　顧客のチャンピオン化（見せ方）</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">11　判断軸「自分が担当者なら納得するか」</td><td style="text-align:center;border:1px solid var(--border);color:var(--brand-primary);font-weight:700;">◎</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="text-align:center;border:1px solid var(--border);color:var(--text-secondary);">△</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">差別化候補</td></tr><tr><td style="padding:8px 10px;border:1px solid var(--border);">12　人内対比（勝ちと負けを分けた要因の自己認識）</td><td style="text-align:center;border:1px solid var(--border);font-size:12px;color:var(--brand-primary);font-weight:700;">接続の有無</td><td style="text-align:center;border:1px solid var(--border);font-size:12px;color:var(--text-secondary);">量・機会</td><td style="text-align:center;border:1px solid var(--border);font-size:12px;color:var(--text-secondary);">量・相手要因</td><td style="padding:8px 10px;border:1px solid var(--border);font-size:12.5px;">帰属の軸が異なる</td></tr>
+    </table>
+    </div>
+    <p style="margin-top:10px;font-size:12.5px;color:var(--text-muted);">★は本モデルのコアの3項目（メインイシューの特定／メインイシュー⇄KPIの接続／KPIの候補比較）。判定は、全員が◎○なら「最低要件」、早川さんだけ◎で2名が△×なら「差別化要因の候補」とする考え方だ。</p>
+
+    <div class="insight" style="margin-top:26px;">
+      <div class="t">所見1　差はコアの3項目に集中</div>
+      <p>事業構造の調査や競合分析は、ミドル層2名も実施していた。行動の「有無」で差がつくのは、メインイシューの特定・KPIとの接続・候補比較の3つだ。特に接続は、ミドル層Aが勝ち案件について「正直、繋がっていなかった」と述べ、ミドル層Bも提案段階では「そこから一緒に作りましょう」という形で、2名とも一本の線が出なかった。実践マニュアル（概念編）の中核として扱っている内容が、そのまま差になっている。</p>
+    </div>
+
+    <h3 style="margin-top:40px;">勝ち筋の違い（量と構造）</h3>
+    <p>ミドル層2名の勝ち案件の勝因は、本人の言葉でそれぞれ「接触回数の多さ・ヒアリング機会」「泥臭くアクションをやりきれたこと（何度もの電話・訪問・資料の作り込み）」だった。関係の量で信頼を積み上げる勝ち方で、これ自体は再現性のある強みだ。一方、早川さんの勝ち筋は「精度の高い仮説を持ち込み、初回の時点で担当者を仲間にする」という構造の勝ち方だ。この型が目指すのは、量の勝ち筋を捨てることではなく、<strong>量の勝ち筋に構造を足す</strong>ことだ。</p>
+
+    <div class="card" style="padding:22px 24px;margin-top:18px;border-left:4px solid var(--accent);">
+      <p style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px;">検証から見つかった罠　「正しい指摘」と「接続」は別物</p>
+      <p style="font-size:14px;">ミドル層Bの失注案件（教育系商材の広告コンペ）では、顧客が「Webの資料請求数」をKPIとして決め打ちしていた。Bさんは「本当に追うべきは受注単価では」と、抽象度を引き上げる指摘そのものは行っている。しかし顧客の反応は「それは分かっている。ただ、今は資料請求数を増やすフェーズだ」というもので、提案は動かなかった。</p>
+      <p style="font-size:14px;margin-top:10px;">つまり、正しい方向を指摘するだけでは顧客は動かない。顧客の事業構造と顧客自身の言葉から組み上げた論理の線があり、担当者が社内で自分の言葉として説明できる状態（チャンピオン化）まで持ち込めて、初めて指摘は機能する。指摘と接続の間には距離がある、というのがこの検証の重要な発見だ。</p>
+      <p style="font-size:13px;margin-top:10px;color:var(--text-muted);">なお、この案件は広告運用を主軸とするリプレイス型のコンペで、早川さんが「ずらし」で対応すると述べている勝ちにくい領域と同型だ。敗因のすべてを個人の行動に帰属させるのは適切でないことも、あわせて記しておく。</p>
+    </div>
+
+    <div class="insight" style="margin-top:26px;">
+      <div class="t">所見2　詰まりどころは図Aの②に集中する</div>
+      <p>実践マニュアル概念編の図A（3つのつまずき）に当てはめると、ミドル層2名の主な詰まりはいずれも「②課題とKPIの接続が切れている」だった。①（事業課題が見えない）は2名とも一段は登れており、③（KPIが定まらない）はパターンで置くことができている。図Aは顧客担当者の診断のために作られた図だが、<strong>自分自身の提案の診断</strong>にもそのまま使える。自分の直近の提案が①②③のどこで詰まっているかを確認するところから始める。</p>
+    </div>
+
+    <h3 style="margin-top:40px;">ミドル層2名から見つかった優れた行動</h3>
+    <p>この検証は不足を探すためだけのものではない。2名からは、全社に広げる価値のある行動も見つかっている。</p>
+    <div class="card" style="padding:10px 24px;margin-top:14px;">
+      <div class="row" style="padding:14px 0;border-bottom:1px solid var(--border);">
+        <p><strong>顧客のサービスを自分で体験する</strong></p>
+        <p style="margin-top:6px;font-size:14px;">絶対に取りたい案件では顧客のサービスを実際に利用し、気づきを書き出してヒアリングでぶつける（ミドル層B）。早川さんが家族でピューロランドを訪れた行動と同型で、トップ層に共通する行動の可能性がある。</p>
+      </div>
+      <div class="row" style="padding:14px 0;border-bottom:1px solid var(--border);">
+        <p><strong>競合を3つの層で幅広く仮置きする</strong></p>
+        <p style="margin-top:6px;font-size:14px;">直接競合・中間競合・間接競合（余暇時間を奪い合う相手まで）を仮置きし、初回ヒアリングで確かめにいく（ミドル層B）。幅の取り方は早川さんの3層競合と同水準だ。</p>
+      </div>
+      <div class="row" style="padding:14px 0;">
+        <p><strong>業界に詳しい外部の知見で構造理解を補う</strong></p>
+        <p style="margin-top:6px;font-size:14px;">その業界の事業の「売上の公式」を、業界に詳しい取引先に直接聞いて確かめる（ミドル層A）。自力の調査に外部の知見を重ねる行動だ。</p>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:26px;">
+      <div class="t">本章の留保</div>
+      <p>本章の結果は2名の口頭での証言にもとづく仮説であり、実際の提案書との突き合わせによる裏取りを継続している。また、比較した案件のタイプが3名で異なるため、差の一部が案件の性質による可能性は残っている。確からしさが更新され次第、本章を改訂する。</p>
+    </div>
+  </section>
+
+
+  <section id="r-confidence" style="padding-top:8px;">
+    <h2><span class="num">5</span>差別化行動の確からしさ</h2>
+    <p class="lead">検証を踏まえた、差別化行動の一覧と現時点の確からしさだ。確からしさは「仮説 → 有望 → 要検証」の3段階で管理し、裏取りの進捗に応じて更新する。</p>
+    <div style="overflow-x:auto;margin-top:8px;">
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+      <tr style="background:var(--brand-pale);"><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">ID</th><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">行動</th><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">根拠の要約</th><th style="text-align:left;padding:9px 12px;border:1px solid var(--border);font-weight:700;">確からしさ</th></tr>
+      <tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D1</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>メインイシュー⇄KPIの論理接続</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">事業課題からKPIまでを一本の線で語り、提案の背骨に置く</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">早川さん◎／ミドル層2名とも接続なし（1名は本人が明言）</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;"><strong style="color:var(--accent);">有望</strong></td></tr><tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D2</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>事業課題への昇華</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">組織・運用レベルの課題で止めず、事業KGIに紐づけて言語化する</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">ミドル層は一段は登るが、事業課題への昇華と接続まで届かず</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">有望</td></tr><tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D3</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>顧客専用の仮説づくり</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">一般論や業界のあるあるに頼らず、その顧客の言葉と事業構造から仮説を組み立てる</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">仮説を立てる行動自体はミドル層にもあるため、差の定義を「作り方」に絞り込んだ</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">要再定義</td></tr><tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D4</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>顧客の言葉のピン留め</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">IR・プレスの頻出語を1語に絞り、提案の起点に置く</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">早川さん◎／ミドル層A△／ミドル層B×（意識していない）</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">有望</td></tr><tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D5</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>KPIの候補比較評価</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">候補×評価軸のマトリクスで選定する</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">ミドル層2名はパターンによる決め打ち寄り</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">有望</td></tr><tr><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;font-weight:700;color:var(--brand-primary);">D6</td><td style="padding:9px 12px;border:1px solid var(--border);"><strong>既存深耕の能動創出</strong><br><span style="font-size:12.5px;color:var(--text-secondary);">KPI協議・逆算の叩き台から次の与件を自ら作る</span></td><td style="padding:9px 12px;border:1px solid var(--border);font-size:12.5px;">ミドル層2名は引き合い待ち・タイミング待ちの受動寄り</td><td style="padding:9px 12px;border:1px solid var(--border);white-space:nowrap;">有望</td></tr>
+    </table>
+    </div>
+    <div class="insight" style="margin-top:22px;">
+      <div class="t">確からしさの留保（比較条件の交絡）</div>
+      <p>3名が語った案件のタイプは同一ではないため、差の一部が「人の差」ではなく「案件の差」による可能性が残っている。ただし、接続（D1）の弱さが案件タイプの異なる2名に共通して観察されたことは、案件の差だけによる説明を難しくしている。この論点は、比較条件を揃えた追加データと提案書現物の裏取りで解消していく。</p>
+    </div>
+  </section>
+
+  <section id="r-next" style="padding-top:8px;">
+    <h2><span class="num">6</span>今後の進め方</h2>
+    <p class="lead">本記録は完成品ではなく、更新され続ける文書だ。優先順に、次を進める。</p>
+    <div class="card" style="padding:10px 24px;margin-top:8px;">
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>1　裏取り</strong>　ミドル層2名の実際の提案書と証言を突き合わせる。あわせて、比較条件を揃えた追加ヒアリング（既存顧客へのクロスセル案件）を実施する。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>2　商談内スキルの観察</strong>　ミドル層2名がともに早川さんとの差として挙げたのは「話のうまさ・ファシリテーション・打ち返し」という商談の中のスキルであり、現状は証言のみで観察データが不足している。商談録画の取得により、次期スコープ（商談内の変換スキル）の検証に進む。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>3　AI練習環境の構築</strong>　実践して採点を受けられるAI（クライアントAI）を構築する。採点の配点は、コアの3次元（メインイシュー特定・接続・KPI候補比較）を足切りとする設計で確定済み。</p></div>
+      <div class="row" style="padding:13px 0;border-bottom:1px solid var(--border);"><p><strong>4　参考例のナレッジベース化</strong>　R8アカデミーの質疑で「過去の事業理解・仮説の参考例にアクセスできる場所がほしい」というリクエストが挙がった。優れた仮説・提案の実例を参照できる仕組みと、提案前にレビューを受けられる運用を検討する。</p></div>
+      <div class="row" style="padding:13px 0;"><p><strong>5　本記録の更新</strong>　確からしさの評価が動き次第、検証の章と差別化行動一覧を改訂する。</p></div>
+    </div>
+    <div class="endnote" style="margin-top:30px;">
+      <h4>本記録の位置づけ</h4>
+      <p>本記録の分析結果は仮説であり、断定ではない。対照群のメンバーは匿名（ミドル層A・B）で扱い、比較は個人の評価ではなく、移転すべき行動の特定を目的としている。最終更新は2026年7月8日だ。</p>
+    </div>
+  </section>
+
+    </div>
 </div><!-- /wrap -->
 
 <footer>
   <strong>早川モデル｜事業課題とKPIの組み立て方（現時点版）</strong><br>
-  株式会社UNCOACH × 株式会社プリンシプル　／　2026年6月　作成<br>
-  本資料は早川さんへのインタビューと4案件の行動分析に基づく中間整理です。
+  株式会社UNCOACH × 株式会社プリンシプル　／　2026年6月 作成・2026年7月 更新<br>
+  本ページは「実践マニュアル」と「背景と検証」の2部構成。内容は検証の進捗に応じて更新される。
 </footer>
 
 </div><!-- /content -->
@@ -1106,6 +1281,23 @@
       document.getElementById('content').style.display = 'block';
     }
   } catch(e){}
+
+  function showDoc(id) {
+    document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
+    document.getElementById('doc-' + id).classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+    window.scrollTo({ top: 0 });
+  }
+  (function() {
+    try {
+      const h = location.hash;
+      if (h) {
+        const el = document.querySelector(h);
+        if (el && el.closest('#doc-record')) { showDoc('record'); setTimeout(() => el.scrollIntoView(), 80); }
+      }
+    } catch(e) {}
+  })();
 </script>
 </body>
 </html>
